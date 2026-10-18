@@ -1,9 +1,19 @@
 import sqlite3
 import os
 import re
+import tempfile
+import shutil
 from datetime import datetime
 
-DB_PATH = os.path.join(os.path.dirname(__file__), 'divinenest.db')
+# In serverless environments like Vercel, root filesystem is read-only, use /tmp
+if os.environ.get('VERCEL') or os.environ.get('AWS_LAMBDA_FUNCTION_NAME'):
+    TEMP_DIR = tempfile.gettempdir()
+    DB_PATH = os.path.join(TEMP_DIR, 'divinenest.db')
+    LOCAL_DB = os.path.join(os.path.dirname(__file__), 'divinenest.db')
+    if not os.path.exists(DB_PATH) and os.path.exists(LOCAL_DB):
+        shutil.copyfile(LOCAL_DB, DB_PATH)
+else:
+    DB_PATH = os.path.join(os.path.dirname(__file__), 'divinenest.db')
 
 def get_db():
     conn = sqlite3.connect(DB_PATH)
