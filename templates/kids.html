@@ -1,0 +1,113 @@
+{% extends 'base.html' %}
+
+{% block title %}🧒 DivineNest Kids — Cartoons, Stories, Rhymes & Fun Learning{% endblock %}
+{% block meta_description %}Welcome to DivineNest Kids — a fun and creative world of songs, cartoons, stories, rhymes and educational entertainment created for children and families.{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 2rem;">
+  <div class="container">
+    
+    <!-- Playful Kids Banner -->
+    <div class="kids-hero-banner">
+      <div class="kids-floating-elements">
+        <div class="kids-bubble bubble-1"></div>
+        <div class="kids-bubble bubble-2"></div>
+        <div class="kids-bubble bubble-3"></div>
+      </div>
+      <div style="font-size: 3.5rem; margin-bottom: 0.5rem;">🧒 🎨 🐰 🚀</div>
+      <h1 class="section-title" style="font-size: clamp(2.4rem, 4.5vw, 3.5rem); margin-bottom: 0.75rem; color: #FFF;">
+        DivineNest Kids
+      </h1>
+      <p style="font-size: 1.15rem; max-width: 700px; margin: 0 auto; color: #E0E7FF; font-weight: 500;">
+        Welcome to a fun and creative world of songs, colorful cartoons, Panchatantra moral stories, nursery rhymes, and joyful early learning entertainment.
+      </p>
+
+      <!-- Age Filters -->
+      <div class="kids-age-filter">
+        <a href="{{ url_for('kids', category=current_category, age='all') }}" class="kids-age-badge {% if current_age == 'all' or not current_age %}active{% endif %}">
+          All Ages 🌟
+        </a>
+        <a href="{{ url_for('kids', category=current_category, age='2–5') }}" class="kids-age-badge {% if '2' in current_age %}active{% endif %}">
+          Ages 2–5 Years 🐣
+        </a>
+        <a href="{{ url_for('kids', category=current_category, age='5–8') }}" class="kids-age-badge {% if '5' in current_age %}active{% endif %}">
+          Ages 5–8 Years 🦁
+        </a>
+      </div>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="filter-tabs">
+      {% for code, label in categories %}
+      <a href="{{ url_for('kids', category=code, age=current_age) }}" 
+         class="filter-tab {% if current_category == code %}active{% endif %}"
+         style="{% if current_category == code %}background:#06D6A0; color:#000; border-color:#06D6A0; font-weight:800;{% endif %}">
+        {{ label }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Kids Video Grid -->
+    <div class="video-grid" style="margin-bottom: 4rem;">
+      {% for vid in kids_videos %}
+      <div class="video-card kids-card">
+        <div class="video-thumb-wrap" data-youtube-id="{{ vid.youtube_id }}" data-video-title="{{ vid.title }}">
+          <img src="{{ vid.thumbnail }}" alt="{{ vid.title }}" class="video-thumb" loading="lazy">
+          {% if vid.age_group %}
+          <span class="kids-card-age">{{ vid.age_group }}</span>
+          {% endif %}
+          <span class="video-duration-badge">{{ vid.duration }}</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn" style="background:#06D6A0; color:#000;">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="{{ url_for('video_detail', slug=vid.slug) }}" class="video-card-title">
+            {{ vid.title }}
+          </a>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
+            {{ vid.description }}
+          </p>
+          <div class="video-card-meta">
+            <span style="color:#06D6A0; font-weight:700;">{{ vid.subcategory | capitalize }}</span>
+            <button class="btn btn-primary" style="padding:0.35rem 0.85rem; font-size:0.8rem; background:#06D6A0; color:#000; font-weight:800;"
+                    data-youtube-id="{{ vid.youtube_id }}"
+                    data-video-title="{{ vid.title }}">
+              Watch Story ▶
+            </button>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Kids Pillars / Educational Value -->
+    <div class="explore-grid">
+      <div class="explore-card card-kids">
+        <div class="explore-icon-bubble">📖</div>
+        <h3 class="explore-card-title">Moral Stories</h3>
+        <p class="explore-card-text">
+          Classic Panchatantra and folklore adaptations teaching empathy, honesty, kindness, and courage in modern animated beauty.
+        </p>
+      </div>
+
+      <div class="explore-card card-kids">
+        <div class="explore-icon-bubble">🎵</div>
+        <h3 class="explore-card-title">Musical Rhymes</h3>
+        <p class="explore-card-text">
+          Catchy sing-along songs in Telugu, Hindi, and English that build linguistic memory, vocabulary, and cheerful family rhythm.
+        </p>
+      </div>
+
+      <div class="explore-card card-kids">
+        <div class="explore-icon-bubble">🛡️</div>
+        <h3 class="explore-card-title">100% Safe For Kids</h3>
+        <p class="explore-card-text">
+          Zero inappropriate content, soft color palettes to reduce digital eye strain, and wholesome storytelling trusted by parents.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

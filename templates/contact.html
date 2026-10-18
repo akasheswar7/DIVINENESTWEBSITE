@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us — DivineNest Team{% endblock %}
+{% block meta_description %}Have a question, collaboration idea or business enquiry? Get in touch with the DivineNest team.{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 3.5rem;">
+  <div class="container">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem auto;">
+      <span class="section-tag">Get In Touch</span>
+      <h1 class="section-title" style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1rem;">
+        We'd Love to Hear From You
+      </h1>
+      <p class="section-desc" style="font-size: 1.1rem;">
+        Have a question, feedback, partnership proposal or business enquiry? Send us a message and our team will get back to you promptly.
+      </p>
+    </div>
+
+    <div style="display:grid; grid-template-columns: 3fr 2fr; gap: 3rem; margin-bottom: 4rem;">
+      
+      <!-- Contact Form -->
+      <div class="form-card" style="margin:0; width:100%; max-width:100%;">
+        <h3 style="font-size:1.5rem; font-weight:800; margin-bottom:1.5rem;">Send a Message</h3>
+        <form id="contactForm">
+          <div class="form-group">
+            <label class="form-label">Full Name *</label>
+            <input type="text" name="name" class="form-control" placeholder="Enter your full name" required>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label class="form-label">Email Address *</label>
+              <input type="email" name="email" class="form-control" placeholder="name@example.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number (Optional)</label>
+              <input type="tel" name="phone" class="form-control" placeholder="+91 98765 43210">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <input type="text" name="subject" class="form-control" placeholder="e.g. General Enquiry, Music Feedback, Partnership">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Your Message *</label>
+            <textarea name="message" class="form-control" rows="5" placeholder="Write your message here..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; padding:0.95rem; font-size:1.05rem;">
+            Send Message ✉️
+          </button>
+        </form>
+      </div>
+
+      <!-- Contact Details & Info -->
+      <div style="display:flex; flex-direction:column; gap:1.5rem;">
+        <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-light);">
+          <h4 style="font-size:1.2rem; font-weight:800; margin-bottom:1.25rem; color:var(--accent-gold);">
+            Official Information
+          </h4>
+          <ul style="display:flex; flex-direction:column; gap:1rem; font-size:0.95rem;">
+            <li>
+              <strong>📧 Email:</strong><br>
+              <span style="color:var(--text-muted);">contact@divinenest.com</span>
+            </li>
+            <li>
+              <strong>🌐 Website:</strong><br>
+              <span style="color:var(--text-muted);">www.divinenest.com</span>
+            </li>
+            <li>
+              <strong>📍 Location:</strong><br>
+              <span style="color:var(--text-muted);">Hyderabad / Bangalore, India</span>
+            </li>
+          </ul>
+        </div>
+
+        <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-light);">
+          <h4 style="font-size:1.2rem; font-weight:800; margin-bottom:1.25rem;">
+            Official Social Media
+          </h4>
+          <div style="display:flex; flex-direction:column; gap:0.75rem;">
+            <a href="{{ youtube_url }}" target="_blank" rel="noopener noreferrer" style="color:var(--text-muted); display:flex; align-items:center; gap:0.5rem;">
+              <span style="color:#FF0000; font-size:1.2rem;">▶</span> YouTube: DivineNest
+            </a>
+            <a href="{{ instagram_url }}" target="_blank" rel="noopener noreferrer" style="color:var(--text-muted); display:flex; align-items:center; gap:0.5rem;">
+              <span style="color:#FF006E; font-size:1.2rem;">📷</span> Instagram: @divinenest
+            </a>
+            <a href="{{ facebook_url }}" target="_blank" rel="noopener noreferrer" style="color:var(--text-muted); display:flex; align-items:center; gap:0.5rem;">
+              <span style="color:#3A86FF; font-size:1.2rem;">👍</span> Facebook: DivineNest
+            </a>
+            <a href="{{ x_url }}" target="_blank" rel="noopener noreferrer" style="color:var(--text-muted); display:flex; align-items:center; gap:0.5rem;">
+              <span style="color:#FFF; font-size:1.2rem;">✕</span> X (Twitter): @divinenest
+            </a>
+          </div>
+        </div>
+
+        <div style="background:rgba(131,56,236,0.1); border:1px solid rgba(131,56,236,0.3); padding:1.5rem; border-radius:var(--radius-md); font-size:0.88rem; color:var(--text-muted);">
+          💡 <strong>Privacy Note:</strong> All messages submitted through this form are kept strictly confidential and answered by the DivineNest support team.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}

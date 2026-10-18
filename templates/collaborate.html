@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}Collaborate With DivineNest — Artists, Animators & Brands{% endblock %}
+{% block meta_description %}Are you a singer, musician, composer, animator, storyteller, voice artist, content creator or brand interested in collaborating with DivineNest? Submit your proposal.{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 3.5rem;">
+  <div class="container">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem auto;">
+      <span class="section-tag" style="color:var(--accent-orange);">Partnerships & Creation</span>
+      <h1 class="section-title" style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1rem;">
+        Collaborate With DivineNest
+      </h1>
+      <p class="section-desc" style="font-size: 1.1rem;">
+        Are you a singer, musician, composer, animator, storyteller, voice artist, content creator or brand interested in collaborating with DivineNest? We would love to build extraordinary experiences together.
+      </p>
+    </div>
+
+    <!-- Collaboration Areas Cards -->
+    <div class="explore-grid" style="margin-bottom: 4rem;">
+      <div class="explore-card card-music">
+        <div class="explore-icon-bubble">🎵</div>
+        <h3 class="explore-card-title">Music Production</h3>
+        <p class="explore-card-text">Composers, lyricists, flautists, and orchestral arrangers.</p>
+      </div>
+
+      <div class="explore-card card-artists">
+        <div class="explore-icon-bubble">🎤</div>
+        <h3 class="explore-card-title">Vocal Artists</h3>
+        <p class="explore-card-text">Carnatic, devotional, acoustic pop, and playback singers.</p>
+      </div>
+
+      <div class="explore-card card-kids">
+        <div class="explore-icon-bubble">🎨</div>
+        <h3 class="explore-card-title">Animation & Cartoons</h3>
+        <p class="explore-card-text">2D/3D animators, character designers, and visual illustrators.</p>
+      </div>
+
+      <div class="explore-card card-videos">
+        <div class="explore-icon-bubble">📖</div>
+        <h3 class="explore-card-title">Storytelling & Voiceovers</h3>
+        <p class="explore-card-text">Moral fable writers, multilingual voice dubbers, and narrators.</p>
+      </div>
+
+      <div class="explore-card card-shorts">
+        <div class="explore-icon-bubble">🎬</div>
+        <h3 class="explore-card-title">Video Production</h3>
+        <p class="explore-card-text">Cinematographers, video editors, and visual FX creators.</p>
+      </div>
+
+      <div class="explore-card card-devotional">
+        <div class="explore-icon-bubble">📢</div>
+        <h3 class="explore-card-title">Brand Partnerships</h3>
+        <p class="explore-card-text">Family-oriented brands, ethical sponsorships, and digital licensing.</p>
+      </div>
+    </div>
+
+    <!-- Collaboration Form -->
+    <div class="form-card" style="margin-bottom: 4rem;">
+      <h3 style="font-size:1.6rem; font-weight:800; margin-bottom:1.5rem; text-align:center;">
+        Submit Collaboration Request
+      </h3>
+      <form id="collabForm">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem;">
+          <div class="form-group">
+            <label class="form-label">Your Name / Organization *</label>
+            <input type="text" name="name" class="form-control" placeholder="Full name or company" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input type="email" name="email" class="form-control" placeholder="name@domain.com" required>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem;">
+          <div class="form-group">
+            <label class="form-label">Phone Number</label>
+            <input type="tel" name="phone" class="form-control" placeholder="+91 98765 43210">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Primary Collaboration Area *</label>
+            <select name="category" class="form-control" required>
+              <option value="Music Production">🎵 Music Production</option>
+              <option value="Vocal Artist / Singer">🎤 Vocal Artist / Singer</option>
+              <option value="Kids & Animation">🎨 Kids & Animation</option>
+              <option value="Storytelling & Voiceover">📖 Storytelling & Voiceover</option>
+              <option value="Video Production">🎬 Video Production</option>
+              <option value="Brand Partnership">📢 Brand Partnership</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Portfolio / YouTube / Drive Link</label>
+          <input type="url" name="portfolio_link" class="form-control" placeholder="https://youtube.com/... or Behance / Drive">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Collaboration Proposal / Idea *</label>
+          <textarea name="proposal" class="form-control" rows="5" placeholder="Describe your background and how we can work together..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; padding:1rem; font-size:1.05rem;">
+          Submit Collaboration Request 🚀
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

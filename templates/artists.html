@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}🎤 Meet Our Artists — DivineNest Musicians, Singers & Creators{% endblock %}
+{% block meta_description %}Discover talented singers, musicians, composers, voice artists, creators and performers featured on DivineNest.{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 3rem;">
+  <div class="container">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem auto;">
+      <span class="section-tag">Talented Performer Community</span>
+      <h1 class="section-title" style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1rem;">
+        Meet Our Artists
+      </h1>
+      <p class="section-desc" style="font-size: 1.1rem;">
+        Discover talented singers, classical vocalists, flautists, composers, animators, and voice artists featured on DivineNest. From soulful Carnatic devotion to playful character voices.
+      </p>
+    </div>
+
+    <!-- Artists Directory Grid -->
+    <div class="artists-grid" style="margin-bottom: 4rem;">
+      {% for artist in artists %}
+      <div class="artist-card">
+        <div class="artist-avatar-wrap">
+          <img src="{{ artist.photo }}" alt="{{ artist.name }}" class="artist-avatar">
+        </div>
+        <h3 class="artist-name">
+          <a href="{{ url_for('artist_detail', slug=artist.slug) }}">{{ artist.name }}</a>
+        </h3>
+        <p class="artist-role">{{ artist.role }}</p>
+        <span class="artist-languages">{{ artist.languages }}</span>
+
+        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-bottom:1.25rem; display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;">
+          {{ artist.bio }}
+        </p>
+
+        <div style="display:flex; justify-content:center; gap:0.5rem; margin-bottom:1.25rem;">
+          <a href="{{ artist.youtube }}" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="YouTube">▶</a>
+          <a href="{{ artist.instagram }}" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="Instagram">📷</a>
+          <a href="{{ artist.facebook }}" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="Facebook">👍</a>
+        </div>
+
+        <a href="{{ url_for('artist_detail', slug=artist.slug) }}" class="btn btn-outline" style="width:100%; font-size:0.9rem; padding:0.6rem;">
+          View Full Profile →
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Artist Collaboration Callout -->
+    <div class="newsletter-box" style="background: linear-gradient(135deg, rgba(251,133,0,0.15), rgba(131,56,236,0.15)); border: 1px solid rgba(251,133,0,0.3);">
+      <div class="newsletter-text" style="max-width: 650px;">
+        <span class="section-tag" style="color:var(--accent-orange);">Join the Nest</span>
+        <h2 style="font-size: 1.8rem; font-weight:800; margin:0.5rem 0;">Are You a Performer or Creator?</h2>
+        <p style="color: var(--text-muted);">
+          We are always looking for passionate singers, musicians, storytellers, and animators to collaborate with. Become a featured DivineNest artist.
+        </p>
+      </div>
+      <a href="{{ url_for('collaborate') }}" class="btn btn-primary" style="background:linear-gradient(135deg, #FB8500, #FF006E); border:none;">
+        Apply to Collaborate →
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

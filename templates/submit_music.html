@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}Submit Your Music — DivineNest Independent Artist Submissions{% endblock %}
+{% block meta_description %}Are you an independent artist or musician? Submit your music to DivineNest for feature consideration on our platform and YouTube channel.{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 3.5rem;">
+  <div class="container">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem auto;">
+      <span class="section-tag">🎵 Independent Artist Showcase</span>
+      <h1 class="section-title" style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1rem;">
+        Submit Your Music
+      </h1>
+      <p class="section-desc" style="font-size: 1.1rem;">
+        Are you an independent vocalist, instrumentalist, or music composer? Submit your original melodies, devotional compositions, or acoustic covers to DivineNest for global release and YouTube features.
+      </p>
+    </div>
+
+    <div class="form-card" style="margin-bottom: 4rem;">
+      <h3 style="font-size:1.6rem; font-weight:800; margin-bottom:1.5rem; text-align:center;">
+        Song Submission Form
+      </h3>
+      <form id="submitMusicForm">
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem;">
+          <div class="form-group">
+            <label class="form-label">Artist / Band Name *</label>
+            <input type="text" name="artist_name" class="form-control" placeholder="e.g. Ramesh Varma" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Song Title *</label>
+            <input type="text" name="song_name" class="form-control" placeholder="e.g. Anandam Morning Melody" required>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem;">
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input type="email" name="email" class="form-control" placeholder="artist@example.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Phone / WhatsApp Number</label>
+            <input type="tel" name="phone" class="form-control" placeholder="+91 98765 43210">
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem;">
+          <div class="form-group">
+            <label class="form-label">Song Language *</label>
+            <select name="language" class="form-control" required>
+              <option value="Telugu">Telugu</option>
+              <option value="Hindi">Hindi</option>
+              <option value="English">English</option>
+              <option value="Sanskrit">Sanskrit</option>
+              <option value="Instrumental">Instrumental</option>
+              <option value="Other">Other Language</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Genre *</label>
+            <select name="genre" class="form-control" required>
+              <option value="Original Melody">Original Melody</option>
+              <option value="Devotional / Bhajan">Devotional / Bhajan</option>
+              <option value="Acoustic / Romantic">Acoustic / Romantic</option>
+              <option value="Classical & Traditional">Classical & Traditional</option>
+              <option value="Kids Music">Kids Music</option>
+              <option value="Instrumental Peace">Instrumental Peace</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:1.25rem;">
+          <div class="form-group">
+            <label class="form-label">YouTube Preview Link</label>
+            <input type="url" name="youtube_link" class="form-control" placeholder="https://youtube.com/watch?v=...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Audio / Google Drive Link</label>
+            <input type="url" name="audio_link" class="form-control" placeholder="Drive / SoundCloud / Dropbox link">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Social Media Profile (Instagram / YouTube)</label>
+          <input type="text" name="social_media" class="form-control" placeholder="@yourhandle or profile URL">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Message / About The Song</label>
+          <textarea name="message" class="form-control" rows="4" placeholder="Tell us about the inspiration, credits, and lyrics of this song..."></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width:100%; padding:1rem; font-size:1.05rem;">
+          Submit Song For Review 🎵
+        </button>
+      </form>
+    </div>
+
+    <!-- Review Guidelines -->
+    <div class="explore-grid">
+      <div class="explore-card">
+        <h4 style="font-size:1.15rem; margin-bottom:0.5rem; color:var(--accent-gold);">1. Original Content</h4>
+        <p style="font-size:0.9rem; color:var(--text-muted);">Please only submit songs and recordings that you own the rights to or have written permissions for.</p>
+      </div>
+      <div class="explore-card">
+        <h4 style="font-size:1.15rem; margin-bottom:0.5rem; color:var(--accent-teal);">2. Family-Friendly</h4>
+        <p style="font-size:0.9rem; color:var(--text-muted);">In line with DivineNest principles, songs should feature wholesome, uplifting lyrics suitable for all ages.</p>
+      </div>
+      <div class="explore-card">
+        <h4 style="font-size:1.15rem; margin-bottom:0.5rem; color:var(--primary-light);">3. Editorial Review</h4>
+        <p style="font-size:0.9rem; color:var(--text-muted);">Our music curation team listens to every submission and contacts shortlisted creators within 5-7 business days.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

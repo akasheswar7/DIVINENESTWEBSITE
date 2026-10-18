@@ -1,0 +1,457 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Dashboard | DivineNest Control Center{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="container admin-wrapper">
+
+  {% if need_login %}
+  <!-- Admin Login Form -->
+  <div class="form-card" style="max-width: 480px; margin: 4rem auto;">
+    <div style="text-align: center; margin-bottom: 2rem;">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">🔐</div>
+      <h2 style="font-size: 1.8rem; font-weight:800;">Admin Sign In</h2>
+      <p style="color:var(--text-muted); font-size:0.92rem;">Enter credentials to access DivineNest Management</p>
+    </div>
+
+    {% if error %}
+    <div style="background:rgba(255,0,0,0.15); border:1px solid rgba(255,0,0,0.3); color:#FF4D4D; padding:0.85rem; border-radius:var(--radius-md); margin-bottom:1.5rem; font-size:0.9rem; text-align:center;">
+      {{ error }}
+    </div>
+    {% endif %}
+
+    <form action="{{ url_for('admin') }}" method="POST">
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input type="text" name="username" class="form-control" placeholder="admin" required autofocus>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+      </div>
+
+      <button type="submit" class="btn btn-primary" style="width:100%; padding:0.85rem; font-size:1rem; margin-top:0.5rem;">
+        Sign In to Dashboard
+      </button>
+
+      <p style="text-align:center; font-size:0.82rem; color:var(--text-dim); margin-top:1.25rem;">
+        Default access: <strong>admin</strong> / <strong>divinenest2026</strong>
+      </p>
+    </form>
+  </div>
+
+  {% else %}
+
+  <!-- Admin Header Bar -->
+  <div class="admin-header-row">
+    <div class="admin-title-area">
+      <h1>🪹 DivineNest Platform Admin</h1>
+      <p style="color:var(--text-muted); font-size:0.95rem;">Manage content, publish video feeds, review music submissions and messages</p>
+    </div>
+
+    <div style="display:flex; align-items:center; gap:1rem;">
+      <a href="{{ url_for('index') }}" class="btn btn-outline" style="padding:0.6rem 1.2rem; font-size:0.9rem;">
+        <span>🌐 View Site</span>
+      </a>
+      <a href="{{ url_for('admin_logout') }}" class="btn btn-sm-del" style="padding:0.65rem 1.25rem; font-size:0.9rem;">
+        Sign Out 🚪
+      </a>
+    </div>
+  </div>
+
+  <!-- Live Stats Grid -->
+  <div class="admin-stats-grid">
+    <div class="admin-stat-card">
+      <div class="admin-stat-icon">🎬</div>
+      <div>
+        <div class="admin-stat-val">{{ stats.videos }}</div>
+        <div class="admin-stat-lbl">Total Videos</div>
+      </div>
+    </div>
+
+    <div class="admin-stat-card">
+      <div class="admin-stat-icon" style="background:rgba(255,183,3,0.15); color:var(--accent-gold);">🎵</div>
+      <div>
+        <div class="admin-stat-val">{{ stats.music }}</div>
+        <div class="admin-stat-lbl">Audio Tracks</div>
+      </div>
+    </div>
+
+    <div class="admin-stat-card">
+      <div class="admin-stat-icon" style="background:rgba(6,214,160,0.15); color:var(--accent-teal);">🎤</div>
+      <div>
+        <div class="admin-stat-val">{{ stats.artists }}</div>
+        <div class="admin-stat-lbl">Featured Artists</div>
+      </div>
+    </div>
+
+    <div class="admin-stat-card">
+      <div class="admin-stat-icon" style="background:rgba(255,0,110,0.15); color:var(--accent-pink);">✉️</div>
+      <div>
+        <div class="admin-stat-val">{{ stats.inquiries }}</div>
+        <div class="admin-stat-lbl">Inquiries</div>
+      </div>
+    </div>
+
+    <div class="admin-stat-card">
+      <div class="admin-stat-icon" style="background:rgba(58,134,255,0.15); color:var(--accent-cyan);">🎧</div>
+      <div>
+        <div class="admin-stat-val">{{ stats.submissions }}</div>
+        <div class="admin-stat-lbl">Song Submissions</div>
+      </div>
+    </div>
+
+    <div class="admin-stat-card">
+      <div class="admin-stat-icon" style="background:rgba(251,133,0,0.15); color:var(--accent-orange);">🤝</div>
+      <div>
+        <div class="admin-stat-val">{{ stats.collabs }}</div>
+        <div class="admin-stat-lbl">Collab Requests</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admin Tabs Navigation -->
+  <div class="admin-nav-tabs">
+    <button class="admin-tab-btn active" data-target="videos">🎬 Manage Videos ({{ videos | length }})</button>
+    <button class="admin-tab-btn" data-target="music">🎵 Manage Music ({{ music | length }})</button>
+    <button class="admin-tab-btn" data-target="inquiries">📬 Inquiries ({{ inquiries | length }})</button>
+    <button class="admin-tab-btn" data-target="submissions">🎶 Song Submissions ({{ submissions | length }})</button>
+    <button class="admin-tab-btn" data-target="collabs">🤝 Collaborations ({{ collabs | length }})</button>
+  </div>
+
+  <!-- TAB 1: VIDEOS MANAGEMENT -->
+  <div class="admin-tab-pane active" id="videos">
+    <div style="display:grid; grid-template-columns: 2fr 1fr; gap:2.5rem; margin-bottom:3rem;">
+      
+      <!-- Video List Table -->
+      <div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+          <h3 style="font-size:1.3rem;">Current Published Videos</h3>
+          <input type="text" id="adminTableSearch" placeholder="Search table..." class="form-control" style="max-width:240px; padding:0.4rem 0.8rem; font-size:0.85rem;">
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Thumb</th>
+                <th>Title & Category</th>
+                <th>Artist</th>
+                <th>Views</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for vid in videos %}
+              <tr>
+                <td>
+                  <img src="{{ vid.thumbnail }}" alt="" class="admin-thumb-sm">
+                </td>
+                <td>
+                  <a href="{{ url_for('video_detail', slug=vid.slug) }}" target="_blank" style="font-weight:700; color:#FFF; display:block; max-width:260px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
+                    {{ vid.title }}
+                  </a>
+                  <span class="badge badge-purple" style="font-size:0.7rem;">{{ vid.category }}</span>
+                  <span style="font-size:0.75rem; color:var(--text-muted);">{{ vid.duration }}</span>
+                </td>
+                <td style="font-size:0.88rem; color:var(--accent-gold);">{{ vid.artist_name }}</td>
+                <td style="font-size:0.85rem;">{{ vid.views }}</td>
+                <td>
+                  <form action="{{ url_for('admin_delete_video', video_id=vid.id) }}" method="POST" onsubmit="return confirm('Delete this video?')">
+                    <button type="submit" class="btn-sm-del">Delete</button>
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Add Video Form -->
+      <div class="form-card" style="margin:0; width:100%; max-width:100%;">
+        <h3 style="font-size:1.3rem; margin-bottom:1.25rem;">+ Add New Video</h3>
+        <form action="{{ url_for('admin_add_video') }}" method="POST">
+          <div class="form-group">
+            <label class="form-label">Video Title *</label>
+            <input type="text" name="title" class="form-control" placeholder="e.g. Maha Shiva Chants 108" required>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">YouTube Video ID / URL *</label>
+            <input type="text" name="youtube_id" class="form-control" placeholder="e.g. H5v3kku4y6Q" required>
+            <small style="color:var(--text-dim); font-size:0.78rem;">Just the 11-char ID or embed URL</small>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem;">
+            <div class="form-group">
+              <label class="form-label">Category *</label>
+              <select name="category" class="form-control" required>
+                <option value="music">🎵 Music</option>
+                <option value="devotional">🙏 Devotional</option>
+                <option value="kids">🧒 Kids</option>
+                <option value="shorts">⚡ Shorts</option>
+                <option value="entertainment">🎬 Entertainment</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Subcategory</label>
+              <input type="text" name="subcategory" class="form-control" placeholder="e.g. shiva, rhymes, love">
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem;">
+            <div class="form-group">
+              <label class="form-label">Artist Name</label>
+              <input type="text" name="artist_name" class="form-control" placeholder="DivineNest">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Language</label>
+              <select name="language" class="form-control">
+                <option value="Telugu">Telugu</option>
+                <option value="Hindi">Hindi</option>
+                <option value="English">English</option>
+                <option value="Sanskrit">Sanskrit</option>
+                <option value="Instrumental">Instrumental</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:0.75rem;">
+            <div class="form-group">
+              <label class="form-label">Duration</label>
+              <input type="text" name="duration" class="form-control" placeholder="4:30">
+            </div>
+            <div class="form-group">
+              <label class="form-label">Age Group (For Kids)</label>
+              <input type="text" name="age_group" class="form-control" placeholder="e.g. 2–5 Years">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Thumbnail URL (Optional)</label>
+            <input type="url" name="thumbnail" class="form-control" placeholder="Leave empty for auto-YouTube thumbnail">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <textarea name="description" class="form-control" rows="3" placeholder="Brief video summary..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Tags (comma-separated)</label>
+            <input type="text" name="tags" class="form-control" placeholder="shiva, bhakti, telugu song">
+          </div>
+
+          <div style="display:flex; gap:1.5rem; margin-bottom:1.5rem;">
+            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.88rem; cursor:pointer;">
+              <input type="checkbox" name="is_featured" value="1">
+              <span>Featured Video</span>
+            </label>
+            <label style="display:flex; align-items:center; gap:0.5rem; font-size:0.88rem; cursor:pointer;">
+              <input type="checkbox" name="is_trending" value="1">
+              <span>Trending Feed</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%; padding:0.8rem;">
+            Publish Video 🚀
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- TAB 2: MUSIC MANAGEMENT -->
+  <div class="admin-tab-pane" id="music">
+    <div style="display:grid; grid-template-columns: 2fr 1fr; gap:2.5rem; margin-bottom:3rem;">
+      <div>
+        <h3 style="font-size:1.3rem; margin-bottom:1rem;">Registered Audio Tracks</h3>
+        <div class="admin-table-wrap">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th>Song Title</th>
+                <th>Artist & Singer</th>
+                <th>Genre</th>
+                <th>Lang</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for m in music %}
+              <tr>
+                <td><strong>{{ m.title }}</strong></td>
+                <td>{{ m.artist_name }} ({{ m.singer }})</td>
+                <td><span class="badge badge-gold">{{ m.genre }}</span></td>
+                <td>{{ m.language }}</td>
+                <td>
+                  <form action="{{ url_for('admin_delete_music', music_id=m.id) }}" method="POST" onsubmit="return confirm('Delete this song?')">
+                    <button type="submit" class="btn-sm-del">Delete</button>
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Add Music Form -->
+      <div class="form-card" style="margin:0; width:100%; max-width:100%;">
+        <h3 style="font-size:1.3rem; margin-bottom:1.25rem;">+ Add Music Item</h3>
+        <form action="{{ url_for('admin_add_music') }}" method="POST">
+          <div class="form-group">
+            <label class="form-label">Song Title *</label>
+            <input type="text" name="title" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Artist Name *</label>
+            <input type="text" name="artist_name" class="form-control" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Singer</label>
+            <input type="text" name="singer" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Genre</label>
+            <input type="text" name="genre" class="form-control" placeholder="Original Music, Love, Classical...">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Audio Stream MP3 URL</label>
+            <input type="url" name="audio_url" class="form-control" placeholder="https://...mp3">
+          </div>
+          <div class="form-group">
+            <label class="form-label">YouTube Video ID</label>
+            <input type="text" name="youtube_id" class="form-control" placeholder="YouTube Video ID">
+          </div>
+          <button type="submit" class="btn btn-primary" style="width:100%; padding:0.8rem;">
+            Save Audio Track 🎵
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 3: CONTACT INQUIRIES -->
+  <div class="admin-tab-pane" id="inquiries">
+    <h3 style="font-size:1.3rem; margin-bottom:1rem;">Visitor Inquiries & Contact Messages</h3>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Name & Contact</th>
+            <th>Subject</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for inq in inquiries %}
+          <tr>
+            <td style="font-size:0.8rem; color:var(--text-muted); white-space:nowrap;">{{ inq.created_at }}</td>
+            <td>
+              <strong>{{ inq.name }}</strong><br>
+              <span style="font-size:0.82rem; color:var(--accent-gold);">{{ inq.email }}</span>
+              {% if inq.phone %}<br><span style="font-size:0.8rem; color:var(--text-dim);">{{ inq.phone }}</span>{% endif %}
+            </td>
+            <td><strong>{{ inq.subject }}</strong></td>
+            <td style="font-size:0.9rem; color:var(--text-muted); max-width:350px;">{{ inq.message }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="4" style="text-align:center; color:var(--text-dim); padding:2rem;">No inquiries received yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 4: SONG SUBMISSIONS -->
+  <div class="admin-tab-pane" id="submissions">
+    <h3 style="font-size:1.3rem; margin-bottom:1rem;">Independent Artist Music Submissions</h3>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Artist & Song</th>
+            <th>Genre / Lang</th>
+            <th>Links</th>
+            <th>Message</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for sub in submissions %}
+          <tr>
+            <td style="font-size:0.8rem; color:var(--text-muted);">{{ sub.created_at }}</td>
+            <td>
+              <strong style="color:#FFF;">{{ sub.song_name }}</strong><br>
+              <span>By {{ sub.artist_name }} ({{ sub.email }})</span>
+            </td>
+            <td>{{ sub.genre }} • {{ sub.language }}</td>
+            <td>
+              {% if sub.youtube_link %}<a href="{{ sub.youtube_link }}" target="_blank" style="color:red; margin-right:0.5rem;">▶ YT</a>{% endif %}
+              {% if sub.audio_link %}<a href="{{ sub.audio_link }}" target="_blank" style="color:var(--accent-gold);">🎧 Audio</a>{% endif %}
+            </td>
+            <td style="font-size:0.85rem; color:var(--text-muted);">{{ sub.message }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="5" style="text-align:center; color:var(--text-dim); padding:2rem;">No artist submissions received yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- TAB 5: COLLABORATION PROPOSALS -->
+  <div class="admin-tab-pane" id="collabs">
+    <h3 style="font-size:1.3rem; margin-bottom:1rem;">Collaboration Requests</h3>
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Creator / Brand</th>
+            <th>Category</th>
+            <th>Portfolio</th>
+            <th>Proposal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for c in collabs %}
+          <tr>
+            <td style="font-size:0.8rem; color:var(--text-muted);">{{ c.created_at }}</td>
+            <td>
+              <strong>{{ c.name }}</strong><br>
+              <span style="font-size:0.82rem; color:var(--accent-gold);">{{ c.email }}</span>
+            </td>
+            <td><span class="badge badge-purple">{{ c.category }}</span></td>
+            <td>
+              {% if c.portfolio_link %}
+              <a href="{{ c.portfolio_link }}" target="_blank" style="color:var(--accent-teal);">View Link 🔗</a>
+              {% else %}—{% endif %}
+            </td>
+            <td style="font-size:0.9rem; color:var(--text-muted); max-width:350px;">{{ c.proposal }}</td>
+          </tr>
+          {% else %}
+          <tr><td colspan="5" style="text-align:center; color:var(--text-dim); padding:2rem;">No collaboration proposals received yet.</td></tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  {% endif %}
+
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}

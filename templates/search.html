@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+
+{% block title %}Search Results for "{{ query }}" | DivineNest{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 3.5rem;">
+  <div class="container">
+    
+    <!-- Search Banner & Input -->
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem auto;">
+      <span class="section-tag">Instant Discovery</span>
+      <h1 class="section-title" style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1.5rem;">
+        Search DivineNest
+      </h1>
+
+      <form action="{{ url_for('search') }}" method="GET" style="display:flex; max-width:650px; margin:0 auto; gap:0.5rem;">
+        <input type="text" name="q" value="{{ query }}" placeholder="What are you looking for? (e.g. Shiva, Rabbit, Flute, Melody...)" 
+               class="form-control" style="border-radius:var(--radius-full); padding:0.9rem 1.6rem; font-size:1.05rem;" required autofocus>
+        <button type="submit" class="btn btn-primary" style="padding:0.9rem 1.75rem;">
+          Search
+        </button>
+      </form>
+
+      {% if query %}
+      <p style="color:var(--text-muted); margin-top:1.25rem; font-size:1rem;">
+        Found <strong>{{ total_results }}</strong> results matching "<span style="color:var(--accent-gold);">{{ query }}</span>"
+      </p>
+      {% endif %}
+    </div>
+
+    {% if query %}
+
+    <!-- 1. Matching Videos -->
+    {% if videos %}
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Videos & Devotion ({{ videos | length }})</span>
+        <h2 class="section-title">Matching Videos</h2>
+      </div>
+    </div>
+    <div class="video-grid" style="margin-bottom: 4rem;">
+      {% for vid in videos %}
+      <div class="video-card">
+        <div class="video-thumb-wrap" data-youtube-id="{{ vid.youtube_id }}" data-video-title="{{ vid.title }}">
+          <img src="{{ vid.thumbnail }}" alt="{{ vid.title }}" class="video-thumb" loading="lazy">
+          <span class="video-category-badge">{{ vid.category }}</span>
+          <span class="video-duration-badge">{{ vid.duration }}</span>
+          <div class="play-hover-overlay"><div class="play-hover-btn">▶</div></div>
+        </div>
+        <div class="video-card-body">
+          <a href="{{ url_for('video_detail', slug=vid.slug) }}" class="video-card-title">{{ vid.title }}</a>
+          <div class="video-card-meta">
+            <span class="video-artist-tag">{{ vid.artist_name }}</span>
+            <span>{{ vid.views }} views</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- 2. Matching Music Tracks -->
+    {% if music %}
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Audio Melodies ({{ music | length }})</span>
+        <h2 class="section-title">Matching Songs</h2>
+      </div>
+    </div>
+    <div class="explore-grid" style="margin-bottom: 4rem;">
+      {% for m in music %}
+      <div class="explore-card card-music" style="padding:1.5rem;">
+        <h4 style="font-size:1.2rem; font-weight:700; margin-bottom:0.25rem;">{{ m.title }}</h4>
+        <p style="color:var(--accent-gold); font-size:0.9rem; margin-bottom:0.5rem;">{{ m.artist_name }} • {{ m.language }}</p>
+        <div style="font-size:0.82rem; color:var(--text-muted); margin-bottom:1rem;">Genre: {{ m.genre }}</div>
+        <button class="btn btn-primary" style="width:100%;"
+                data-audio-url="{{ m.audio_url }}"
+                data-title="{{ m.title }}"
+                data-artist="{{ m.artist_name }}"
+                data-thumb="{{ m.thumbnail }}">
+          <span>▶ Play Melody</span>
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- 3. Matching Artists -->
+    {% if artists %}
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Creators & Performers</span>
+        <h2 class="section-title">Matching Artists</h2>
+      </div>
+    </div>
+    <div class="artists-grid" style="margin-bottom: 4rem;">
+      {% for artist in artists %}
+      <div class="artist-card">
+        <div class="artist-avatar-wrap" style="width:90px; height:90px;">
+          <img src="{{ artist.photo }}" alt="{{ artist.name }}" class="artist-avatar">
+        </div>
+        <h4 style="font-size:1.15rem; font-weight:800; margin-bottom:0.25rem;">
+          <a href="{{ url_for('artist_detail', slug=artist.slug) }}">{{ artist.name }}</a>
+        </h4>
+        <p style="font-size:0.85rem; color:var(--accent-gold);">{{ artist.role }}</p>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- 4. Matching Blog Articles -->
+    {% if blogs %}
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Editorial</span>
+        <h2 class="section-title">Matching Blog Articles</h2>
+      </div>
+    </div>
+    <div class="explore-grid" style="margin-bottom: 4rem;">
+      {% for b in blogs %}
+      <div class="explore-card">
+        <span class="badge badge-gold" style="margin-bottom:0.5rem;">{{ b.category }}</span>
+        <h4 style="font-size:1.2rem; font-weight:700; margin-bottom:0.5rem;">
+          <a href="{{ url_for('blog_detail', slug=b.slug) }}">{{ b.title }}</a>
+        </h4>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1rem;">{{ b.summary | truncate(100) }}</p>
+        <a href="{{ url_for('blog_detail', slug=b.slug) }}" class="explore-btn-link">Read Article →</a>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    {% if total_results == 0 %}
+    <div style="text-align:center; padding: 4rem 1rem; background:var(--bg-card); border-radius:var(--radius-lg); margin-bottom:4rem;">
+      <div style="font-size:3.5rem; margin-bottom:1rem;">🔍</div>
+      <h3 style="font-size:1.6rem; margin-bottom:0.5rem;">No results found for "{{ query }}"</h3>
+      <p style="color:var(--text-muted); max-width:500px; margin:0 auto 1.5rem auto;">
+        Try searching for popular terms like <em>"Shiva"</em>, <em>"Melody"</em>, <em>"Kids"</em>, <em>"Rabbit"</em>, or <em>"Ananya"</em>.
+      </p>
+      <a href="{{ url_for('videos') }}" class="btn btn-primary">Browse All Videos</a>
+    </div>
+    {% endif %}
+
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}

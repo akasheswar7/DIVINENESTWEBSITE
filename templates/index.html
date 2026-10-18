@@ -1,0 +1,486 @@
+{% extends 'base.html' %}
+
+{% block title %}DivineNest — Where Music, Stories & Joy Come Together{% endblock %}
+
+{% block content %}
+
+<!-- 1. HERO SECTION -->
+<section class="hero-section">
+  <div class="hero-background-fx">
+    <div class="hero-ambient-orb orb-1"></div>
+    <div class="hero-ambient-orb orb-2"></div>
+    <div class="hero-ambient-orb orb-3"></div>
+  </div>
+
+  <div class="container hero-content">
+    <div class="hero-badge">
+      <span>✨</span>
+      <span>Official Video & Melody Platform</span>
+    </div>
+
+    <h1 class="hero-title">
+      Welcome to <span class="gradient-text">DivineNest</span>
+    </h1>
+
+    <h2 class="hero-subheading">
+      Where Music, Stories & Joy Come Together
+    </h2>
+
+    <p class="hero-desc">
+      Discover a beautiful collection of music, devotional songs, kids entertainment, animated stories, inspirational videos, shorts and more — all in one creative destination.
+    </p>
+
+    <div class="hero-cta-group">
+      <a href="{{ url_for('videos') }}" class="btn btn-gold">
+        <span>🎬</span>
+        <span>Explore Videos</span>
+      </a>
+      <a href="{{ youtube_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
+        <span>▶</span>
+        <span>Visit Our YouTube Channel</span>
+      </a>
+      <a href="{{ url_for('music') }}" class="btn btn-outline">
+        <span>🎵</span>
+        <span>Listen Melodies</span>
+      </a>
+    </div>
+
+    <!-- LUXURY CINEMATIC SHOWCASE STAGE FRAME -->
+    <div class="hero-stage-frame">
+      <div class="hero-stage-inner" data-youtube-id="H5v3kku4y6Q" data-video-title="Divine Morning Chants & Melodies">
+        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=1200&auto=format&fit=crop&q=80" alt="DivineNest Cinematic Stage">
+        <div class="stage-play-btn" title="Play Featured Divine Stream">▶</div>
+        <div class="hero-stage-overlay">
+          <div style="display:flex; align-items:center; justify-content:space-between; width:100%; margin-bottom:0.5rem; flex-wrap:wrap; gap:0.5rem;">
+            <div style="display:flex; align-items:center; gap:0.75rem;">
+              <span class="badge" style="background:#FF0000; color:#FFF; font-weight:800; padding:0.25rem 0.65rem; border-radius:var(--radius-full);">
+                🔴 24/7 STREAM
+              </span>
+              <div class="sound-equalizer">
+                <span class="sound-bar"></span>
+                <span class="sound-bar"></span>
+                <span class="sound-bar"></span>
+                <span class="sound-bar"></span>
+              </div>
+              <span style="font-size:0.85rem; color:#FDE047; font-weight:700;">Now Playing Worldwide</span>
+            </div>
+            <span style="font-size:0.82rem; color:#FFF; background:rgba(0,0,0,0.6); padding:0.25rem 0.75rem; border-radius:var(--radius-full); border:1px solid rgba(255,255,255,0.2);">
+              Ultra HD 4K Quality
+            </span>
+          </div>
+          <h3 style="font-size:clamp(1.2rem, 2.2vw, 1.65rem); font-weight:800; color:#FFF;">
+            Soulful Morning Melodies, Chants & Animated Stories
+          </h3>
+          <p style="font-size:0.92rem; color:#CBD5E1; margin-top:0.25rem;">
+            Click to launch instant cinematic playback • Experience DivineNest across all screens
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Platform Statistics -->
+    <div class="hero-stats-bar">
+      <div class="stat-item">
+        <div class="stat-number">500K+</div>
+        <div class="stat-label">Happy Listeners</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">{{ total_videos }}+</div>
+        <div class="stat-label">Videos & Chants</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">6+</div>
+        <div class="stat-label">Genres & Categories</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100%</div>
+        <div class="stat-label">Family Friendly</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 2. EXPLORE DIVINENEST (6 CATEGORIES) -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">All-In-One Creative Hub</span>
+        <h2 class="section-title">Explore DivineNest</h2>
+        <p class="section-desc">Experience diverse content categories curated with passion, spirituality, and artistic excellence.</p>
+      </div>
+    </div>
+
+    <div class="explore-grid">
+      <!-- 1. Music -->
+      <div class="explore-card card-music">
+        <div class="explore-icon-bubble">🎵</div>
+        <h3 class="explore-card-title">Music</h3>
+        <p class="explore-card-text">Explore original songs, melodies, albums, covers and music videos crafted by heartfelt artists.</p>
+        <a href="{{ url_for('music') }}" class="explore-btn-link">Explore Music →</a>
+      </div>
+
+      <!-- 2. Devotional -->
+      <div class="explore-card card-devotional">
+        <div class="explore-icon-bubble">🙏</div>
+        <h3 class="explore-card-title">Devotional</h3>
+        <p class="explore-card-text">Experience soulful devotional songs, spiritual music, bhajans, stotrams and divine melodies for inner peace.</p>
+        <a href="{{ url_for('devotional') }}" class="explore-btn-link">Explore Devotional →</a>
+      </div>
+
+      <!-- 3. Kids -->
+      <div class="explore-card card-kids">
+        <div class="explore-icon-bubble">🧒</div>
+        <h3 class="explore-card-title">Kids</h3>
+        <p class="explore-card-text">Fun-filled songs, cartoons, stories, rhymes and educational entertainment for children and families.</p>
+        <a href="{{ url_for('kids') }}" class="explore-btn-link">Explore Kids →</a>
+      </div>
+
+      <!-- 4. Videos -->
+      <div class="explore-card card-videos">
+        <div class="explore-icon-bubble">🎬</div>
+        <h3 class="explore-card-title">Videos</h3>
+        <p class="explore-card-text">Watch entertaining, inspirational, musical, and creative videos produced with high-definition cinematography.</p>
+        <a href="{{ url_for('videos') }}" class="explore-btn-link">Watch Videos →</a>
+      </div>
+
+      <!-- 5. Shorts -->
+      <div class="explore-card card-shorts">
+        <div class="explore-icon-bubble">⚡</div>
+        <h3 class="explore-card-title">Shorts</h3>
+        <p class="explore-card-text">Enjoy quick, entertaining, and engaging short-form videos — devotion, melody snippets, and smiles in seconds.</p>
+        <a href="{{ url_for('shorts') }}" class="explore-btn-link">Watch Shorts →</a>
+      </div>
+
+      <!-- 6. Artists -->
+      <div class="explore-card card-artists">
+        <div class="explore-icon-bubble">🎤</div>
+        <h3 class="explore-card-title">Artists</h3>
+        <p class="explore-card-text">Discover singers, musicians, creators, voice artists and other talented performers bringing DivineNest to life.</p>
+        <a href="{{ url_for('artists') }}" class="explore-btn-link">Meet Artists →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. LATEST VIDEOS (YOUTUBE FEED) -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Fresh Releases</span>
+        <h2 class="section-title">Latest from DivineNest</h2>
+        <p class="section-desc">Stream our newest YouTube releases instantly right here or open in high definition.</p>
+      </div>
+      <a href="{{ url_for('videos') }}" class="view-all-link">View All Videos →</a>
+    </div>
+
+    <div class="video-grid">
+      {% for video in latest_videos %}
+      <div class="video-card">
+        <div class="video-thumb-wrap" data-youtube-id="{{ video.youtube_id }}" data-video-title="{{ video.title }}">
+          <img src="{{ video.thumbnail }}" alt="{{ video.title }}" class="video-thumb" loading="lazy">
+          <span class="video-category-badge">{{ video.category }}</span>
+          <span class="video-duration-badge">{{ video.duration }}</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="{{ url_for('video_detail', slug=video.slug) }}" class="video-card-title">
+            {{ video.title }}
+          </a>
+          <div class="video-card-meta">
+            <span class="video-artist-tag">{{ video.artist_name }}</span>
+            <span>{{ video.published_date }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 4. TRENDING MUSIC SECTION -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Melodies & Songs</span>
+        <h2 class="section-title">Trending Music</h2>
+        <p class="section-desc">Newly composed original tracks, acoustic melodies, and classical harmonies.</p>
+      </div>
+      <a href="{{ url_for('music') }}" class="view-all-link">Explore Music Section →</a>
+    </div>
+
+    <div class="video-grid">
+      {% for item in trending_music %}
+      <div class="video-card">
+        <div class="video-thumb-wrap" data-youtube-id="{{ item.youtube_id }}" data-video-title="{{ item.title }}">
+          <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="video-thumb" loading="lazy">
+          <span class="video-category-badge">🎵 {{ item.subcategory or 'Music' }}</span>
+          <span class="video-duration-badge">{{ item.duration }}</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="{{ url_for('video_detail', slug=item.slug) }}" class="video-card-title">
+            {{ item.title }}
+          </a>
+          <div class="video-card-meta">
+            <span class="video-artist-tag">{{ item.artist_name }}</span>
+            <span>{{ item.language }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 5. DIVINE DEVOTION -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag" style="color:var(--accent-gold);">Spiritual Sanctuary</span>
+        <h2 class="section-title">Divine Devotion</h2>
+        <p class="section-desc">Experience inner peace with sacred Shiva stotrams, Krishna bhajans, and Hanuman chants.</p>
+      </div>
+      <a href="{{ url_for('devotional') }}" class="view-all-link" style="color:var(--accent-gold);">View Devotional Vault →</a>
+    </div>
+
+    <div class="video-grid">
+      {% for item in devotional_videos %}
+      <div class="video-card">
+        <div class="video-thumb-wrap" data-youtube-id="{{ item.youtube_id }}" data-video-title="{{ item.title }}">
+          <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="video-thumb" loading="lazy">
+          <span class="video-category-badge" style="color:var(--accent-gold);">🙏 {{ item.subcategory }}</span>
+          <span class="video-duration-badge">{{ item.duration }}</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="{{ url_for('video_detail', slug=item.slug) }}" class="video-card-title">
+            {{ item.title }}
+          </a>
+          <div class="video-card-meta">
+            <span class="video-artist-tag">{{ item.artist_name }}</span>
+            <span>{{ item.views | default(1200) }} views</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 6. DIVINENEST KIDS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag" style="color:#06D6A0;">Safe For Children</span>
+        <h2 class="section-title">🧒 DivineNest Kids</h2>
+        <p class="section-desc">Joyful cartoons, moral Panchatantra stories, nursery rhymes, and early learning fun.</p>
+      </div>
+      <a href="{{ url_for('kids') }}" class="view-all-link" style="color:#06D6A0;">Explore Kids World →</a>
+    </div>
+
+    <div class="video-grid">
+      {% for item in kids_videos %}
+      <div class="video-card kids-card">
+        <div class="video-thumb-wrap" data-youtube-id="{{ item.youtube_id }}" data-video-title="{{ item.title }}">
+          <img src="{{ item.thumbnail }}" alt="{{ item.title }}" class="video-thumb" loading="lazy">
+          {% if item.age_group %}
+          <span class="kids-card-age">{{ item.age_group }}</span>
+          {% endif %}
+          <span class="video-duration-badge">{{ item.duration }}</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="{{ url_for('video_detail', slug=item.slug) }}" class="video-card-title">
+            {{ item.title }}
+          </a>
+          <div class="video-card-meta">
+            <span style="color:#06D6A0; font-weight:700;">{{ item.subcategory | capitalize }}</span>
+            <span>{{ item.duration }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 7. POPULAR SHORTS (9:16) -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag" style="color:var(--accent-pink);">Quick Entertainment</span>
+        <h2 class="section-title">⚡ Popular Shorts</h2>
+        <p class="section-desc">Short-form videos packed with devotional chants, melody snippets, and fun laughs.</p>
+      </div>
+      <a href="{{ url_for('shorts') }}" class="view-all-link" style="color:var(--accent-pink);">View All Shorts →</a>
+    </div>
+
+    <div class="shorts-grid">
+      {% for short in shorts_videos %}
+      <div class="short-card" data-youtube-id="{{ short.youtube_id }}" data-video-title="{{ short.title }}">
+        <span class="short-badge">#Shorts</span>
+        <img src="{{ short.thumbnail }}" alt="{{ short.title }}" class="short-card-img" loading="lazy">
+        <div class="short-card-gradient">
+          <span class="short-category-tag">{{ short.subcategory }}</span>
+          <h4 class="short-title">{{ short.title }}</h4>
+          <div class="short-stats">
+            <span>▶ {{ short.views }} views</span>
+            <span>❤️ {{ short.likes }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 8. FEATURED ARTISTS -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Talented Creators</span>
+        <h2 class="section-title">Meet Our Artists</h2>
+        <p class="section-desc">Discover the vocalists, flautists, animators, and composers behind DivineNest.</p>
+      </div>
+      <a href="{{ url_for('artists') }}" class="view-all-link">All Artists →</a>
+    </div>
+
+    <div class="artists-grid">
+      {% for artist in featured_artists %}
+      <div class="artist-card">
+        <div class="artist-avatar-wrap">
+          <img src="{{ artist.photo }}" alt="{{ artist.name }}" class="artist-avatar">
+        </div>
+        <h3 class="artist-name">
+          <a href="{{ url_for('artist_detail', slug=artist.slug) }}">{{ artist.name }}</a>
+        </h3>
+        <p class="artist-role">{{ artist.role }}</p>
+        <span class="artist-languages">{{ artist.languages }}</span>
+        <div class="artist-social-links">
+          <a href="{{ artist.youtube }}" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="YouTube">▶</a>
+          <a href="{{ artist.instagram }}" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="Instagram">📷</a>
+          <a href="{{ artist.facebook }}" target="_blank" rel="noopener noreferrer" class="social-icon-btn" title="Facebook">👍</a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 9. POPULAR PLAYLISTS -->
+<section class="section section-alt">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Continuous Listening</span>
+        <h2 class="section-title">Popular Playlists</h2>
+        <p class="section-desc">Hand-picked collections designed for morning devotion, peaceful work, and kids bedtime.</p>
+      </div>
+      <a href="{{ url_for('playlists') }}" class="view-all-link">Explore Playlists →</a>
+    </div>
+
+    <div class="explore-grid">
+      {% for pl in popular_playlists %}
+      <div class="explore-card">
+        <img src="{{ pl.cover_image }}" alt="{{ pl.title }}" style="width:100%; height:180px; object-fit:cover; border-radius:var(--radius-md); margin-bottom:1.25rem;">
+        <span class="section-tag">{{ pl.category }}</span>
+        <h3 class="explore-card-title">{{ pl.title }}</h3>
+        <p class="explore-card-text">{{ pl.description }}</p>
+        <a href="{{ url_for('playlist_detail', slug=pl.slug) }}" class="explore-btn-link">Play Playlist ({{ pl.video_count }} tracks) →</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- 10. ABOUT TEASER -->
+<section class="section">
+  <div class="container">
+    <div class="newsletter-box" style="background: linear-gradient(135deg, rgba(131, 56, 236, 0.15), rgba(255, 183, 3, 0.1)); border: 1px solid rgba(131, 56, 236, 0.3);">
+      <div class="newsletter-text" style="max-width: 650px;">
+        <span class="section-tag">About DivineNest</span>
+        <h2 style="font-size:2rem; font-weight:800; margin:0.5rem 0 1rem 0;">A Digital Destination for Soul & Smiles</h2>
+        <p style="color:var(--text-muted); line-height:1.7;">
+          DivineNest is a creative digital entertainment platform bringing together music, devotional content, kids entertainment, animated stories, inspirational videos and creative digital content. We create meaningful, family-friendly content that people of different ages and cultures celebrate together.
+        </p>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:0.75rem;">
+        <a href="{{ url_for('about') }}" class="btn btn-primary">Learn Our Story</a>
+        <a href="{{ url_for('collaborate') }}" class="btn btn-outline">Collaborate With Us</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. YOUTUBE CTA BANNER -->
+<section class="youtube-cta-section">
+  <div class="container">
+    <div class="youtube-cta-card">
+      <div class="yt-badge">
+        <span>▶</span>
+        <span>Official YouTube Channel</span>
+      </div>
+      <h2 class="youtube-cta-title">Subscribe to DivineNest</h2>
+      <p class="youtube-cta-desc">
+        Never miss a brand new devotional song, soothing Telugu melody, cartoon adventure, or uplifting short. Join our growing global family on YouTube today!
+      </p>
+      <div style="display:flex; justify-content:center; gap:1rem; flex-wrap:wrap;">
+        <a href="{{ youtube_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-youtube" style="font-size:1.1rem; padding:1rem 2.2rem;">
+          <span>▶</span>
+          <span>Subscribe on YouTube</span>
+        </a>
+        <a href="{{ url_for('videos') }}" class="btn btn-outline" style="font-size:1.1rem; padding:1rem 2rem;">
+          Browse Video Library
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. LATEST BLOGS PREVIEW -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Insights & Stories</span>
+        <h2 class="section-title">From the DivineNest Blog</h2>
+        <p class="section-desc">Thoughtful articles on devotional traditions, child development through music, and behind the scenes.</p>
+      </div>
+      <a href="{{ url_for('blog') }}" class="view-all-link">Read All Articles →</a>
+    </div>
+
+    <div class="explore-grid">
+      {% for b in latest_blogs %}
+      <div class="explore-card">
+        <img src="{{ b.featured_image }}" alt="{{ b.title }}" style="width:100%; height:190px; object-fit:cover; border-radius:var(--radius-md); margin-bottom:1.25rem;">
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; color:var(--text-muted); margin-bottom:0.5rem;">
+          <span style="color:var(--accent-gold); font-weight:700;">{{ b.category }}</span>
+          <span>{{ b.read_time }}</span>
+        </div>
+        <h3 class="explore-card-title" style="font-size:1.2rem;">
+          <a href="{{ url_for('blog_detail', slug=b.slug) }}">{{ b.title }}</a>
+        </h3>
+        <p class="explore-card-text">{{ b.summary }}</p>
+        <a href="{{ url_for('blog_detail', slug=b.slug) }}" class="explore-btn-link">Read Article →</a>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

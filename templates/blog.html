@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block title %}📰 DivineNest Blog — Stories, Music Insights & Devotional Guides{% endblock %}
+{% block meta_description %}Explore thoughtful articles on devotional traditions, child development through rhymes, and the art of composing soulful melodies on DivineNest.{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 3rem;">
+  <div class="container">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3.5rem auto;">
+      <span class="section-tag">Editorial & Insights</span>
+      <h1 class="section-title" style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1rem;">
+        DivineNest Blog
+      </h1>
+      <p class="section-desc" style="font-size: 1.1rem;">
+        Articles, spiritual guides, parenting insights on early childhood music learning, and behind-the-scenes stories with our artists.
+      </p>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="filter-tabs" style="justify-content: center;">
+      {% for cat in categories %}
+      <a href="{{ url_for('blog', category=cat.lower() if cat != 'All' else 'all') }}" 
+         class="filter-tab {% if (current_category == 'all' and cat == 'All') or current_category == cat.lower() %}active{% endif %}">
+        {{ cat }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Blog Articles Grid -->
+    <div class="explore-grid" style="margin-bottom: 4rem;">
+      {% for b in blogs %}
+      <div class="explore-card">
+        <div style="aspect-ratio:16/10; border-radius:var(--radius-md); overflow:hidden; margin-bottom:1.25rem;">
+          <img src="{{ b.featured_image }}" alt="{{ b.title }}" style="width:100%; height:100%; object-fit:cover;">
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.82rem; margin-bottom:0.5rem;">
+          <span class="badge badge-gold">{{ b.category }}</span>
+          <span style="color:var(--text-muted);">{{ b.read_time }}</span>
+        </div>
+
+        <h3 class="explore-card-title" style="font-size:1.3rem;">
+          <a href="{{ url_for('blog_detail', slug=b.slug) }}">{{ b.title }}</a>
+        </h3>
+
+        <p class="explore-card-text">{{ b.summary }}</p>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-light); padding-top:1rem; margin-top:auto; font-size:0.85rem; color:var(--text-muted);">
+          <span>By <strong>{{ b.author }}</strong></span>
+          <span>{{ b.published_date }}</span>
+        </div>
+
+        <a href="{{ url_for('blog_detail', slug=b.slug) }}" class="explore-btn-link" style="margin-top:1rem;">
+          Read Full Article →
+        </a>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

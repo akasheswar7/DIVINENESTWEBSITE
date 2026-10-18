@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}🎬 Video Library — DivineNest Official Videos{% endblock %}
+{% block meta_description %}Explore our full library of music videos, devotional stotrams, cartoons, stories, and entertainment videos with flexible filters and search.{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 3rem;">
+  <div class="container">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+      <span class="section-tag">Master Catalog</span>
+      <h1 class="section-title" style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1rem;">
+        DivineNest Video Library
+      </h1>
+      <p class="section-desc" style="font-size: 1.1rem;">
+        Browse our complete digital archive across music, spiritual devotion, children education, animated storytelling, and creative entertainment.
+      </p>
+    </div>
+
+    <!-- Search & Filter Controls -->
+    <div class="newsletter-box" style="margin-bottom: 2.5rem; padding: 1.5rem; background: var(--bg-card); flex-direction: column; align-items: stretch;">
+      <form action="{{ url_for('videos') }}" method="GET" style="display:flex; gap:1rem; flex-wrap:wrap; width:100%;">
+        <div style="flex:2; min-width:240px; position:relative;">
+          <input type="text" name="q" value="{{ search_query }}" placeholder="Search videos by title, artist, or tags..." class="form-control" style="border-radius:var(--radius-full); padding-left:1.5rem;">
+        </div>
+
+        <div style="display:flex; gap:0.75rem; flex:1; min-width:260px; flex-wrap:wrap;">
+          <select name="category" class="form-control" style="flex:1; border-radius:var(--radius-full); padding:0.6rem 1rem;" onchange="this.form.submit()">
+            {% for c in categories %}
+            <option value="{{ c }}" {% if current_category == c %}selected{% endif %}>Category: {{ c | capitalize }}</option>
+            {% endfor %}
+          </select>
+
+          <select name="lang" class="form-control" style="flex:1; border-radius:var(--radius-full); padding:0.6rem 1rem;" onchange="this.form.submit()">
+            {% for l in languages %}
+            <option value="{{ l }}" {% if current_lang == l %}selected{% endif %}>Lang: {{ l }}</option>
+            {% endfor %}
+          </select>
+
+          <select name="sort" class="form-control" style="flex:1; border-radius:var(--radius-full); padding:0.6rem 1rem;" onchange="this.form.submit()">
+            <option value="latest" {% if current_sort == 'latest' %}selected{% endif %}>Sort: Latest</option>
+            <option value="popular" {% if current_sort == 'popular' %}selected{% endif %}>Sort: Popular</option>
+            <option value="az" {% if current_sort == 'az' %}selected{% endif %}>Sort: A–Z</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="padding:0.75rem 1.75rem;">
+          Filter
+        </button>
+      </form>
+    </div>
+
+    <!-- Category Pill Links -->
+    <div class="filter-tabs">
+      {% for c in categories %}
+      <a href="{{ url_for('videos', category=c, lang=current_lang, sort=current_sort, q=search_query) }}" 
+         class="filter-tab {% if current_category == c %}active{% endif %}">
+        {{ c | capitalize }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Video Results Grid -->
+    {% if videos %}
+    <div class="video-grid" style="margin-bottom: 4rem;">
+      {% for vid in videos %}
+      <div class="video-card">
+        <div class="video-thumb-wrap" data-youtube-id="{{ vid.youtube_id }}" data-video-title="{{ vid.title }}">
+          <img src="{{ vid.thumbnail }}" alt="{{ vid.title }}" class="video-thumb" loading="lazy">
+          <span class="video-category-badge">{{ vid.category }}</span>
+          <span class="video-duration-badge">{{ vid.duration }}</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="{{ url_for('video_detail', slug=vid.slug) }}" class="video-card-title">
+            {{ vid.title }}
+          </a>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
+            {{ vid.description }}
+          </p>
+          <div class="video-card-meta">
+            <span class="video-artist-tag">{{ vid.artist_name }}</span>
+            <span>{{ vid.views }} views • {{ vid.language }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div style="text-align:center; padding: 4rem 1rem; background:var(--bg-card); border-radius:var(--radius-lg); margin-bottom:3rem;">
+      <div style="font-size:3rem; margin-bottom:1rem;">🔍</div>
+      <h3>No videos found matching your criteria</h3>
+      <p style="color:var(--text-muted); margin:0.5rem 0 1.5rem 0;">Try adjusting your search terms or filter settings.</p>
+      <a href="{{ url_for('videos') }}" class="btn btn-primary">Reset Filters</a>
+    </div>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}

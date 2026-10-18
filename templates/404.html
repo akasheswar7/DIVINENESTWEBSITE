@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Oops! This Nest Is Empty 🪹 | DivineNest{% endblock %}
+
+{% block content %}
+<section class="section" style="min-height:75vh; display:flex; align-items:center; text-align:center; padding: 5rem 0;">
+  <div class="container" style="max-width: 650px;">
+    
+    <div style="font-size: 6rem; margin-bottom: 1.5rem; animation: floatOrb 4s ease-in-out infinite alternate;">
+      🪹
+    </div>
+
+    <span class="section-tag" style="color:var(--accent-pink);">404 Error</span>
+    <h1 class="section-title" style="font-size: clamp(2.2rem, 4.5vw, 3.2rem); margin-bottom: 1rem;">
+      Oops! This Nest Is Empty 🪹
+    </h1>
+
+    <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2.5rem;">
+      We couldn't find the page or melody you're looking for. It might have flown to another branch or the address may be mistyped.
+    </p>
+
+    <div style="display:flex; justify-content:center; gap:1.25rem; flex-wrap:wrap;">
+      <a href="{{ url_for('index') }}" class="btn btn-primary" style="padding:0.9rem 2rem;">
+        <span>🏠</span>
+        <span>Go Home</span>
+      </a>
+      <a href="{{ url_for('videos') }}" class="btn btn-outline" style="padding:0.9rem 2rem;">
+        <span>🎬</span>
+        <span>Explore Videos</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

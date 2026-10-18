@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ playlist.title }} | DivineNest Playlist{% endblock %}
+{% block meta_description %}{{ playlist.description | truncate(150) }}{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 2.5rem;">
+  <div class="container">
+    
+    <!-- Playlist Header Banner -->
+    <div style="background:var(--bg-card); border:1px solid var(--border-light); border-radius:var(--radius-xl); padding:2.5rem; display:flex; align-items:center; gap:2.5rem; flex-wrap:wrap; margin-bottom:3.5rem;">
+      <div style="width:260px; aspect-ratio:16/10; border-radius:var(--radius-md); overflow:hidden; flex-shrink:0;">
+        <img src="{{ playlist.cover_image }}" alt="{{ playlist.title }}" style="width:100%; height:100%; object-fit:cover;">
+      </div>
+
+      <div style="flex-grow:1; max-width:750px;">
+        <span class="badge badge-purple" style="margin-bottom:0.5rem;">Playlist Collection</span>
+        <h1 style="font-size:clamp(1.8rem, 3.5vw, 2.6rem); font-weight:800; line-height:1.2; margin-bottom:0.5rem;">
+          {{ playlist.title }}
+        </h1>
+        <p style="font-size:1.05rem; color:var(--text-muted); line-height:1.6; margin-bottom:1.25rem;">
+          {{ playlist.description }}
+        </p>
+
+        <div style="display:flex; align-items:center; gap:1.25rem; font-size:0.9rem; color:var(--text-muted); margin-bottom:1.5rem;">
+          <span>Category: <strong style="color:var(--accent-gold);">{{ playlist.category }}</strong></span>
+          <span>Tracks: <strong style="color:#FFF;">{{ playlist_videos | length }} Videos</strong></span>
+        </div>
+
+        <div style="display:flex; gap:0.75rem; flex-wrap:wrap;">
+          {% if playlist_videos %}
+          <button class="btn btn-primary" data-youtube-id="{{ playlist_videos[0].youtube_id }}" data-video-title="{{ playlist_videos[0].title }}">
+            <span>▶ Play First Video</span>
+          </button>
+          {% endif %}
+          <a href="{{ youtube_url }}/playlists" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
+            <span>▶ Play on YouTube</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Video Queue / Tracks List -->
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Tracklist</span>
+        <h2 class="section-title">Videos in this Playlist</h2>
+      </div>
+    </div>
+
+    <div class="video-grid" style="margin-bottom: 4rem;">
+      {% for vid in playlist_videos %}
+      <div class="video-card">
+        <div class="video-thumb-wrap" data-youtube-id="{{ vid.youtube_id }}" data-video-title="{{ vid.title }}">
+          <img src="{{ vid.thumbnail }}" alt="{{ vid.title }}" class="video-thumb" loading="lazy">
+          <span class="video-duration-badge">{{ vid.duration }}</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="{{ url_for('video_detail', slug=vid.slug) }}" class="video-card-title">{{ vid.title }}</a>
+          <div class="video-card-meta">
+            <span class="video-artist-tag">{{ vid.artist_name }}</span>
+            <span>{{ vid.views }} views</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ video.title }} | DivineNest{% endblock %}
+{% block meta_description %}{{ video.description | truncate(150) }}{% endblock %}
+
+{% block og_title %}{{ video.title }} | DivineNest{% endblock %}
+{% block og_description %}{{ video.description | truncate(150) }}{% endblock %}
+
+{% block extra_css %}
+<!-- Schema.org VideoObject for Google Search SEO -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "name": "{{ video.title }}",
+  "description": "{{ video.description | replace('"', '\\"') }}",
+  "thumbnailUrl": "{{ video.thumbnail }}",
+  "uploadDate": "{{ video.published_date }}",
+  "embedUrl": "https://www.youtube.com/embed/{{ video.youtube_id }}",
+  "duration": "PT{{ video.duration | replace(':', 'M') }}S",
+  "interactionStatistic": {
+    "@type": "InteractionCounter",
+    "interactionType": { "@type": "WatchAction" },
+    "userInteractionCount": {{ video.views }}
+  }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 2rem;">
+  <div class="container">
+    
+    <!-- Video Player Area -->
+    <div style="background:#000; border-radius:var(--radius-lg); overflow:hidden; box-shadow:0 15px 40px rgba(0,0,0,0.6); margin-bottom: 2rem; border:1px solid var(--border-light);">
+      <div style="position:relative; aspect-ratio: 16/9; width:100%;">
+        <iframe 
+          src="https://www.youtube.com/embed/{{ video.youtube_id }}?autoplay=1&rel=0&modestbranding=1" 
+          title="{{ video.title }}" 
+          style="width:100%; height:100%; border:none;" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <!-- Video Meta & Interaction Bar -->
+    <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:1.5rem; margin-bottom:2rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border-light);">
+      <div style="max-width:800px;">
+        <div style="display:flex; align-items:center; gap:0.5rem; margin-bottom:0.5rem;">
+          <span class="badge badge-purple">{{ video.category | capitalize }}</span>
+          {% if video.subcategory %}
+          <span class="badge badge-gold">{{ video.subcategory | capitalize }}</span>
+          {% endif %}
+          <span class="badge badge-green">{{ video.language }}</span>
+        </div>
+        <h1 style="font-size:clamp(1.6rem, 3vw, 2.3rem); font-weight:800; line-height:1.25; margin-bottom:0.5rem;">
+          {{ video.title }}
+        </h1>
+        <div style="font-size:0.9rem; color:var(--text-muted); display:flex; gap:1.25rem; flex-wrap:wrap;">
+          <span>👁️ {{ video.views | default(1200) }} views</span>
+          <span>📅 Published: {{ video.published_date }}</span>
+          <span>⏱️ Duration: {{ video.duration }}</span>
+          <span>🎤 Performer: <strong style="color:var(--accent-gold);">{{ video.artist_name }}</strong></span>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+        <!-- Like Button -->
+        <button class="btn btn-outline btn-like" data-video-id="{{ video.id }}" title="Like this video">
+          <span>❤️</span>
+          <span class="like-count">{{ video.likes | default(150) }}</span>
+        </button>
+
+        <!-- Share Button -->
+        <button class="btn btn-outline btn-share" title="Share link">
+          <span>🔗</span>
+          <span>Share</span>
+        </button>
+
+        <!-- Watch on YouTube -->
+        <a href="https://www.youtube.com/watch?v={{ video.youtube_id }}" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
+          <span>▶</span>
+          <span>Watch on YouTube</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Description & Artist Details Layout -->
+    <div style="display:grid; grid-template-columns: 2fr 1fr; gap:2.5rem; margin-bottom:4rem;">
+      <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-light);">
+        <h3 style="font-size:1.25rem; font-weight:800; margin-bottom:1rem;">About This Video</h3>
+        <p style="color:var(--text-muted); line-height:1.8; font-size:1rem; white-space:pre-line; margin-bottom:1.5rem;">
+          {{ video.description }}
+        </p>
+
+        {% if video.tags %}
+        <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--border-light);">
+          <span style="font-size:0.85rem; color:var(--text-dim); margin-right:0.5rem;">Tags:</span>
+          {% for tag in video.tags.split(',') %}
+          <span style="display:inline-block; font-size:0.78rem; background:rgba(255,255,255,0.06); padding:0.2rem 0.6rem; border-radius:var(--radius-sm); margin:0.2rem; color:var(--text-muted);">
+            #{{ tag.strip() }}
+          </span>
+          {% endfor %}
+        </div>
+        {% endif %}
+      </div>
+
+      <!-- Creator / Channel Info Card -->
+      <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-light); height:fit-content;">
+        <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
+          <div style="width:54px; height:54px; border-radius:50%; background:linear-gradient(135deg, #FF006E, #8338EC); display:flex; align-items:center; justify-content:center; font-size:1.6rem;">
+            🪹
+          </div>
+          <div>
+            <h4 style="font-size:1.1rem; font-weight:800;">DivineNest Official</h4>
+            <span style="font-size:0.8rem; color:var(--accent-gold);">✔ Verified Channel</span>
+          </div>
+        </div>
+        <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-bottom:1.25rem;">
+          Official platform bringing together music, devotional experiences, kids cartoons, and creative storytelling.
+        </p>
+        <a href="{{ youtube_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-youtube" style="width:100%; justify-content:center;">
+          <span>▶ Subscribe Channel</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Related Videos Section: "You May Also Like" -->
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Recommendations</span>
+        <h2 class="section-title">You May Also Like</h2>
+      </div>
+    </div>
+
+    <div class="video-grid">
+      {% for rel in related_videos %}
+      <div class="video-card">
+        <div class="video-thumb-wrap" data-youtube-id="{{ rel.youtube_id }}" data-video-title="{{ rel.title }}">
+          <img src="{{ rel.thumbnail }}" alt="{{ rel.title }}" class="video-thumb" loading="lazy">
+          <span class="video-category-badge">{{ rel.category }}</span>
+          <span class="video-duration-badge">{{ rel.duration }}</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="{{ url_for('video_detail', slug=rel.slug) }}" class="video-card-title">{{ rel.title }}</a>
+          <div class="video-card-meta">
+            <span class="video-artist-tag">{{ rel.artist_name }}</span>
+            <span>{{ rel.views }} views</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

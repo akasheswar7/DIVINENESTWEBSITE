@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}DivineNest Music — Melodies, Songs & Instrumental Peace{% endblock %}
+{% block meta_description %}Welcome to DivineNest Music — discover original compositions, romantic melodies, classical fusion, and soothing instrumental tracks.{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 3rem;">
+  <div class="container">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+      <span class="section-tag">🎵 Melodic Universe</span>
+      <h1 class="section-title" style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1rem;">DivineNest Music</h1>
+      <p class="section-desc" style="font-size: 1.1rem;">
+        Welcome to DivineNest Music — a destination for melodies, songs and musical experiences. Discover original compositions, devotional melodies, romantic ballads, classical raga fusions, and calming instrumentals.
+      </p>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="filter-tabs">
+      {% for g in genres %}
+      <a href="{{ url_for('music', genre=g.lower() if g != 'All' else 'all', lang=current_lang) }}" 
+         class="filter-tab {% if (current_genre == 'all' and g == 'All') or current_genre in g.lower() %}active{% endif %}">
+        {{ g }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Music Items List / Cards -->
+    <div class="explore-grid" style="margin-bottom: 4rem;">
+      {% for item in music_items %}
+      <div class="explore-card card-music" style="padding: 1.5rem;">
+        <div style="position:relative; aspect-ratio: 16/10; overflow:hidden; border-radius: var(--radius-md); margin-bottom: 1rem;">
+          <img src="{{ item.thumbnail }}" alt="{{ item.title }}" style="width:100%; height:100%; object-fit:cover;">
+          <span class="video-duration-badge">{{ item.duration }}</span>
+          <span class="video-category-badge">{{ item.genre }}</span>
+        </div>
+
+        <h3 class="explore-card-title" style="font-size: 1.25rem; margin-bottom: 0.25rem;">{{ item.title }}</h3>
+        <p style="color:var(--accent-gold); font-weight:600; font-size:0.9rem; margin-bottom:0.5rem;">
+          Singer: {{ item.singer }}
+        </p>
+
+        <div style="font-size:0.82rem; color:var(--text-muted); margin-bottom: 1.25rem;">
+          <div>Composer: {{ item.composer }} | Lyricist: {{ item.lyricist }}</div>
+          <div>Language: <strong style="color:#FFF;">{{ item.language }}</strong> • Released: {{ item.release_date }}</div>
+        </div>
+
+        <div style="display:flex; gap:0.6rem; margin-top:auto;">
+          <button class="btn btn-primary" style="flex:1; padding:0.65rem 1rem; font-size:0.9rem;"
+                  data-audio-url="{{ item.audio_url }}"
+                  data-title="{{ item.title }}"
+                  data-artist="{{ item.artist_name }}"
+                  data-thumb="{{ item.thumbnail }}">
+            <span>▶ Play Song</span>
+          </button>
+          <button class="btn btn-outline" style="padding:0.65rem 0.9rem; font-size:0.9rem;"
+                  data-youtube-id="{{ item.youtube_id }}"
+                  data-video-title="{{ item.title }}">
+            <span>🎬 Video</span>
+          </button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Music Videos Grid -->
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Cinematic Visuals</span>
+        <h2 class="section-title">Music Videos & Recordings</h2>
+      </div>
+    </div>
+
+    <div class="video-grid" style="margin-bottom: 4rem;">
+      {% for vid in music_videos %}
+      <div class="video-card">
+        <div class="video-thumb-wrap" data-youtube-id="{{ vid.youtube_id }}" data-video-title="{{ vid.title }}">
+          <img src="{{ vid.thumbnail }}" alt="{{ vid.title }}" class="video-thumb" loading="lazy">
+          <span class="video-duration-badge">{{ vid.duration }}</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="{{ url_for('video_detail', slug=vid.slug) }}" class="video-card-title">{{ vid.title }}</a>
+          <div class="video-card-meta">
+            <span class="video-artist-tag">{{ vid.artist_name }}</span>
+            <span>{{ vid.views }} views</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Submit Music CTA Banner -->
+    <div class="newsletter-box" style="background: linear-gradient(135deg, rgba(131,56,236,0.2), rgba(255,0,110,0.15)); border: 1px solid rgba(131,56,236,0.3);">
+      <div class="newsletter-text" style="max-width: 650px;">
+        <span class="section-tag">Are You An Artist?</span>
+        <h2 style="font-size:1.8rem; font-weight:800; margin: 0.5rem 0;">Submit Your Music to DivineNest</h2>
+        <p style="color:var(--text-muted);">
+          We support and produce talented independent vocalists, instrumentalists, composers, and lyricists. Submit your track for a chance to be featured across our platform and YouTube channel.
+        </p>
+      </div>
+      <a href="{{ url_for('submit_music') }}" class="btn btn-primary" style="font-size:1rem; padding:0.85rem 1.8rem;">
+        Submit Your Song →
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

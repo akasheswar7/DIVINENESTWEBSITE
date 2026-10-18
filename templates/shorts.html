@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}⚡ DivineNest Shorts — Quick Melodies, Chants & Laughs{% endblock %}
+{% block meta_description %}Enjoy quick, entertaining and engaging short-form videos — devotional clips, musical snippets, kids giggles, and creative behind-the-scenes.{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 3rem;">
+  <div class="container">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+      <span class="section-tag" style="color:var(--accent-pink);">⚡ 9:16 Short Form</span>
+      <h1 class="section-title" style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1rem;">DivineNest Shorts</h1>
+      <p class="section-desc" style="font-size: 1.1rem;">
+        Short videos, quick entertainment, musical moments, devotional clips, kids fun, and creative behind-the-scenes — all in one place. Perfect for quick inspiration and smiles on the go.
+      </p>
+    </div>
+
+    <!-- Category Tabs -->
+    <div class="filter-tabs" style="justify-content: center;">
+      {% for code, label in categories %}
+      <a href="{{ url_for('shorts', category=code) }}" 
+         class="filter-tab {% if current_category == code %}active{% endif %}"
+         style="{% if current_category == code %}background:var(--accent-pink); border-color:var(--accent-pink); color:#FFF; font-weight:700;{% endif %}">
+        {{ label }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Shorts Grid -->
+    <div class="shorts-grid" style="margin-bottom: 4rem;">
+      {% for short in shorts_list %}
+      <div class="short-card" data-youtube-id="{{ short.youtube_id }}" data-video-title="{{ short.title }}">
+        <span class="short-badge">#Shorts</span>
+        <img src="{{ short.thumbnail }}" alt="{{ short.title }}" class="short-card-img" loading="lazy">
+        <div class="short-card-gradient">
+          <span class="short-category-tag">{{ short.subcategory }}</span>
+          <h4 class="short-title">{{ short.title }}</h4>
+          <div class="short-stats">
+            <span>▶ {{ short.views }} views</span>
+            <span>❤️ {{ short.likes }}</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Shorts Info Banner -->
+    <div class="newsletter-box" style="text-align:center; flex-direction:column; background: linear-gradient(135deg, rgba(255,0,110,0.15), rgba(131,56,236,0.15)); border-color:rgba(255,0,110,0.3);">
+      <h3 style="font-size: 1.8rem;">Watch DivineNest Shorts Daily on YouTube</h3>
+      <p style="color: var(--text-muted); max-width: 600px; margin: 0.5rem 0 1.5rem 0;">
+        Subscribe to our channel to catch daily morning chants, 15-second melody covers, and behind-the-scenes recording moments right in your YouTube Shorts feed.
+      </p>
+      <a href="{{ youtube_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-youtube" style="padding:0.85rem 2rem;">
+        <span>▶</span>
+        <span>Subscribe for Daily Shorts</span>
+      </a>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

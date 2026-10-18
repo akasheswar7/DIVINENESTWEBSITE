@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %}DivineNest Devotional — Soulful Bhajans, Chants & Stotrams{% endblock %}
+{% block meta_description %}Find peace, devotion and spiritual inspiration through soulful devotional songs, bhajans, chants and divine melodies on DivineNest.{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 3rem;">
+  <div class="container">
+    <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+      <span class="section-tag" style="color:var(--accent-gold);">🙏 Sacred Sanctuary</span>
+      <h1 class="section-title" style="font-size: clamp(2.2rem, 4vw, 3.2rem); margin-bottom: 1rem;">
+        DivineNest Devotional
+      </h1>
+      <p class="section-desc" style="font-size: 1.1rem;">
+        Find peace, devotion and spiritual inspiration through soulful devotional songs, bhajans, chants and divine melodies. Elevate your consciousness and start every morning with positive cosmic vibrations.
+      </p>
+    </div>
+
+    <!-- Deity Filter Tabs -->
+    <div class="filter-tabs" style="justify-content: flex-start;">
+      {% for code, label in deities %}
+      <a href="{{ url_for('devotional', deity=code) }}" 
+         class="filter-tab {% if current_deity == code %}active{% endif %}"
+         style="{% if current_deity == code %}background:var(--accent-gold); color:#000; border-color:var(--accent-gold); font-weight:800;{% endif %}">
+        {{ label }}
+      </a>
+      {% endfor %}
+    </div>
+
+    <!-- Devotional Videos Grid -->
+    <div class="video-grid" style="margin-bottom: 4rem;">
+      {% for vid in devotional_videos %}
+      <div class="video-card" style="border: 1px solid rgba(255, 183, 3, 0.2);">
+        <div class="video-thumb-wrap" data-youtube-id="{{ vid.youtube_id }}" data-video-title="{{ vid.title }}">
+          <img src="{{ vid.thumbnail }}" alt="{{ vid.title }}" class="video-thumb" loading="lazy">
+          <span class="video-category-badge" style="color:var(--accent-gold); border-color:rgba(255,183,3,0.3);">
+            🙏 {{ vid.subcategory | capitalize }}
+          </span>
+          <span class="video-duration-badge">{{ vid.duration }}</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn" style="background:var(--accent-gold); color:#000;">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="{{ url_for('video_detail', slug=vid.slug) }}" class="video-card-title">
+            {{ vid.title }}
+          </a>
+          <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;">
+            {{ vid.description }}
+          </p>
+          <div class="video-card-meta">
+            <span class="video-artist-tag" style="color:var(--accent-gold);">{{ vid.artist_name }}</span>
+            <span>{{ vid.views }} listens</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Devotional Information Cards -->
+    <div class="explore-grid">
+      <div class="explore-card card-devotional">
+        <div class="explore-icon-bubble">🌅</div>
+        <h3 class="explore-card-title">Morning Devotional</h3>
+        <p class="explore-card-text">
+          Awaken your home to sacred Sanskrit mantras, Suprabhatam, and peaceful stotrams that eliminate stress and foster positivity.
+        </p>
+      </div>
+
+      <div class="explore-card card-devotional">
+        <div class="explore-icon-bubble">🌙</div>
+        <h3 class="explore-card-title">Evening Bhajans</h3>
+        <p class="explore-card-text">
+          Wind down after a busy day with heartfelt Krishna bhajans, Rama kirtans, and acoustic melodies that relax the soul.
+        </p>
+      </div>
+
+      <div class="explore-card card-devotional">
+        <div class="explore-icon-bubble">📿</div>
+        <h3 class="explore-card-title">Mantras & 108 Chants</h3>
+        <p class="explore-card-text">
+          Continuous repetitions of Maha Mrityunjaya, Gayatri Mantra, and Hanuman Chalisa for focused meditation and health.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+{% endblock %}

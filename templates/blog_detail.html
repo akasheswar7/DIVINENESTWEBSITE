@@ -1,0 +1,140 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ article.title }} | DivineNest Blog{% endblock %}
+{% block meta_description %}{{ article.summary | truncate(150) }}{% endblock %}
+
+{% block og_title %}{{ article.title }} | DivineNest Blog{% endblock %}
+{% block og_description %}{{ article.summary | truncate(150) }}{% endblock %}
+
+{% block extra_css %}
+<!-- Schema.org Article Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "{{ article.title }}",
+  "image": "{{ article.featured_image }}",
+  "author": {
+    "@type": "Person",
+    "name": "{{ article.author }}"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "DivineNest",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=500"
+    }
+  },
+  "datePublished": "{{ article.published_date }}",
+  "description": "{{ article.summary | replace('"', '\\"') }}"
+}
+</script>
+<style>
+.article-body h3 {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin: 2rem 0 1rem 0;
+  color: var(--accent-gold);
+}
+.article-body p {
+  font-size: 1.05rem;
+  line-height: 1.85;
+  color: #D1D5DB;
+  margin-bottom: 1.25rem;
+}
+.article-body ul, .article-body ol {
+  margin: 1rem 0 1.5rem 1.75rem;
+  color: #D1D5DB;
+  line-height: 1.8;
+}
+.article-body li {
+  margin-bottom: 0.5rem;
+}
+.article-body strong {
+  color: #FFFFFF;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 2.5rem;">
+  <div class="container" style="max-width: 900px;">
+    
+    <!-- Article Header -->
+    <div style="margin-bottom: 2rem;">
+      <div style="display:flex; align-items:center; gap:0.75rem; margin-bottom:1rem;">
+        <span class="badge badge-purple">{{ article.category }}</span>
+        <span style="font-size:0.85rem; color:var(--text-muted);">{{ article.read_time }}</span>
+        <span style="font-size:0.85rem; color:var(--text-muted);">• Published: {{ article.published_date }}</span>
+      </div>
+
+      <h1 style="font-size: clamp(2rem, 4vw, 3rem); font-weight:800; line-height:1.2; margin-bottom:1.25rem;">
+        {{ article.title }}
+      </h1>
+
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:1rem; padding-bottom:1.5rem; border-bottom:1px solid var(--border-light);">
+        <div style="display:flex; align-items:center; gap:0.75rem;">
+          <div style="width:42px; height:42px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; font-weight:800;">
+            ✍️
+          </div>
+          <div>
+            <div style="font-weight:700;">{{ article.author }}</div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">DivineNest Editorial Team</div>
+          </div>
+        </div>
+
+        <button class="btn btn-outline btn-share">
+          <span>🔗</span>
+          <span>Share Article</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Featured Image -->
+    <div style="aspect-ratio:16/9; border-radius:var(--radius-lg); overflow:hidden; margin-bottom: 2.5rem; box-shadow:var(--shadow-card);">
+      <img src="{{ article.featured_image }}" alt="{{ article.title }}" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+
+    <!-- Article Content -->
+    <div class="article-body" style="background:var(--bg-card); padding:3rem 2.5rem; border-radius:var(--radius-lg); border:1px solid var(--border-light); margin-bottom:3.5rem;">
+      {{ article.content | safe }}
+
+      {% if article.youtube_video_id %}
+      <div style="margin-top:2.5rem; padding-top:2rem; border-top:1px solid var(--border-light);">
+        <h4 style="font-size:1.2rem; margin-bottom:1rem; color:#FFF;">Featured Video for this Topic:</h4>
+        <div style="aspect-ratio:16/9; border-radius:var(--radius-md); overflow:hidden;">
+          <iframe 
+            src="https://www.youtube.com/embed/{{ article.youtube_video_id }}?rel=0" 
+            title="Video for {{ article.title }}" 
+            style="width:100%; height:100%; border:none;" 
+            allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+      {% endif %}
+    </div>
+
+    <!-- Recent Posts Section -->
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">More To Read</span>
+        <h2 class="section-title">Related Articles</h2>
+      </div>
+    </div>
+
+    <div class="explore-grid" style="margin-bottom: 4rem;">
+      {% for r in recent_blogs %}
+      <div class="explore-card">
+        <h4 style="font-size:1.15rem; font-weight:700; margin-bottom:0.5rem;">
+          <a href="{{ url_for('blog_detail', slug=r.slug) }}">{{ r.title }}</a>
+        </h4>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">{{ r.summary | truncate(90) }}</p>
+        <a href="{{ url_for('blog_detail', slug=r.slug) }}" class="explore-btn-link">Read →</a>
+      </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+{% endblock %}

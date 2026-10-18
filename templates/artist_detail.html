@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ artist.name }} ({{ artist.role }}) | DivineNest Artists{% endblock %}
+{% block meta_description %}{{ artist.bio | truncate(150) }}{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 2.5rem;">
+  <div class="container">
+    
+    <!-- Artist Profile Banner -->
+    <div style="background:var(--bg-card); border:1px solid var(--border-light); border-radius:var(--radius-xl); padding:3rem 2.5rem; display:flex; align-items:center; gap:2.5rem; flex-wrap:wrap; margin-bottom:3.5rem; position:relative; overflow:hidden;">
+      <div style="position:absolute; top:-50px; right:-50px; width:250px; height:250px; background:radial-gradient(circle, rgba(131,56,236,0.3) 0%, transparent 70%); border-radius:50%; pointer-events:none;"></div>
+      
+      <div style="width:160px; height:160px; border-radius:50%; padding:5px; background:linear-gradient(135deg, var(--accent-gold), var(--primary), var(--accent-pink)); flex-shrink:0;">
+        <img src="{{ artist.photo }}" alt="{{ artist.name }}" style="width:100%; height:100%; border-radius:50%; object-fit:cover;">
+      </div>
+
+      <div style="flex-grow:1; max-width:700px;">
+        <span class="badge badge-gold" style="margin-bottom:0.5rem;">Featured Creator</span>
+        <h1 style="font-size:clamp(2rem, 3.5vw, 2.8rem); font-weight:800; line-height:1.2; margin-bottom:0.35rem;">
+          {{ artist.name }}
+        </h1>
+        <p style="font-size:1.1rem; color:var(--accent-gold); font-weight:700; margin-bottom:0.5rem;">
+          {{ artist.role }}
+        </p>
+        <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:1rem;">
+          Genres: <strong style="color:#FFF;">{{ artist.genre }}</strong> • Languages: <strong style="color:#FFF;">{{ artist.languages }}</strong>
+        </p>
+        <p style="font-size:1rem; color:var(--text-muted); line-height:1.7; margin-bottom:1.5rem;">
+          {{ artist.bio }}
+        </p>
+
+        <!-- Social Channels -->
+        <div style="display:flex; gap:0.75rem;">
+          <a href="{{ artist.youtube }}" target="_blank" rel="noopener noreferrer" class="btn btn-youtube" style="padding:0.5rem 1.25rem; font-size:0.88rem;">
+            <span>▶ YouTube Channel</span>
+          </a>
+          <a href="{{ artist.instagram }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.5rem 1.1rem; font-size:0.88rem;">
+            <span>📷 Instagram</span>
+          </a>
+          <a href="{{ artist.facebook }}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding:0.5rem 1.1rem; font-size:0.88rem;">
+            <span>👍 Facebook</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Music by Artist -->
+    {% if artist_music %}
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Audio Tracks</span>
+        <h2 class="section-title">Songs & Compositions by {{ artist.name }}</h2>
+      </div>
+    </div>
+
+    <div class="explore-grid" style="margin-bottom: 4rem;">
+      {% for item in artist_music %}
+      <div class="explore-card card-music" style="padding: 1.5rem;">
+        <div style="position:relative; aspect-ratio: 16/10; overflow:hidden; border-radius: var(--radius-md); margin-bottom: 1rem;">
+          <img src="{{ item.thumbnail }}" alt="{{ item.title }}" style="width:100%; height:100%; object-fit:cover;">
+          <span class="video-duration-badge">{{ item.duration }}</span>
+          <span class="video-category-badge">{{ item.genre }}</span>
+        </div>
+        <h3 class="explore-card-title" style="font-size:1.2rem;">{{ item.title }}</h3>
+        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:1rem;">
+          {{ item.language }} • Released: {{ item.release_date }}
+        </p>
+        <button class="btn btn-primary" style="width:100%;"
+                data-audio-url="{{ item.audio_url }}"
+                data-title="{{ item.title }}"
+                data-artist="{{ artist.name }}"
+                data-thumb="{{ item.thumbnail }}">
+          <span>▶ Play Song</span>
+        </button>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- Videos Featuring Artist -->
+    <div class="section-header">
+      <div class="section-header-left">
+        <span class="section-tag">Video Releases</span>
+        <h2 class="section-title">Videos Featuring {{ artist.name }}</h2>
+      </div>
+    </div>
+
+    {% if artist_videos %}
+    <div class="video-grid" style="margin-bottom: 4rem;">
+      {% for vid in artist_videos %}
+      <div class="video-card">
+        <div class="video-thumb-wrap" data-youtube-id="{{ vid.youtube_id }}" data-video-title="{{ vid.title }}">
+          <img src="{{ vid.thumbnail }}" alt="{{ vid.title }}" class="video-thumb" loading="lazy">
+          <span class="video-category-badge">{{ vid.category }}</span>
+          <span class="video-duration-badge">{{ vid.duration }}</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="{{ url_for('video_detail', slug=vid.slug) }}" class="video-card-title">{{ vid.title }}</a>
+          <div class="video-card-meta">
+            <span class="video-artist-tag">{{ vid.category | capitalize }}</span>
+            <span>{{ vid.views }} views</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p style="color:var(--text-muted); margin-bottom:3rem;">No additional video uploads registered yet.</p>
+    {% endif %}
+
+  </div>
+</section>
+{% endblock %}

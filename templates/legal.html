@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if page_type == 'privacy' %}Privacy Policy | DivineNest
+{% elif page_type == 'terms' %}Terms & Conditions | DivineNest
+{% elif page_type == 'copyright' %}Copyright Policy | DivineNest
+{% else %}Disclaimer | DivineNest{% endif %}
+{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 3.5rem;">
+  <div class="container" style="max-width: 860px;">
+    
+    <div style="background:var(--bg-card); padding:3.5rem 3rem; border-radius:var(--radius-lg); border:1px solid var(--border-light); margin-bottom:4rem;">
+      
+      {% if page_type == 'privacy' %}
+      <span class="section-tag">Privacy & Data Protection</span>
+      <h1 class="section-title" style="margin-bottom: 1.5rem;">Privacy Policy</h1>
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:2rem;">Last Updated: October 2026</p>
+
+      <div style="color:#D1D5DB; line-height:1.85; font-size:1.02rem;">
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">1. Introduction</h3>
+        <p>At DivineNest ("we", "our", or "us"), we prioritize the privacy and security of our visitors and community members. This Privacy Policy outlines the information we collect when you visit divinenest.com, watch embedded YouTube videos, submit contact or music forms, or subscribe to our newsletter.</p>
+
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">2. Information We Collect</h3>
+        <p>We only collect personal information that you voluntarily provide, such as your name, email address, and phone number when submitting inquiries, collaboration requests, or music proposals. We also collect anonymous aggregate telemetry (such as page views and browser types) to improve website speed and accessibility.</p>
+
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">3. Embedded YouTube Videos & Cookies</h3>
+        <p>Our website embeds video content hosted on YouTube. When you interact with embedded YouTube players, YouTube/Google may set cookies and collect usage data in accordance with Google's Privacy Policy. We do not store or sell your viewing habits to third parties.</p>
+
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">4. Children’s Privacy</h3>
+        <p>Our "DivineNest Kids" section is designed to be completely family-friendly and safe. We do not knowingly collect personal contact information from children under 13 years of age. All forms are intended for parents, guardians, and adult creators.</p>
+
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">5. Your Rights & Inquiries</h3>
+        <p>You have the right to request access to or deletion of your contact information and newsletter subscription at any time by emailing us at <strong style="color:var(--accent-gold);">contact@divinenest.com</strong>.</p>
+      </div>
+
+      {% elif page_type == 'terms' %}
+      <span class="section-tag">Terms of Service</span>
+      <h1 class="section-title" style="margin-bottom: 1.5rem;">Terms & Conditions</h1>
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:2rem;">Effective Date: October 2026</p>
+
+      <div style="color:#D1D5DB; line-height:1.85; font-size:1.02rem;">
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">1. Acceptance of Terms</h3>
+        <p>By accessing and using DivineNest, you agree to comply with and be bound by these Terms and Conditions. If you do not agree, please do not use our platform.</p>
+
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">2. Intellectual Property Rights</h3>
+        <p>All original melodies, video productions, animated characters, trademarks, logos, and written content published on DivineNest are the intellectual property of DivineNest and its affiliated creators. Any unauthorized commercial exploitation, redistribution, or modification is prohibited without express written authorization.</p>
+
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">3. User Conduct</h3>
+        <p>You agree not to disrupt website services, attempt unauthorized server access, post defamatory or abusive comments, or upload malicious files through our submission portals.</p>
+
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">4. External Links & Video Hosting</h3>
+        <p>DivineNest links to and embeds content from YouTube and other external platforms. DivineNest is not liable for the content, privacy practices, or availability of third-party external networks.</p>
+      </div>
+
+      {% elif page_type == 'copyright' %}
+      <span class="section-tag">IP & Copyright</span>
+      <h1 class="section-title" style="margin-bottom: 1.5rem;">Copyright Policy</h1>
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:2rem;">All Rights Reserved © 2026 DivineNest</p>
+
+      <div style="color:#D1D5DB; line-height:1.85; font-size:1.02rem;">
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">1. Protection of Original Content</h3>
+        <p>All original audio recordings, devotional stotrams, lyrical compositions, animated characters (including Benny Rabbit & The Storytoons), logos, and multimedia assets published by DivineNest are strictly protected under applicable copyright laws and international treaties.</p>
+
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">2. Permitted Use</h3>
+        <p>You may stream, share official links, and play our videos and songs for personal, devotional, educational, and non-commercial family listening. Re-uploading our audio or video tracks to other YouTube channels, Facebook pages, or streaming services without a synchronization license is strictly prohibited.</p>
+
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">3. Copyright Claims & DMCA Notice</h3>
+        <p>If you believe that your copyrighted work has been infringed upon, please submit a written notification with proof of ownership, exact URL, and your contact details to: <strong style="color:var(--accent-gold);">copyright@divinenest.com</strong>. We will review and address valid claims promptly.</p>
+      </div>
+
+      {% else %}
+      <span class="section-tag">Important Information</span>
+      <h1 class="section-title" style="margin-bottom: 1.5rem;">Disclaimer</h1>
+      <p style="font-size:0.9rem; color:var(--text-muted); margin-bottom:2rem;">General Information & Spiritual Content</p>
+
+      <div style="color:#D1D5DB; line-height:1.85; font-size:1.02rem;">
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">1. Entertainment & Devotional Nature</h3>
+        <p>The devotional songs, chants, stotrams, articles, and educational stories published on DivineNest are offered for spiritual enrichment, cultural appreciation, and creative family entertainment. They are not intended as medical, psychological, or legal advice.</p>
+
+        <h3 style="color:#FFF; font-size:1.3rem; margin:1.5rem 0 0.5rem 0;">2. Cultural & Traditional Respect</h3>
+        <p>Our devotional recordings are created with genuine reverence and sincere devotion toward Indian spiritual traditions, deities, and sacred hymns. Pronunciations and interpretations are guided by traditional Vedic and classical scholars.</p>
+      </div>
+      {% endif %}
+
+    </div>
+
+  </div>
+</section>
+{% endblock %}
