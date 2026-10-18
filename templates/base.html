@@ -69,11 +69,23 @@
           <li><a href="{{ url_for('kids') }}" class="nav-link {% if request.path == '/kids' %}active{% endif %}">🧒 Kids</a></li>
           <li><a href="{{ url_for('shorts') }}" class="nav-link {% if request.path == '/shorts' %}active{% endif %}">⚡ Shorts</a></li>
           <li><a href="{{ url_for('videos') }}" class="nav-link {% if request.path == '/videos' %}active{% endif %}">🎬 Videos</a></li>
-          <li><a href="{{ url_for('artists') }}" class="nav-link {% if request.path == '/artists' %}active{% endif %}">🎤 Artists</a></li>
-          <li><a href="{{ url_for('playlists') }}" class="nav-link {% if request.path == '/playlists' %}active{% endif %}">📂 Playlists</a></li>
-          <li><a href="{{ url_for('blog') }}" class="nav-link {% if request.path == '/blog' %}active{% endif %}">📰 Blog</a></li>
-          <li><a href="{{ url_for('about') }}" class="nav-link {% if request.path == '/about' %}active{% endif %}">About</a></li>
-          <li><a href="{{ url_for('contact') }}" class="nav-link {% if request.path == '/contact' %}active{% endif %}">Contact</a></li>
+          
+          <!-- Dropdown for secondary links to keep navbar perfectly fitted -->
+          <li class="nav-dropdown">
+            <button class="nav-link nav-dropdown-btn" aria-haspopup="true">
+              <span>More</span>
+              <span class="dropdown-arrow">▾</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="{{ url_for('artists') }}" class="dropdown-item">🎤 Meet Artists</a></li>
+              <li><a href="{{ url_for('playlists') }}" class="dropdown-item">📂 Playlists</a></li>
+              <li><a href="{{ url_for('blog') }}" class="dropdown-item">📰 Blog Articles</a></li>
+              <li><a href="{{ url_for('about') }}" class="dropdown-item">ℹ️ About Us</a></li>
+              <li><a href="{{ url_for('contact') }}" class="dropdown-item">✉️ Contact Us</a></li>
+              <li><a href="{{ url_for('collaborate') }}" class="dropdown-item">🤝 Collaborate</a></li>
+              <li><a href="{{ url_for('submit_music') }}" class="dropdown-item">🎶 Submit Music</a></li>
+            </ul>
+          </li>
         </ul>
       </nav>
 
@@ -84,23 +96,23 @@
           <span class="search-text-hide">Search</span>
         </a>
 
-        <!-- PROMINENT ADMIN PORTAL BUTTON IN MAIN WEBSITE NAVBAR -->
+        <!-- PROMINENT ADMIN PORTAL BUTTON -->
         <a href="{{ url_for('admin') }}" class="admin-portal-btn" title="Open Admin Control Portal">
           <span class="admin-btn-icon">🔐</span>
-          <span>Admin Portal</span>
+          <span>Admin</span>
         </a>
 
         <!-- YouTube Subscribe Button -->
-        <a href="{{ youtube_url }}" target="_blank" rel="noopener noreferrer" class="youtube-subscribe-btn">
+        <a href="{{ youtube_url }}" target="_blank" rel="noopener noreferrer" class="youtube-subscribe-btn" title="Subscribe on YouTube">
           <span>▶</span>
-          <span>Subscribe</span>
+          <span class="sub-text-hide">Subscribe</span>
         </a>
 
         <!-- Language Selector -->
         <select class="lang-selector" id="languageSelector" aria-label="Select Language">
-          <option value="English">🇬🇧 English</option>
-          <option value="Telugu">🇮🇳 Telugu</option>
-          <option value="Hindi">🇮🇳 Hindi</option>
+          <option value="English">EN</option>
+          <option value="Telugu">TE</option>
+          <option value="Hindi">HI</option>
         </select>
       </div>
     </div>
