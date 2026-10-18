@@ -55,7 +55,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo-area">
-        <button class="mobile-menu-btn" aria-label="Toggle navigation">☰</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">☰</button>
         <a href="/DIVINENESTWEBSITE/" class="brand-logo">
           <span class="nest-icon">🪹</span>
           <span>DIVINE<span class="brand-highlight">NEST</span></span>
@@ -118,6 +118,94 @@
       </div>
     </div>
   </header>
+
+  <!-- Native Mobile Slide-Out App Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay">
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo" style="font-size: 1.3rem;">
+          <span class="nest-icon" style="width: 34px; height: 34px; font-size: 1.1rem;">🪹</span>
+          <span>DIVINE<span class="brand-highlight">NEST</span></span>
+        </div>
+        <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Close navigation">✕</button>
+      </div>
+
+      <!-- Mobile Search Form -->
+      <form action="/search" method="GET" class="mobile-drawer-search">
+        <input type="text" name="q" placeholder="Search melodies, chants, stories..." required>
+        <button type="submit">🔍</button>
+      </form>
+
+      <!-- Mobile Drawer Nav List -->
+      <div class="mobile-drawer-nav">
+        <div class="drawer-section-title">Main Content</div>
+        <a href="/DIVINENESTWEBSITE/" class="drawer-link active">
+          <span class="drawer-icon">🏠</span>
+          <span>Home</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/music.html" class="drawer-link ">
+          <span class="drawer-icon">🎵</span>
+          <span>DivineNest Music</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/devotional.html" class="drawer-link ">
+          <span class="drawer-icon">🙏</span>
+          <span>Soulful Devotional</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/kids.html" class="drawer-link ">
+          <span class="drawer-icon">🧒</span>
+          <span>Kids Cartoons & Rhymes</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/shorts.html" class="drawer-link ">
+          <span class="drawer-icon">⚡</span>
+          <span>Trending Shorts</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/videos.html" class="drawer-link ">
+          <span class="drawer-icon">🎬</span>
+          <span>Full Video Library</span>
+        </a>
+
+        <div class="drawer-section-title">Explore & Community</div>
+        <a href="/DIVINENESTWEBSITE/artists.html" class="drawer-link ">
+          <span class="drawer-icon">🎤</span>
+          <span>Featured Artists</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/playlists.html" class="drawer-link ">
+          <span class="drawer-icon">📂</span>
+          <span>Curated Playlists</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/blog.html" class="drawer-link ">
+          <span class="drawer-icon">📰</span>
+          <span>Editorial Blog</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/about.html" class="drawer-link ">
+          <span class="drawer-icon">ℹ️</span>
+          <span>About DivineNest</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/contact.html" class="drawer-link ">
+          <span class="drawer-icon">✉️</span>
+          <span>Contact Us</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/collaborate.html" class="drawer-link ">
+          <span class="drawer-icon">🤝</span>
+          <span>Collaborate With Us</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/submit-music.html" class="drawer-link ">
+          <span class="drawer-icon">🎶</span>
+          <span>Submit Your Music</span>
+        </a>
+      </div>
+
+      <!-- Drawer Action Buttons -->
+      <div class="mobile-drawer-footer">
+        <a href="/DIVINENESTWEBSITE/admin.html" class="btn btn-gold" style="width:100%; justify-content:center; margin-bottom:0.75rem; padding:0.75rem; font-size:0.92rem;">
+          <span>🔐 Open Admin Portal</span>
+        </a>
+        <a href="https://youtube.com/@DivineNest" target="_blank" rel="noopener noreferrer" class="btn btn-youtube" style="width:100%; justify-content:center; padding:0.75rem; font-size:0.92rem;">
+          <span>▶ Subscribe on YouTube</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Content Wrapper -->
   <main id="mainContent">
@@ -306,7 +394,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/studio-vocal-warmup-short" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/studio-vocal-warmup-short.html" class="video-card-title">
             Singer Warm Up Magic: Classical Notes to Pop #Shorts
           </a>
           <div class="video-card-meta">
@@ -326,7 +414,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/funny-bunny-laugh-short" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/funny-bunny-laugh-short.html" class="video-card-title">
             Benny Rabbit Laughs So Hard! #KidsShorts
           </a>
           <div class="video-card-meta">
@@ -346,7 +434,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/sweet-telugu-melody-snippet-short" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/sweet-telugu-melody-snippet-short.html" class="video-card-title">
             When the Flute Hits Your Heart #Shorts
           </a>
           <div class="video-card-meta">
@@ -366,7 +454,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/divine-shiva-chant-short" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/divine-shiva-chant-short.html" class="video-card-title">
             Om Namah Shivaya 15-Second Bliss #Shorts
           </a>
           <div class="video-card-meta">
@@ -386,7 +474,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/inspiring-stories-of-faith" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/inspiring-stories-of-faith.html" class="video-card-title">
             Stories of Faith &amp; Positivity | Episode 1
           </a>
           <div class="video-card-meta">
@@ -406,7 +494,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/behind-the-scenes-divinenest-music" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/behind-the-scenes-divinenest-music.html" class="video-card-title">
             Behind The Scenes: How We Create Soulful Melodies
           </a>
           <div class="video-card-meta">
@@ -426,7 +514,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/little-krishna-butter-thief" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/little-krishna-butter-thief.html" class="video-card-title">
             Little Krishna &amp; The Butter Pot | Kids Animated Story
           </a>
           <div class="video-card-meta">
@@ -446,7 +534,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/nursery-rhymes-abc-phonics" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/nursery-rhymes-abc-phonics.html" class="video-card-title">
             Fun ABC Phonics &amp; Numbers Song | Kids Learning Melodies
           </a>
           <div class="video-card-meta">
@@ -484,7 +572,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/divine-morning-melody" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/divine-morning-melody.html" class="video-card-title">
             Soulful Morning Melody | DivineNest Music Original
           </a>
           <div class="video-card-meta">
@@ -504,7 +592,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/chandamama-love-song" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/chandamama-love-song.html" class="video-card-title">
             Chandamama Love Melody | Romantic Acoustic Song
           </a>
           <div class="video-card-meta">
@@ -524,7 +612,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/divine-flute-meditation" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/divine-flute-meditation.html" class="video-card-title">
             Bansuri Flute Serenity | Relaxing Instrumental Peace
           </a>
           <div class="video-card-meta">
@@ -544,7 +632,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/raaga-symphony-classical" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/raaga-symphony-classical.html" class="video-card-title">
             Raaga Symphony | Indian Classical Fusion
           </a>
           <div class="video-card-meta">
@@ -564,7 +652,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/journey-of-hope" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/journey-of-hope.html" class="video-card-title">
             Journey of Hope | Uplifting English Acoustic Ballad
           </a>
           <div class="video-card-meta">
@@ -602,7 +690,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/sri-venkateswara-govinda-namalu" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/sri-venkateswara-govinda-namalu.html" class="video-card-title">
             Govinda Namalu | Lord Venkateswara Devotional Melodies
           </a>
           <div class="video-card-meta">
@@ -622,7 +710,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/sri-ganesha-suprabhatam" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/sri-ganesha-suprabhatam.html" class="video-card-title">
             Sri Ganesha Pancharatnam | Morning Divine Chants
           </a>
           <div class="video-card-meta">
@@ -642,7 +730,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/hanuman-chalisa-peaceful" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/hanuman-chalisa-peaceful.html" class="video-card-title">
             Peaceful Hanuman Chalisa | Divine Strength &amp; Peace
           </a>
           <div class="video-card-meta">
@@ -662,7 +750,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/achyutam-keshavam-krishna-bhajan" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/achyutam-keshavam-krishna-bhajan.html" class="video-card-title">
             Achyutam Keshavam Krishna Bhajan | Soulful Devotion
           </a>
           <div class="video-card-meta">
@@ -682,7 +770,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/maha-mrityunjaya-mantra" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/maha-mrityunjaya-mantra.html" class="video-card-title">
             Maha Mrityunjaya Mantra 108 Times | Divine Shiva Chants
           </a>
           <div class="video-card-meta">
@@ -722,7 +810,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/little-krishna-butter-thief" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/little-krishna-butter-thief.html" class="video-card-title">
             Little Krishna &amp; The Butter Pot | Kids Animated Story
           </a>
           <div class="video-card-meta">
@@ -744,7 +832,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/nursery-rhymes-abc-phonics" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/nursery-rhymes-abc-phonics.html" class="video-card-title">
             Fun ABC Phonics &amp; Numbers Song | Kids Learning Melodies
           </a>
           <div class="video-card-meta">
@@ -766,7 +854,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/chuchu-the-elephant-friend" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/chuchu-the-elephant-friend.html" class="video-card-title">
             Chuchu the Elephant &amp; The Magical River | Animated Tale
           </a>
           <div class="video-card-meta">
@@ -788,7 +876,7 @@
           </div>
         </div>
         <div class="video-card-body">
-          <a href="/video/the-little-rabbit-adventure" class="video-card-title">
+          <a href="/DIVINENESTWEBSITE/video/the-little-rabbit-adventure.html" class="video-card-title">
             The Little Rabbit Adventure | Panchatantra Moral Story
           </a>
           <div class="video-card-meta">
@@ -891,7 +979,7 @@
           <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&amp;auto=format&amp;fit=crop&amp;q=80" alt="Ananya Sharma" class="artist-avatar">
         </div>
         <h3 class="artist-name">
-          <a href="/artists/ananya-sharma">Ananya Sharma</a>
+          <a href="/DIVINENESTWEBSITE/artists/ananya-sharma.html">Ananya Sharma</a>
         </h3>
         <p class="artist-role">Lead Singer &amp; Composer</p>
         <span class="artist-languages">Telugu, Hindi, English</span>
@@ -907,7 +995,7 @@
           <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&amp;auto=format&amp;fit=crop&amp;q=80" alt="Karthik Varma" class="artist-avatar">
         </div>
         <h3 class="artist-name">
-          <a href="/artists/karthik-varma">Karthik Varma</a>
+          <a href="/DIVINENESTWEBSITE/artists/karthik-varma.html">Karthik Varma</a>
         </h3>
         <p class="artist-role">Spiritual Vocalist &amp; Chants Master</p>
         <span class="artist-languages">Telugu, Sanskrit, Hindi</span>
@@ -923,7 +1011,7 @@
           <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=600&amp;auto=format&amp;fit=crop&amp;q=80" alt="Rahul Roy &amp; The Storytoons" class="artist-avatar">
         </div>
         <h3 class="artist-name">
-          <a href="/artists/rahul-roy">Rahul Roy &amp; The Storytoons</a>
+          <a href="/DIVINENESTWEBSITE/artists/rahul-roy.html">Rahul Roy &amp; The Storytoons</a>
         </h3>
         <p class="artist-role">Voice Artist &amp; Animator</p>
         <span class="artist-languages">Telugu, Hindi, English</span>
@@ -939,7 +1027,7 @@
           <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=600&amp;auto=format&amp;fit=crop&amp;q=80" alt="Sneha Menon" class="artist-avatar">
         </div>
         <h3 class="artist-name">
-          <a href="/artists/sneha-menon">Sneha Menon</a>
+          <a href="/DIVINENESTWEBSITE/artists/sneha-menon.html">Sneha Menon</a>
         </h3>
         <p class="artist-role">Instrumental Flautist &amp; Producer</p>
         <span class="artist-languages">Instrumental</span>
@@ -973,7 +1061,7 @@
         <span class="section-tag">Music</span>
         <h3 class="explore-card-title">Best Music Collection 2026</h3>
         <p class="explore-card-text">Our flagship compilation of romantic, soothing, and original melodies crafted by DivineNest artists.</p>
-        <a href="/playlists/best-divine-melodies" class="explore-btn-link">Play Playlist (5 tracks) →</a>
+        <a href="/DIVINENESTWEBSITE/playlists/best-divine-melodies.html" class="explore-btn-link">Play Playlist (5 tracks) →</a>
       </div>
       
       <div class="explore-card">
@@ -981,7 +1069,7 @@
         <span class="section-tag">Devotional</span>
         <h3 class="explore-card-title">Morning Devotional Songs &amp; Chants</h3>
         <p class="explore-card-text">Sacred morning stotrams, Shiva chants, and Ganesha hymns to commence every day with inner peace.</p>
-        <a href="/playlists/morning-devotional-peace" class="explore-btn-link">Play Playlist (6 tracks) →</a>
+        <a href="/DIVINENESTWEBSITE/playlists/morning-devotional-peace.html" class="explore-btn-link">Play Playlist (6 tracks) →</a>
       </div>
       
       <div class="explore-card">
@@ -989,7 +1077,7 @@
         <span class="section-tag">Devotional</span>
         <h3 class="explore-card-title">Om Namah Shivaya &amp; Shiva Bhajans</h3>
         <p class="explore-card-text">Deeply transcendent chants and stotrams dedicated to Lord Shiva, the eternal yogi.</p>
-        <a href="/playlists/shiva-mahadev-chants" class="explore-btn-link">Play Playlist (4 tracks) →</a>
+        <a href="/DIVINENESTWEBSITE/playlists/shiva-mahadev-chants.html" class="explore-btn-link">Play Playlist (4 tracks) →</a>
       </div>
       
       <div class="explore-card">
@@ -997,7 +1085,7 @@
         <span class="section-tag">Kids</span>
         <h3 class="explore-card-title">Kids Songs, Cartoons &amp; Moral Stories</h3>
         <p class="explore-card-text">Fun-filled animated stories, nursery rhymes, and educational entertainment for curious young minds.</p>
-        <a href="/playlists/kids-cartoons-moral-tales" class="explore-btn-link">Play Playlist (8 tracks) →</a>
+        <a href="/DIVINENESTWEBSITE/playlists/kids-cartoons-moral-tales.html" class="explore-btn-link">Play Playlist (8 tracks) →</a>
       </div>
       
     </div>
@@ -1069,10 +1157,10 @@
           <span>4 min read</span>
         </div>
         <h3 class="explore-card-title" style="font-size:1.2rem;">
-          <a href="/blog/the-magic-of-indian-melodies-across-generations">The Magic of Indian Melodies: Blending Tradition with Modern Soul</a>
+          <a href="/DIVINENESTWEBSITE/blog/the-magic-of-indian-melodies-across-generations.html">The Magic of Indian Melodies: Blending Tradition with Modern Soul</a>
         </h3>
         <p class="explore-card-text">How DivineNest blends acoustic guitars, flute, and Indian ragas to create family-friendly music that connects grandparents and grandkids alike.</p>
-        <a href="/blog/the-magic-of-indian-melodies-across-generations" class="explore-btn-link">Read Article →</a>
+        <a href="/DIVINENESTWEBSITE/blog/the-magic-of-indian-melodies-across-generations.html" class="explore-btn-link">Read Article →</a>
       </div>
       
       <div class="explore-card">
@@ -1082,10 +1170,10 @@
           <span>5 min read</span>
         </div>
         <h3 class="explore-card-title" style="font-size:1.2rem;">
-          <a href="/blog/nursery-rhymes-and-child-brain-development">How Nursery Rhymes &amp; Stories Shape Child Brain Development</a>
+          <a href="/DIVINENESTWEBSITE/blog/nursery-rhymes-and-child-brain-development.html">How Nursery Rhymes &amp; Stories Shape Child Brain Development</a>
         </h3>
         <p class="explore-card-text">Explore the science behind melodic repetition, moral storytelling, and animated engagement in early childhood literacy and emotional intelligence.</p>
-        <a href="/blog/nursery-rhymes-and-child-brain-development" class="explore-btn-link">Read Article →</a>
+        <a href="/DIVINENESTWEBSITE/blog/nursery-rhymes-and-child-brain-development.html" class="explore-btn-link">Read Article →</a>
       </div>
       
       <div class="explore-card">
@@ -1095,10 +1183,10 @@
           <span>6 min read</span>
         </div>
         <h3 class="explore-card-title" style="font-size:1.2rem;">
-          <a href="/blog/top-devotional-songs-for-peaceful-morning">Top Devotional Songs for a Peaceful Morning</a>
+          <a href="/DIVINENESTWEBSITE/blog/top-devotional-songs-for-peaceful-morning.html">Top Devotional Songs for a Peaceful Morning</a>
         </h3>
         <p class="explore-card-text">Discover how waking up to soulful chants, Ganesha stotrams, and Suprabhatam calms nervous energy and sets an auspicious tone for your entire day.</p>
-        <a href="/blog/top-devotional-songs-for-peaceful-morning" class="explore-btn-link">Read Article →</a>
+        <a href="/DIVINENESTWEBSITE/blog/top-devotional-songs-for-peaceful-morning.html" class="explore-btn-link">Read Article →</a>
       </div>
       
     </div>

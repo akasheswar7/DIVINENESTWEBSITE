@@ -55,7 +55,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo-area">
-        <button class="mobile-menu-btn" aria-label="Toggle navigation">☰</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">☰</button>
         <a href="/DIVINENESTWEBSITE/" class="brand-logo">
           <span class="nest-icon">🪹</span>
           <span>DIVINE<span class="brand-highlight">NEST</span></span>
@@ -118,6 +118,94 @@
       </div>
     </div>
   </header>
+
+  <!-- Native Mobile Slide-Out App Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay">
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo" style="font-size: 1.3rem;">
+          <span class="nest-icon" style="width: 34px; height: 34px; font-size: 1.1rem;">🪹</span>
+          <span>DIVINE<span class="brand-highlight">NEST</span></span>
+        </div>
+        <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Close navigation">✕</button>
+      </div>
+
+      <!-- Mobile Search Form -->
+      <form action="/search" method="GET" class="mobile-drawer-search">
+        <input type="text" name="q" placeholder="Search melodies, chants, stories..." required>
+        <button type="submit">🔍</button>
+      </form>
+
+      <!-- Mobile Drawer Nav List -->
+      <div class="mobile-drawer-nav">
+        <div class="drawer-section-title">Main Content</div>
+        <a href="/DIVINENESTWEBSITE/" class="drawer-link ">
+          <span class="drawer-icon">🏠</span>
+          <span>Home</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/music.html" class="drawer-link ">
+          <span class="drawer-icon">🎵</span>
+          <span>DivineNest Music</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/devotional.html" class="drawer-link ">
+          <span class="drawer-icon">🙏</span>
+          <span>Soulful Devotional</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/kids.html" class="drawer-link ">
+          <span class="drawer-icon">🧒</span>
+          <span>Kids Cartoons & Rhymes</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/shorts.html" class="drawer-link ">
+          <span class="drawer-icon">⚡</span>
+          <span>Trending Shorts</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/videos.html" class="drawer-link ">
+          <span class="drawer-icon">🎬</span>
+          <span>Full Video Library</span>
+        </a>
+
+        <div class="drawer-section-title">Explore & Community</div>
+        <a href="/DIVINENESTWEBSITE/artists.html" class="drawer-link ">
+          <span class="drawer-icon">🎤</span>
+          <span>Featured Artists</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/playlists.html" class="drawer-link ">
+          <span class="drawer-icon">📂</span>
+          <span>Curated Playlists</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/blog.html" class="drawer-link ">
+          <span class="drawer-icon">📰</span>
+          <span>Editorial Blog</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/about.html" class="drawer-link ">
+          <span class="drawer-icon">ℹ️</span>
+          <span>About DivineNest</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/contact.html" class="drawer-link ">
+          <span class="drawer-icon">✉️</span>
+          <span>Contact Us</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/collaborate.html" class="drawer-link active">
+          <span class="drawer-icon">🤝</span>
+          <span>Collaborate With Us</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/submit-music.html" class="drawer-link ">
+          <span class="drawer-icon">🎶</span>
+          <span>Submit Your Music</span>
+        </a>
+      </div>
+
+      <!-- Drawer Action Buttons -->
+      <div class="mobile-drawer-footer">
+        <a href="/DIVINENESTWEBSITE/admin.html" class="btn btn-gold" style="width:100%; justify-content:center; margin-bottom:0.75rem; padding:0.75rem; font-size:0.92rem;">
+          <span>🔐 Open Admin Portal</span>
+        </a>
+        <a href="https://youtube.com/@DivineNest" target="_blank" rel="noopener noreferrer" class="btn btn-youtube" style="width:100%; justify-content:center; padding:0.75rem; font-size:0.92rem;">
+          <span>▶ Subscribe on YouTube</span>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Content Wrapper -->
   <main id="mainContent">

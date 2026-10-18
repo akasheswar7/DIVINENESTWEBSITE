@@ -55,7 +55,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <div class="logo-area">
-        <button class="mobile-menu-btn" aria-label="Toggle navigation">☰</button>
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle navigation">☰</button>
         <a href="/DIVINENESTWEBSITE/" class="brand-logo">
           <span class="nest-icon">🪹</span>
           <span>DIVINE<span class="brand-highlight">NEST</span></span>
@@ -119,6 +119,94 @@
     </div>
   </header>
 
+  <!-- Native Mobile Slide-Out App Drawer -->
+  <div class="mobile-drawer-overlay" id="mobileDrawerOverlay">
+    <div class="mobile-drawer" id="mobileDrawer">
+      <div class="mobile-drawer-header">
+        <div class="brand-logo" style="font-size: 1.3rem;">
+          <span class="nest-icon" style="width: 34px; height: 34px; font-size: 1.1rem;">🪹</span>
+          <span>DIVINE<span class="brand-highlight">NEST</span></span>
+        </div>
+        <button class="mobile-drawer-close" id="mobileDrawerClose" aria-label="Close navigation">✕</button>
+      </div>
+
+      <!-- Mobile Search Form -->
+      <form action="/search" method="GET" class="mobile-drawer-search">
+        <input type="text" name="q" placeholder="Search melodies, chants, stories..." required>
+        <button type="submit">🔍</button>
+      </form>
+
+      <!-- Mobile Drawer Nav List -->
+      <div class="mobile-drawer-nav">
+        <div class="drawer-section-title">Main Content</div>
+        <a href="/DIVINENESTWEBSITE/" class="drawer-link ">
+          <span class="drawer-icon">🏠</span>
+          <span>Home</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/music.html" class="drawer-link ">
+          <span class="drawer-icon">🎵</span>
+          <span>DivineNest Music</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/devotional.html" class="drawer-link ">
+          <span class="drawer-icon">🙏</span>
+          <span>Soulful Devotional</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/kids.html" class="drawer-link ">
+          <span class="drawer-icon">🧒</span>
+          <span>Kids Cartoons & Rhymes</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/shorts.html" class="drawer-link ">
+          <span class="drawer-icon">⚡</span>
+          <span>Trending Shorts</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/videos.html" class="drawer-link ">
+          <span class="drawer-icon">🎬</span>
+          <span>Full Video Library</span>
+        </a>
+
+        <div class="drawer-section-title">Explore & Community</div>
+        <a href="/DIVINENESTWEBSITE/artists.html" class="drawer-link ">
+          <span class="drawer-icon">🎤</span>
+          <span>Featured Artists</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/playlists.html" class="drawer-link active">
+          <span class="drawer-icon">📂</span>
+          <span>Curated Playlists</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/blog.html" class="drawer-link ">
+          <span class="drawer-icon">📰</span>
+          <span>Editorial Blog</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/about.html" class="drawer-link ">
+          <span class="drawer-icon">ℹ️</span>
+          <span>About DivineNest</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/contact.html" class="drawer-link ">
+          <span class="drawer-icon">✉️</span>
+          <span>Contact Us</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/collaborate.html" class="drawer-link ">
+          <span class="drawer-icon">🤝</span>
+          <span>Collaborate With Us</span>
+        </a>
+        <a href="/DIVINENESTWEBSITE/submit-music.html" class="drawer-link ">
+          <span class="drawer-icon">🎶</span>
+          <span>Submit Your Music</span>
+        </a>
+      </div>
+
+      <!-- Drawer Action Buttons -->
+      <div class="mobile-drawer-footer">
+        <a href="/DIVINENESTWEBSITE/admin.html" class="btn btn-gold" style="width:100%; justify-content:center; margin-bottom:0.75rem; padding:0.75rem; font-size:0.92rem;">
+          <span>🔐 Open Admin Portal</span>
+        </a>
+        <a href="https://youtube.com/@DivineNest" target="_blank" rel="noopener noreferrer" class="btn btn-youtube" style="width:100%; justify-content:center; padding:0.75rem; font-size:0.92rem;">
+          <span>▶ Subscribe on YouTube</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
   <!-- Main Content Wrapper -->
   <main id="mainContent">
     
@@ -149,7 +237,7 @@
         <h3 class="explore-card-title">Best Music Collection 2026</h3>
         <p class="explore-card-text">Our flagship compilation of romantic, soothing, and original melodies crafted by DivineNest artists.</p>
 
-        <a href="/playlists/best-divine-melodies" class="btn btn-primary" style="width:100%; justify-content:center;">
+        <a href="/DIVINENESTWEBSITE/playlists/best-divine-melodies.html" class="btn btn-primary" style="width:100%; justify-content:center;">
           <span>▶ Open Playlist</span>
         </a>
       </div>
@@ -166,7 +254,7 @@
         <h3 class="explore-card-title">Morning Devotional Songs &amp; Chants</h3>
         <p class="explore-card-text">Sacred morning stotrams, Shiva chants, and Ganesha hymns to commence every day with inner peace.</p>
 
-        <a href="/playlists/morning-devotional-peace" class="btn btn-primary" style="width:100%; justify-content:center;">
+        <a href="/DIVINENESTWEBSITE/playlists/morning-devotional-peace.html" class="btn btn-primary" style="width:100%; justify-content:center;">
           <span>▶ Open Playlist</span>
         </a>
       </div>
@@ -183,7 +271,7 @@
         <h3 class="explore-card-title">Om Namah Shivaya &amp; Shiva Bhajans</h3>
         <p class="explore-card-text">Deeply transcendent chants and stotrams dedicated to Lord Shiva, the eternal yogi.</p>
 
-        <a href="/playlists/shiva-mahadev-chants" class="btn btn-primary" style="width:100%; justify-content:center;">
+        <a href="/DIVINENESTWEBSITE/playlists/shiva-mahadev-chants.html" class="btn btn-primary" style="width:100%; justify-content:center;">
           <span>▶ Open Playlist</span>
         </a>
       </div>
@@ -200,7 +288,7 @@
         <h3 class="explore-card-title">Kids Songs, Cartoons &amp; Moral Stories</h3>
         <p class="explore-card-text">Fun-filled animated stories, nursery rhymes, and educational entertainment for curious young minds.</p>
 
-        <a href="/playlists/kids-cartoons-moral-tales" class="btn btn-primary" style="width:100%; justify-content:center;">
+        <a href="/DIVINENESTWEBSITE/playlists/kids-cartoons-moral-tales.html" class="btn btn-primary" style="width:100%; justify-content:center;">
           <span>▶ Open Playlist</span>
         </a>
       </div>
@@ -217,7 +305,7 @@
         <h3 class="explore-card-title">Trending Shorts &amp; Quick Vibes</h3>
         <p class="explore-card-text">The quickest and most engaging 30-second shorts: devotion, melodies, smiles, and inspiration.</p>
 
-        <a href="/playlists/trending-divinenest-shorts" class="btn btn-primary" style="width:100%; justify-content:center;">
+        <a href="/DIVINENESTWEBSITE/playlists/trending-divinenest-shorts.html" class="btn btn-primary" style="width:100%; justify-content:center;">
           <span>▶ Open Playlist</span>
         </a>
       </div>

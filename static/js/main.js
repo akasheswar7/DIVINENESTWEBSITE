@@ -32,31 +32,51 @@ function showToast(message, type = 'success') {
   }, 3500);
 }
 
-// 1. Mobile Menu Drawer
+// 1. Mobile App Slide-Out Drawer Navigation
 function initMobileMenu() {
-  const menuBtn = document.querySelector('.mobile-menu-btn');
-  const mainNav = document.querySelector('.main-nav');
+  const menuBtn = document.getElementById('mobileMenuBtn') || document.querySelector('.mobile-menu-btn');
+  const drawerOverlay = document.getElementById('mobileDrawerOverlay');
+  const drawerClose = document.getElementById('mobileDrawerClose');
+  const drawerLinks = document.querySelectorAll('.mobile-drawer .drawer-link');
 
-  if (menuBtn && mainNav) {
-    menuBtn.addEventListener('click', () => {
-      const isOpen = mainNav.classList.toggle('mobile-open');
-      menuBtn.innerHTML = isOpen ? '✕' : '☰';
-      if (isOpen) {
-        mainNav.style.display = 'flex';
-        mainNav.style.flexDirection = 'column';
-        mainNav.style.position = 'absolute';
-        mainNav.style.top = '72px';
-        mainNav.style.left = '0';
-        mainNav.style.right = '0';
-        mainNav.style.background = 'var(--bg-card)';
-        mainNav.style.padding = '1.5rem';
-        mainNav.style.borderBottom = '1px solid var(--border-light)';
-        mainNav.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
-      } else {
-        mainNav.style.display = '';
-      }
+  if (!drawerOverlay) return;
+
+  const openDrawer = () => {
+    drawerOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeDrawer = () => {
+    drawerOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  };
+
+  if (menuBtn) {
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      openDrawer();
     });
   }
+
+  if (drawerClose) {
+    drawerClose.addEventListener('click', closeDrawer);
+  }
+
+  drawerOverlay.addEventListener('click', (e) => {
+    if (e.target === drawerOverlay) {
+      closeDrawer();
+    }
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && drawerOverlay.classList.contains('active')) {
+      closeDrawer();
+    }
+  });
+
+  drawerLinks.forEach(link => {
+    link.addEventListener('click', closeDrawer);
+  });
 }
 
 // 2. YouTube Video Modal
