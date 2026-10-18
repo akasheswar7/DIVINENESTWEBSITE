@@ -90,6 +90,10 @@ replacements = [
     ('href="/artists/', 'href="/DIVINENESTWEBSITE/artists/'),
     ('href="/playlists/', 'href="/DIVINENESTWEBSITE/playlists/'),
     ('href="/blog/', 'href="/DIVINENESTWEBSITE/blog/'),
+    ('action="/search"', 'action="/DIVINENESTWEBSITE/search.html"'),
+    ('action="/contact"', 'action="/DIVINENESTWEBSITE/contact.html"'),
+    ('action="/collaborate"', 'action="/DIVINENESTWEBSITE/collaborate.html"'),
+    ('action="/submit-music"', 'action="/DIVINENESTWEBSITE/submit-music.html"'),
     ('href="/"', 'href="/DIVINENESTWEBSITE/"')
 ]
 
