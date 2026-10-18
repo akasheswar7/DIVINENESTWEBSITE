@@ -7,52 +7,55 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 :root {
-  /* Dark Obsidian & Midnight Sapphire Palette */
-  --bg-dark: #060810;
-  --bg-deep: #090C16;
-  --bg-card: #0F1424;
-  --bg-card-hover: #161D33;
-  --bg-surface: #1B233D;
-  --bg-glass: rgba(15, 20, 36, 0.78);
-  --bg-glass-subtle: rgba(255, 255, 255, 0.04);
-  --bg-glass-card: rgba(18, 24, 44, 0.65);
+  /* Official Divine Nest Brand Palette (Derived strictly from the logo) */
+  --bg-dark: #031733;       /* Deep Royal Brand Navy */
+  --bg-deep: #062147;       /* Midnight Navy */
+  --bg-card: #0A2C5C;       /* Card Navy */
+  --bg-card-hover: #0F3B77; /* Card Hover Navy */
+  --bg-surface: #144A94;    /* Surface Navy */
+  --bg-glass: rgba(10, 44, 92, 0.85);
+  --bg-glass-subtle: rgba(255, 255, 255, 0.05);
+  --bg-glass-card: rgba(10, 44, 92, 0.70);
 
-  /* Primary Neon Violet & Rose Brand Glow */
-  --primary: #8B5CF6;
-  --primary-light: #A78BFA;
-  --primary-glow: rgba(139, 92, 246, 0.4);
-  --primary-gradient: linear-gradient(135deg, #8B5CF6 0%, #D946EF 50%, #EC4899 100%);
+  /* Primary Brand Cyan & Azure Sky Glow */
+  --primary: #01A4DD;       /* Electric Cyan / Azure Blue from Logo D arch */
+  --primary-light: #38C4F8;
+  --primary-dark: #014499;  /* Royal Blue from Logo D base */
+  --primary-glow: rgba(1, 164, 221, 0.45);
+  --primary-gradient: linear-gradient(135deg, #01A4DD 0%, #014499 100%);
+  --logo-gradient: linear-gradient(135deg, #01A4DD 0%, #62C327 25%, #FDC33D 50%, #FF6B2B 75%, #D81B60 100%);
 
-  /* 24K Royal Gold & Sunfire Amber Accents */
-  --gold-500: #F59E0B;
-  --gold-400: #FBBF24;
-  --gold-glow: rgba(245, 158, 11, 0.35);
-  --gold-gradient: linear-gradient(135deg, #FFF6D6 0%, #FBBF24 40%, #F59E0B 75%, #D97706 100%);
-  --gold-border: rgba(245, 158, 11, 0.3);
+  /* Warm Golden Nest & Sunfire Amber Accents */
+  --gold-500: #FDC33D;      /* Golden Nest Yellow */
+  --gold-400: #FFE066;
+  --gold-glow: rgba(253, 195, 61, 0.4);
+  --gold-gradient: linear-gradient(135deg, #FFF6D6 0%, #FFE066 35%, #FDC33D 70%, #FF6B2B 100%);
+  --gold-border: rgba(253, 195, 61, 0.35);
 
-  /* Accent Vibrancies */
-  --accent-pink: #F43F5E;
-  --accent-cyan: #06B6D4;
-  --accent-teal: #10B981;
-  --accent-blue: #3B82F6;
-  --accent-orange: #F97316;
+  /* Accent Vibrancies strictly from the Logo */
+  --accent-pink: #D81B60;    /* Vivid Magenta from bird tail feather */
+  --accent-cyan: #01A4DD;    /* Electric Cyan from bird crest */
+  --accent-teal: #00A896;    /* Turquoise feather */
+  --accent-blue: #014499;    /* Deep Royal Navy */
+  --accent-orange: #FF6B2B;  /* Sunset Orange from nest shadow */
+  --accent-green: #62C327;   /* Vibrant Leaf Green from bird wing */
 
   /* Typography */
   --text-main: #FFFFFF;
-  --text-muted: #94A3B8;
-  --text-dim: #64748B;
-  --text-bright: #F8FAFC;
+  --text-muted: #8CB3D9;     /* Soft readable ice blue */
+  --text-dim: #5B7FA6;
+  --text-bright: #FDFEF9;    /* Warm Pearl White from logo */
 
   /* Premium Framed Borders & Shadows */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-glass: rgba(255, 255, 255, 0.14);
-  --border-glow: rgba(167, 139, 250, 0.4);
+  --border-subtle: rgba(1, 164, 221, 0.16);
+  --border-glass: rgba(255, 255, 255, 0.16);
+  --border-glow: rgba(1, 164, 221, 0.45);
   
   --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.35);
   --shadow-card: 0 16px 40px -10px rgba(0, 0, 0, 0.65), 0 0 0 1px var(--border-subtle);
-  --shadow-card-hover: 0 24px 60px -12px rgba(0, 0, 0, 0.8), 0 0 25px rgba(139, 92, 246, 0.25), 0 0 0 1px var(--border-glow);
-  --shadow-gold: 0 10px 30px rgba(245, 158, 11, 0.35);
-  --shadow-neon: 0 0 35px rgba(139, 92, 246, 0.3);
+  --shadow-card-hover: 0 24px 60px -12px rgba(0, 0, 0, 0.8), 0 0 25px rgba(1, 164, 221, 0.35), 0 0 0 1px var(--border-glow);
+  --shadow-gold: 0 10px 30px rgba(253, 195, 61, 0.35);
+  --shadow-neon: 0 0 35px rgba(1, 164, 221, 0.4);
 
   /* Radii */
   --radius-xs: 6px;
@@ -93,7 +96,7 @@ body {
   flex-direction: column;
   overflow-x: hidden;
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 50% 0%, rgba(1, 164, 221, 0.15) 0%, transparent 50%),
     radial-gradient(circle at 85% 30%, rgba(245, 158, 11, 0.06) 0%, transparent 40%),
     radial-gradient(circle at 15% 65%, rgba(244, 63, 94, 0.06) 0%, transparent 40%);
   background-attachment: fixed;
@@ -177,23 +180,38 @@ ul {
   color: #FFFFFF;
 }
 
+.brand-logo .brand-logo-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 4px 16px var(--primary-glow);
+  border: 2px solid var(--gold-400);
+  transition: var(--transition);
+}
+
+.brand-logo:hover .brand-logo-img {
+  transform: scale(1.08) rotate(4deg);
+  box-shadow: 0 6px 24px var(--gold-glow);
+}
+
 .brand-logo .nest-icon {
   width: 38px;
   height: 38px;
-  background: linear-gradient(135deg, #EC4899 0%, #8B5CF6 50%, #3B82F6 100%);
-  border-radius: var(--radius-sm);
+  background: var(--primary-gradient);
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
-  box-shadow: 0 6px 20px rgba(139, 92, 246, 0.45);
-  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 4px 15px var(--primary-glow);
+  border: 2px solid var(--gold-400);
   transition: var(--transition);
 }
 
 .brand-logo:hover .nest-icon {
-  transform: rotate(10deg) scale(1.08);
-  box-shadow: 0 8px 25px rgba(236, 72, 153, 0.6);
+  transform: rotate(8deg) scale(1.08);
+  box-shadow: 0 6px 22px var(--gold-glow);
 }
 
 .brand-logo .brand-highlight {
@@ -235,9 +253,9 @@ ul {
 
 .nav-link.active {
   color: #FFFFFF;
-  background: linear-gradient(135deg, rgba(139, 92, 246, 0.25), rgba(244, 63, 94, 0.18));
-  border: 1px solid rgba(139, 92, 246, 0.45);
-  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.25);
+  background: linear-gradient(135deg, rgba(1, 164, 221, 0.25), rgba(253, 195, 61, 0.2));
+  border: 1px solid rgba(1, 164, 221, 0.45);
+  box-shadow: 0 4px 15px rgba(1, 164, 221, 0.25);
 }
 
 /* Nav Dropdown */
@@ -269,7 +287,7 @@ ul {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: var(--radius-md);
   padding: 0.5rem 0;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(139, 92, 246, 0.25);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(1, 164, 221, 0.25);
   display: none;
   z-index: 200;
 }
@@ -308,7 +326,7 @@ ul {
   display: inline-flex;
   align-items: center;
   gap: 0.4rem;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.22), rgba(139, 92, 246, 0.3));
+  background: linear-gradient(135deg, rgba(253, 195, 61, 0.22), rgba(1, 164, 221, 0.3));
   color: #FDE047;
   border: 1px solid rgba(245, 158, 11, 0.5);
   padding: 0.44rem 0.95rem;
@@ -323,7 +341,7 @@ ul {
 }
 
 .admin-portal-btn:hover {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.4), rgba(139, 92, 246, 0.5));
+  background: linear-gradient(135deg, rgba(253, 195, 61, 0.4), rgba(1, 164, 221, 0.4));
   color: #FFFFFF;
   border-color: #FBBF24;
   transform: translateY(-2px);
@@ -428,7 +446,7 @@ ul {
   display: flex;
   align-items: center;
   padding: 3rem 0 2rem 0;
-  background: radial-gradient(circle at 50% 25%, rgba(139, 92, 246, 0.18) 0%, rgba(6, 8, 16, 0.98) 75%);
+  background: radial-gradient(circle at 50% 25%, rgba(1, 164, 221, 0.2) 0%, rgba(3, 23, 51, 0.98) 75%);
   overflow: hidden;
 }
 
@@ -450,7 +468,7 @@ ul {
 .orb-1 {
   width: 450px;
   height: 450px;
-  background: radial-gradient(circle, #8B5CF6 0%, transparent 70%);
+  background: radial-gradient(circle, #01A4DD 0%, transparent 70%);
   top: -100px;
   left: 15%;
 }
@@ -458,7 +476,7 @@ ul {
 .orb-2 {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, #EC4899 0%, transparent 70%);
+  background: radial-gradient(circle, #D81B60 0%, transparent 70%);
   bottom: -40px;
   right: 12%;
   animation-delay: -5s;
@@ -516,7 +534,7 @@ ul {
 }
 
 .hero-title .gradient-text {
-  background: linear-gradient(135deg, #FFFFFF 0%, #FDE047 35%, #F59E0B 65%, #EC4899 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFE066 35%, #FDC33D 65%, #FF6B2B 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 10px 40px rgba(245, 158, 11, 0.25);
@@ -564,9 +582,9 @@ ul {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, #8B5CF6 0%, #D946EF 60%, #EC4899 100%);
+  background: linear-gradient(135deg, #01A4DD 0%, #014499 100%);
   color: #FFFFFF;
-  box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 8px 25px rgba(1, 164, 221, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
@@ -621,8 +639,8 @@ ul {
   position: relative;
   border-radius: var(--radius-lg);
   padding: 6px;
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.4) 0%, rgba(139, 92, 246, 0.4) 50%, rgba(244, 63, 94, 0.4) 100%);
-  box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(139, 92, 246, 0.25);
+  background: linear-gradient(135deg, rgba(253, 195, 61, 0.35) 0%, rgba(1, 164, 221, 0.35) 50%, rgba(216, 27, 96, 0.35) 100%);
+  box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.8), 0 0 35px rgba(1, 164, 221, 0.25);
 }
 
 .hero-stage-inner {
@@ -807,8 +825,8 @@ ul {
   color: var(--primary-light);
   padding: 0.5rem 1rem;
   border-radius: var(--radius-full);
-  background: rgba(139, 92, 246, 0.12);
-  border: 1px solid rgba(139, 92, 246, 0.3);
+  background: rgba(1, 164, 221, 0.12);
+  border: 1px solid rgba(1, 164, 221, 0.3);
   transition: var(--transition);
 }
 
@@ -850,7 +868,7 @@ ul {
   left: 0;
   right: 0;
   height: 3px;
-  background: linear-gradient(90deg, transparent, var(--card-color, #8B5CF6), transparent);
+  background: linear-gradient(90deg, transparent, var(--card-color, #01A4DD), transparent);
   opacity: 0.4;
   transition: var(--transition);
 }
@@ -859,7 +877,7 @@ ul {
   transform: translateY(-8px);
   background: linear-gradient(180deg, rgba(27, 36, 66, 0.85) 0%, rgba(18, 24, 46, 0.95) 100%);
   border-color: var(--card-color, rgba(255, 255, 255, 0.3));
-  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 30px var(--card-glow, rgba(139, 92, 246, 0.25));
+  box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.8), 0 0 30px var(--card-glow, rgba(1, 164, 221, 0.25));
 }
 
 .explore-card:hover::before {
@@ -883,7 +901,7 @@ ul {
 
 .explore-card:hover .explore-icon-bubble {
   transform: scale(1.12) rotate(8deg);
-  background: var(--card-color, #8B5CF6);
+  background: var(--card-color, #01A4DD);
   box-shadow: 0 8px 25px var(--card-glow, rgba(0, 0, 0, 0.4));
 }
 
@@ -1194,8 +1212,8 @@ ul {
   margin: 0 auto 1.35rem auto;
   border-radius: 50%;
   padding: 4px;
-  background: linear-gradient(135deg, #F59E0B 0%, #8B5CF6 50%, #EC4899 100%);
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.35);
+  background: linear-gradient(135deg, #FDC33D 0%, #01A4DD 50%, #D81B60 100%);
+  box-shadow: 0 10px 30px rgba(1, 164, 221, 0.35);
   transition: var(--transition);
 }
 
@@ -1271,9 +1289,9 @@ ul {
    ========================================================================== */
 .youtube-cta-section {
   position: relative;
-  background: linear-gradient(135deg, rgba(255, 0, 0, 0.15) 0%, rgba(139, 92, 246, 0.18) 100%);
+  background: linear-gradient(135deg, rgba(255, 107, 43, 0.15) 0%, rgba(1, 164, 221, 0.18) 100%);
   border-top: 1px solid rgba(255, 0, 0, 0.25);
-  border-bottom: 1px solid rgba(139, 92, 246, 0.25);
+  border-bottom: 1px solid rgba(1, 164, 221, 0.25);
   padding: 5.5rem 0;
 }
 
@@ -1453,7 +1471,7 @@ ul {
   z-index: 98;
   background: rgba(12, 16, 32, 0.94);
   backdrop-filter: blur(24px);
-  border-top: 1px solid rgba(139, 92, 246, 0.35);
+  border-top: 1px solid rgba(1, 164, 221, 0.35);
   padding: 0.75rem 2rem;
   display: none;
   box-shadow: 0 -10px 35px rgba(0, 0, 0, 0.6);
@@ -1607,7 +1625,7 @@ ul {
   background: var(--bg-card);
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(139, 92, 246, 0.3);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8), 0 0 40px rgba(1, 164, 221, 0.3);
   border: 1px solid var(--border-glass);
   position: relative;
   animation: zoomIn 0.28s cubic-bezier(0.16, 1, 0.3, 1);
