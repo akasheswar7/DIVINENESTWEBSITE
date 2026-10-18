@@ -50,7 +50,10 @@
   <!-- Admin Header Bar -->
   <div class="admin-header-row">
     <div class="admin-title-area">
-      <h1>🪹 DivineNest Platform Admin</h1>
+      <h1 style="display:flex; align-items:center; gap:0.75rem;">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" style="width:42px; height:42px; border-radius:50%; border:2px solid var(--gold-400);">
+        <span>DivineNest Platform Admin</span>
+      </h1>
       <p style="color:var(--text-muted); font-size:0.95rem;">Manage content, publish video feeds, review music submissions and messages</p>
     </div>
 

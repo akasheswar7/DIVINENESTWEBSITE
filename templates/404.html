@@ -1,18 +1,18 @@
 {% extends 'base.html' %}
 
-{% block title %}Oops! This Nest Is Empty 🪹 | DivineNest{% endblock %}
+{% block title %}Page Not Found | DivineNest{% endblock %}
 
 {% block content %}
 <section class="section" style="min-height:75vh; display:flex; align-items:center; text-align:center; padding: 5rem 0;">
   <div class="container" style="max-width: 650px;">
     
-    <div style="font-size: 6rem; margin-bottom: 1.5rem; animation: floatOrb 4s ease-in-out infinite alternate;">
-      🪹
+    <div style="margin-bottom: 2rem;">
+      <img src="{{ url_for('static', filename='images/logo.png') }}" alt="DivineNest" style="width: 110px; height: 110px; border-radius: 50%; box-shadow: 0 0 35px var(--primary-glow); border: 3px solid var(--gold-400); animation: floatOrb 4s ease-in-out infinite alternate;">
     </div>
 
     <span class="section-tag" style="color:var(--accent-pink);">404 Error</span>
     <h1 class="section-title" style="font-size: clamp(2.2rem, 4.5vw, 3.2rem); margin-bottom: 1rem;">
-      Oops! This Nest Is Empty 🪹
+      Melody Not Found
     </h1>
 
     <p style="font-size: 1.15rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 2.5rem;">

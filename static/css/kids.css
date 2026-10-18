@@ -1,16 +1,16 @@
 /* ==========================================================================
-   DIVINENEST KIDS — PLAYFUL THEME STYLES
-   Fun • Cheerful • Warm Pastel Accents • Safe & Engaging
+   DIVINENEST KIDS — PLAYFUL LOGO-ALIGNED THEME
+   Bright Leaf Green • Nest Gold • Vivid Magenta • Safe & Engaging
    ========================================================================== */
 
 .kids-hero-banner {
-  background: linear-gradient(135deg, rgba(6, 214, 160, 0.18) 0%, rgba(255, 183, 3, 0.18) 50%, rgba(255, 0, 110, 0.18) 100%);
+  background: linear-gradient(135deg, rgba(98, 195, 39, 0.18) 0%, rgba(253, 195, 61, 0.18) 50%, rgba(216, 27, 96, 0.18) 100%);
   border-radius: var(--radius-xl);
   padding: 3.5rem 2rem;
   text-align: center;
   position: relative;
   overflow: hidden;
-  border: 2px dashed rgba(6, 214, 160, 0.35);
+  border: 2px dashed rgba(98, 195, 39, 0.4);
   margin-bottom: 3.5rem;
 }
 
@@ -23,14 +23,14 @@
 .kids-bubble {
   position: absolute;
   border-radius: 50%;
-  opacity: 0.6;
+  opacity: 0.65;
   animation: floatBubble 6s ease-in-out infinite alternate;
 }
 
 .bubble-1 {
   width: 60px;
   height: 60px;
-  background: #06D6A0;
+  background: #62C327; /* Logo Leaf Green */
   top: 15%;
   left: 8%;
 }
@@ -38,7 +38,7 @@
 .bubble-2 {
   width: 45px;
   height: 45px;
-  background: #FFB703;
+  background: #FDC33D; /* Logo Nest Gold */
   bottom: 20%;
   right: 10%;
   animation-delay: -2s;
@@ -47,7 +47,7 @@
 .bubble-3 {
   width: 50px;
   height: 50px;
-  background: #FF006E;
+  background: #D81B60; /* Logo Magenta */
   top: 25%;
   right: 18%;
   animation-delay: -4s;
@@ -69,8 +69,8 @@
 
 .kids-age-badge {
   background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(6, 214, 160, 0.4);
-  color: #06D6A0;
+  border: 1px solid rgba(98, 195, 39, 0.45);
+  color: #62C327;
   padding: 0.4rem 1.1rem;
   border-radius: var(--radius-full);
   font-weight: 700;
@@ -80,26 +80,26 @@
 }
 
 .kids-age-badge:hover, .kids-age-badge.active {
-  background: #06D6A0;
-  color: #000;
+  background: #62C327;
+  color: #031733;
   transform: scale(1.05);
 }
 
 .kids-card {
-  border: 2px solid rgba(6, 214, 160, 0.2);
+  border: 2px solid rgba(98, 195, 39, 0.25);
   border-radius: var(--radius-lg);
   transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .kids-card:hover {
   transform: translateY(-8px) scale(1.02);
-  border-color: #06D6A0;
-  box-shadow: 0 15px 35px rgba(6, 214, 160, 0.25);
+  border-color: #62C327;
+  box-shadow: 0 15px 35px rgba(98, 195, 39, 0.25);
 }
 
 .kids-card-age {
-  background: #FFB703;
-  color: #000;
+  background: #FDC33D;
+  color: #031733;
   font-weight: 800;
   font-size: 0.75rem;
   padding: 0.25rem 0.65rem;

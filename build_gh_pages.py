@@ -153,11 +153,14 @@ c404 = """<!DOCTYPE html>
   </script>
   <link rel="stylesheet" href="/DIVINENESTWEBSITE/static/css/style.css">
 </head>
-<body style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: #060810; color: #fff; font-family: sans-serif; padding: 2rem;">
+<body style="min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: #031733; color: #fff; font-family: sans-serif; padding: 2rem;">
   <div>
-    <h1 style="font-size: 3rem; margin-bottom: 1rem; color: #FBBF24;">404 — Divine Joy Awaits</h1>
-    <p style="font-size: 1.2rem; color: #94A3B8; margin-bottom: 2rem;">The page you are looking for has taken flight into the melodies of DivineNest.</p>
-    <a href="/DIVINENESTWEBSITE/" style="background: linear-gradient(135deg, #F59E0B, #EC4899); color: #fff; text-decoration: none; padding: 0.8rem 1.8rem; border-radius: 9999px; font-weight: 700; display: inline-block;">Return to DivineNest Home</a>
+    <div style="margin-bottom: 1.5rem;">
+      <img src="/DIVINENESTWEBSITE/static/images/logo.png" alt="DivineNest" style="width: 100px; height: 100px; border-radius: 50%; border: 3px solid #FDC33D; box-shadow: 0 0 30px rgba(1, 164, 221, 0.4);">
+    </div>
+    <h1 style="font-size: 2.8rem; margin-bottom: 1rem; color: #FDC33D;">404 — Melody Not Found</h1>
+    <p style="font-size: 1.15rem; color: #8CB3D9; margin-bottom: 2rem;">The page you are looking for has taken flight into the melodies of DivineNest.</p>
+    <a href="/DIVINENESTWEBSITE/" style="background: linear-gradient(135deg, #01A4DD, #014499); color: #fff; text-decoration: none; padding: 0.85rem 2rem; border-radius: 9999px; font-weight: 700; display: inline-block; box-shadow: 0 6px 20px rgba(1, 164, 221, 0.4);">Return to DivineNest Home</a>
   </div>
 </body>
 </html>
