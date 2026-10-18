@@ -48,8 +48,69 @@
     "description": "Where Music, Stories & Joy Come Together. Entertainment, devotional music, and children stories platform."
   }
   </script>
-</head>
 <body>
+
+  <!-- Cinematic Entry Animation Video & Motion Screen -->
+  <div class="site-intro-overlay" id="siteIntroOverlay" aria-modal="true" role="dialog" aria-label="DivineNest Intro Animation">
+    <canvas id="introCanvas" class="intro-canvas"></canvas>
+
+    <!-- Optional HTML5 Background Video Layer -->
+    <video id="introBgVideo" class="intro-bg-video" autoplay muted loop playsinline preload="auto">
+      <source src="/DIVINENESTWEBSITE/static/videos/intro.mp4" type="video/mp4">
+    </video>
+
+    <!-- Ambient Glow Orbs -->
+    <div class="intro-ambient-fx">
+      <div class="intro-orb intro-orb-1"></div>
+      <div class="intro-orb intro-orb-2"></div>
+      <div class="intro-orb intro-orb-3"></div>
+    </div>
+
+    <div class="intro-card-box">
+      <!-- 3D Logo Reveal & Multi-Color Spectrum Ring -->
+      <div class="intro-emblem-wrap">
+        <div class="intro-spectrum-ring"></div>
+        <div class="intro-soundwaves">
+          <span class="wave wave-1"></span>
+          <span class="wave wave-2"></span>
+          <span class="wave wave-3"></span>
+        </div>
+        <img src="/DIVINENESTWEBSITE/static/images/logo.png" alt="DivineNest Logo" class="intro-emblem-logo">
+      </div>
+
+      <!-- Typography -->
+      <div class="intro-brand-area">
+        <div class="intro-brand-badge">✨ WELCOME TO DIVINENEST</div>
+        <h1 class="intro-brand-name">
+          <span>DIVINE</span><span class="intro-highlight">NEST</span>
+        </h1>
+        <p class="intro-tagline">Tune Your Imagination</p>
+        <div class="intro-color-dots">
+          <span class="dot-cyan"></span>
+          <span class="dot-green"></span>
+          <span class="dot-gold"></span>
+          <span class="dot-orange"></span>
+          <span class="dot-pink"></span>
+        </div>
+      </div>
+
+      <!-- Interactive Actions -->
+      <div class="intro-actions-row">
+        <button type="button" class="btn-enter-website" id="enterSiteBtn">
+          <span>Enter Website</span>
+          <span class="enter-icon">→</span>
+        </button>
+        <button type="button" class="btn-skip-intro" id="skipIntroBtn">
+          Skip
+        </button>
+      </div>
+
+      <!-- Auto-dismiss Progress Bar -->
+      <div class="intro-progress-wrap" title="Auto-entering...">
+        <div class="intro-progress-bar" id="introProgressBar"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- Top Header Navigation -->
   <header class="site-header">
@@ -91,6 +152,12 @@
       </nav>
 
       <div class="header-right">
+        <!-- Replay Intro Button -->
+        <button type="button" class="replay-intro-btn" id="replayIntroBtn" title="Play Intro Animation">
+          <span>🎬</span>
+          <span class="replay-text-hide">Intro</span>
+        </button>
+
         <!-- Search Trigger -->
         <a href="/DIVINENESTWEBSITE/search.html" class="search-trigger-btn" title="Search DivineNest">
           <span>🔍</span>
@@ -138,6 +205,9 @@
 
       <!-- Mobile Drawer Nav List -->
       <div class="mobile-drawer-nav">
+        <button type="button" class="drawer-intro-btn" id="drawerReplayIntroBtn">
+          <span>🎬 Watch Intro Animation</span>
+        </button>
         <div class="drawer-section-title">Main Content</div>
         <a href="/DIVINENESTWEBSITE/" class="drawer-link ">
           <span class="drawer-icon">🏠</span>
@@ -328,7 +398,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Ananya Sharma</span>
-            <span>67002 views • Telugu</span>
+            <span>67003 views • Telugu</span>
           </div>
         </div>
       </div>
@@ -351,7 +421,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Rahul Roy &amp; The Storytoons</span>
-            <span>95002 views • Telugu</span>
+            <span>95003 views • Telugu</span>
           </div>
         </div>
       </div>
@@ -374,7 +444,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Sneha Menon</span>
-            <span>142002 views • Instrumental</span>
+            <span>142003 views • Instrumental</span>
           </div>
         </div>
       </div>
@@ -397,7 +467,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Karthik Varma</span>
-            <span>184002 views • Sanskrit</span>
+            <span>184003 views • Sanskrit</span>
           </div>
         </div>
       </div>
@@ -420,7 +490,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Karthik Varma</span>
-            <span>28902 views • Telugu</span>
+            <span>28903 views • Telugu</span>
           </div>
         </div>
       </div>
@@ -443,7 +513,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Ananya Sharma</span>
-            <span>32102 views • English</span>
+            <span>32103 views • English</span>
           </div>
         </div>
       </div>
@@ -466,7 +536,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Rahul Roy &amp; The Storytoons</span>
-            <span>74502 views • Telugu</span>
+            <span>74503 views • Telugu</span>
           </div>
         </div>
       </div>
@@ -489,7 +559,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Rahul Roy &amp; The Storytoons</span>
-            <span>82102 views • English</span>
+            <span>82103 views • English</span>
           </div>
         </div>
       </div>
@@ -512,7 +582,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Rahul Roy &amp; The Storytoons</span>
-            <span>53202 views • Hindi</span>
+            <span>53203 views • Hindi</span>
           </div>
         </div>
       </div>
@@ -535,7 +605,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Rahul Roy &amp; The Storytoons</span>
-            <span>67402 views • Telugu</span>
+            <span>67403 views • Telugu</span>
           </div>
         </div>
       </div>
@@ -558,7 +628,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Ananya Sharma</span>
-            <span>78902 views • Telugu</span>
+            <span>78903 views • Telugu</span>
           </div>
         </div>
       </div>
@@ -581,7 +651,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Karthik Varma</span>
-            <span>45602 views • Telugu</span>
+            <span>45603 views • Telugu</span>
           </div>
         </div>
       </div>
@@ -604,7 +674,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Karthik Varma</span>
-            <span>121002 views • Hindi</span>
+            <span>121003 views • Hindi</span>
           </div>
         </div>
       </div>
@@ -627,7 +697,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Ananya Sharma</span>
-            <span>98702 views • Telugu</span>
+            <span>98703 views • Telugu</span>
           </div>
         </div>
       </div>
@@ -650,7 +720,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Karthik Varma</span>
-            <span>154003 views • Sanskrit</span>
+            <span>154004 views • Sanskrit</span>
           </div>
         </div>
       </div>
@@ -673,7 +743,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Priya Sen</span>
-            <span>18202 views • English</span>
+            <span>18203 views • English</span>
           </div>
         </div>
       </div>
@@ -696,7 +766,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Ananya Sharma</span>
-            <span>24502 views • Hindi</span>
+            <span>24503 views • Hindi</span>
           </div>
         </div>
       </div>
@@ -719,7 +789,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Sneha Menon</span>
-            <span>89402 views • Instrumental</span>
+            <span>89403 views • Instrumental</span>
           </div>
         </div>
       </div>
@@ -742,7 +812,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Ananya Sharma</span>
-            <span>38902 views • Telugu</span>
+            <span>38903 views • Telugu</span>
           </div>
         </div>
       </div>
@@ -765,7 +835,7 @@
           </p>
           <div class="video-card-meta">
             <span class="video-artist-tag">Ananya Sharma</span>
-            <span>45202 views • Telugu</span>
+            <span>45203 views • Telugu</span>
           </div>
         </div>
       </div>

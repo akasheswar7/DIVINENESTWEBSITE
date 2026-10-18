@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initShareButtons();
   initAjaxForms();
   initLanguageSwitcher();
+  initEntryAnimation();
 });
 
 // Toast notification helper
@@ -395,3 +396,212 @@ function initLanguageSwitcher() {
     });
   }
 }
+
+// 8. Cinematic Entry Animation Video & Motion System
+function initEntryAnimation() {
+  const overlay = document.getElementById('siteIntroOverlay');
+  if (!overlay) return;
+
+  const enterBtn = document.getElementById('enterSiteBtn');
+  const skipBtn = document.getElementById('skipIntroBtn');
+  const replayBtn = document.getElementById('replayIntroBtn');
+  const drawerReplayBtn = document.getElementById('drawerReplayIntroBtn');
+  const progressBar = document.getElementById('introProgressBar');
+  const bgVideo = document.getElementById('introBgVideo');
+  const canvas = document.getElementById('introCanvas');
+
+  let animFrameId = null;
+  let progressTimer = null;
+  const INTRO_DURATION_MS = 4500;
+
+  // Check session storage — only auto-play on initial site entry
+  const hasEntered = sessionStorage.getItem('divinenest_intro_played');
+
+  // Gentle Harmonious Celestial Chime (Web Audio API)
+  function playCelestialChime() {
+    try {
+      const AudioContext = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContext) return;
+      const ctx = new AudioContext();
+      if (ctx.state === 'suspended') {
+        ctx.resume();
+      }
+
+      // 5 Harmonious notes tuned to celestial pentatonic scale
+      const notes = [261.63, 329.63, 392.00, 523.25, 659.25];
+      notes.forEach((freq, idx) => {
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+
+        const startTime = ctx.currentTime + idx * 0.08;
+        gain.gain.setValueAtTime(0.0001, startTime);
+        gain.gain.exponentialRampToValueAtTime(0.06 / (idx + 1), startTime + 0.1);
+        gain.gain.exponentialRampToValueAtTime(0.0001, startTime + 2.2);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start(startTime);
+        osc.stop(startTime + 2.3);
+      });
+    } catch (e) {
+      // Audio autoplay policy fallback
+    }
+  }
+
+  // Canvas 60fps Logo-Colors Cosmic Particle System
+  function startCanvasAnimation() {
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let width = (canvas.width = window.innerWidth);
+    let height = (canvas.height = window.innerHeight);
+
+    window.addEventListener('resize', () => {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    });
+
+    const colors = ['#01A4DD', '#62C327', '#FDC33D', '#FF6B2B', '#D81B60'];
+    const particles = [];
+    const PARTICLE_COUNT = Math.min(80, Math.floor((width * height) / 14000));
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particles.push({
+        x: width / 2 + (Math.random() - 0.5) * 100,
+        y: height / 2 + (Math.random() - 0.5) * 100,
+        vx: (Math.random() - 0.5) * 2.2,
+        vy: (Math.random() - 0.5) * 2.2,
+        radius: Math.random() * 2.8 + 1,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        alpha: Math.random() * 0.7 + 0.3,
+        pulseSpeed: Math.random() * 0.03 + 0.01
+      });
+    }
+
+    let waveRadius = 0;
+
+    function render() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Expanding soundwave ripple from center
+      waveRadius = (waveRadius + 1.2) % (Math.max(width, height) * 0.6);
+      ctx.beginPath();
+      ctx.arc(width / 2, height / 2, waveRadius, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(1, 164, 221, ${Math.max(0, 0.25 - waveRadius / (width * 0.6))})`;
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // Render star dust particles
+      for (let p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        p.alpha += Math.sin(Date.now() * p.pulseSpeed) * 0.02;
+
+        // Wrap around bounds
+        if (p.x < 0) p.x = width;
+        if (p.x > width) p.x = 0;
+        if (p.y < 0) p.y = height;
+        if (p.y > height) p.y = 0;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = Math.max(0.1, Math.min(0.9, p.alpha));
+        ctx.shadowBlur = 12;
+        ctx.shadowColor = p.color;
+        ctx.fill();
+        ctx.shadowBlur = 0;
+      }
+      ctx.globalAlpha = 1;
+
+      animFrameId = requestAnimationFrame(render);
+    }
+
+    render();
+  }
+
+  function stopCanvasAnimation() {
+    if (animFrameId) {
+      cancelAnimationFrame(animFrameId);
+      animFrameId = null;
+    }
+  }
+
+  function dismissIntro(withSound = true) {
+    if (withSound) playCelestialChime();
+    clearInterval(progressTimer);
+
+    overlay.classList.add('dismissed');
+    document.body.classList.remove('intro-active');
+    sessionStorage.setItem('divinenest_intro_played', 'true');
+
+    setTimeout(() => {
+      stopCanvasAnimation();
+      if (bgVideo) bgVideo.pause();
+    }, 900);
+  }
+
+  function playIntro() {
+    overlay.classList.remove('dismissed');
+    document.body.classList.add('intro-active');
+
+    // Reset and start progress bar
+    if (progressBar) progressBar.style.width = '0%';
+    const startTime = Date.now();
+    clearInterval(progressTimer);
+
+    progressTimer = setInterval(() => {
+      const elapsed = Date.now() - startTime;
+      const pct = Math.min(100, (elapsed / INTRO_DURATION_MS) * 100);
+      if (progressBar) progressBar.style.width = `${pct}%`;
+
+      if (elapsed >= INTRO_DURATION_MS) {
+        clearInterval(progressTimer);
+        dismissIntro(false);
+      }
+    }, 40);
+
+    // Play optional background video if available
+    if (bgVideo) {
+      bgVideo.currentTime = 0;
+      bgVideo.play().catch(() => {});
+    }
+
+    startCanvasAnimation();
+  }
+
+  // Wire up button click triggers
+  if (enterBtn) {
+    enterBtn.addEventListener('click', () => dismissIntro(true));
+  }
+
+  if (skipBtn) {
+    skipBtn.addEventListener('click', () => dismissIntro(false));
+  }
+
+  if (replayBtn) {
+    replayBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      playIntro();
+    });
+  }
+
+  if (drawerReplayBtn) {
+    drawerReplayBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const drawerOverlay = document.getElementById('mobileDrawerOverlay');
+      if (drawerOverlay) drawerOverlay.classList.remove('active');
+      playIntro();
+    });
+  }
+
+  // Auto-play on first entry, or dismiss immediately if already seen in this session
+  if (!hasEntered) {
+    playIntro();
+  } else {
+    overlay.classList.add('dismissed');
+    document.body.classList.remove('intro-active');
+  }
+}
+
