@@ -48,8 +48,69 @@
     "description": "Where Music, Stories & Joy Come Together. Entertainment, devotional music, and children stories platform."
   }
   </script>
-</head>
 <body>
+
+  <!-- Cinematic Entry Animation Video & Motion Screen -->
+  <div class="site-intro-overlay" id="siteIntroOverlay" aria-modal="true" role="dialog" aria-label="DivineNest Intro Animation">
+    <canvas id="introCanvas" class="intro-canvas"></canvas>
+
+    <!-- Optional HTML5 Background Video Layer -->
+    <video id="introBgVideo" class="intro-bg-video" autoplay muted loop playsinline preload="auto">
+      <source src="/DIVINENESTWEBSITE/static/videos/intro.mp4" type="video/mp4">
+    </video>
+
+    <!-- Ambient Glow Orbs -->
+    <div class="intro-ambient-fx">
+      <div class="intro-orb intro-orb-1"></div>
+      <div class="intro-orb intro-orb-2"></div>
+      <div class="intro-orb intro-orb-3"></div>
+    </div>
+
+    <div class="intro-card-box">
+      <!-- 3D Logo Reveal & Multi-Color Spectrum Ring -->
+      <div class="intro-emblem-wrap">
+        <div class="intro-spectrum-ring"></div>
+        <div class="intro-soundwaves">
+          <span class="wave wave-1"></span>
+          <span class="wave wave-2"></span>
+          <span class="wave wave-3"></span>
+        </div>
+        <img src="/DIVINENESTWEBSITE/static/images/logo.png" alt="DivineNest Logo" class="intro-emblem-logo">
+      </div>
+
+      <!-- Typography -->
+      <div class="intro-brand-area">
+        <div class="intro-brand-badge">✨ WELCOME TO DIVINENEST</div>
+        <h1 class="intro-brand-name">
+          <span>DIVINE</span><span class="intro-highlight">NEST</span>
+        </h1>
+        <p class="intro-tagline">Tune Your Imagination</p>
+        <div class="intro-color-dots">
+          <span class="dot-cyan"></span>
+          <span class="dot-green"></span>
+          <span class="dot-gold"></span>
+          <span class="dot-orange"></span>
+          <span class="dot-pink"></span>
+        </div>
+      </div>
+
+      <!-- Interactive Actions -->
+      <div class="intro-actions-row">
+        <button type="button" class="btn-enter-website" id="enterSiteBtn">
+          <span>Enter Website</span>
+          <span class="enter-icon">→</span>
+        </button>
+        <button type="button" class="btn-skip-intro" id="skipIntroBtn">
+          Skip
+        </button>
+      </div>
+
+      <!-- Auto-dismiss Progress Bar -->
+      <div class="intro-progress-wrap" title="Auto-entering...">
+        <div class="intro-progress-bar" id="introProgressBar"></div>
+      </div>
+    </div>
+  </div>
 
   <!-- Top Header Navigation -->
   <header class="site-header">
@@ -91,6 +152,12 @@
       </nav>
 
       <div class="header-right">
+        <!-- Replay Intro Button -->
+        <button type="button" class="replay-intro-btn" id="replayIntroBtn" title="Play Intro Animation">
+          <span>🎬</span>
+          <span class="replay-text-hide">Intro</span>
+        </button>
+
         <!-- Search Trigger -->
         <a href="/DIVINENESTWEBSITE/search.html" class="search-trigger-btn" title="Search DivineNest">
           <span>🔍</span>
@@ -138,6 +205,9 @@
 
       <!-- Mobile Drawer Nav List -->
       <div class="mobile-drawer-nav">
+        <button type="button" class="drawer-intro-btn" id="drawerReplayIntroBtn">
+          <span>🎬 Watch Intro Animation</span>
+        </button>
         <div class="drawer-section-title">Main Content</div>
         <a href="/DIVINENESTWEBSITE/" class="drawer-link ">
           <span class="drawer-icon">🏠</span>
@@ -268,7 +338,7 @@
           <a href="/DIVINENESTWEBSITE/video/divine-morning-melody.html" class="video-card-title">Soulful Morning Melody | DivineNest Music Original</a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Ananya Sharma</span>
-            <span>45203 views</span>
+            <span>45204 views</span>
           </div>
         </div>
       </div>
@@ -285,7 +355,7 @@
           <a href="/DIVINENESTWEBSITE/video/chandamama-love-song.html" class="video-card-title">Chandamama Love Melody | Romantic Acoustic Song</a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Ananya Sharma</span>
-            <span>38903 views</span>
+            <span>38904 views</span>
           </div>
         </div>
       </div>
@@ -302,7 +372,7 @@
           <a href="/DIVINENESTWEBSITE/video/divine-flute-meditation.html" class="video-card-title">Bansuri Flute Serenity | Relaxing Instrumental Peace</a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Sneha Menon</span>
-            <span>89403 views</span>
+            <span>89404 views</span>
           </div>
         </div>
       </div>
@@ -319,7 +389,7 @@
           <a href="/DIVINENESTWEBSITE/video/raaga-symphony-classical.html" class="video-card-title">Raaga Symphony | Indian Classical Fusion</a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Ananya Sharma</span>
-            <span>24503 views</span>
+            <span>24504 views</span>
           </div>
         </div>
       </div>
@@ -336,7 +406,7 @@
           <a href="/DIVINENESTWEBSITE/video/journey-of-hope.html" class="video-card-title">Journey of Hope | Uplifting English Acoustic Ballad</a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Priya Sen</span>
-            <span>18203 views</span>
+            <span>18204 views</span>
           </div>
         </div>
       </div>
@@ -353,7 +423,7 @@
           <a href="/DIVINENESTWEBSITE/video/sweet-telugu-melody-snippet-short.html" class="video-card-title">When the Flute Hits Your Heart #Shorts</a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Sneha Menon</span>
-            <span>142003 views</span>
+            <span>142004 views</span>
           </div>
         </div>
       </div>
