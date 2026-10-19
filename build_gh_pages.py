@@ -1,10 +1,10 @@
-import urllib.request
 import os
 import shutil
 import sqlite3
 import database
+from app import app
 
-BASE_URL = 'http://127.0.0.1:5000'
+client = app.test_client()
 DIST_DIR = os.path.join(os.path.dirname(__file__), 'dist')
 
 if os.path.exists(DIST_DIR):
@@ -98,9 +98,9 @@ replacements = [
 ]
 
 for route, rel_path in routes:
-    url = f'{BASE_URL}{route}'
     try:
-        content = urllib.request.urlopen(url).read().decode('utf-8')
+        response = client.get(route)
+        content = response.data.decode('utf-8')
 
         # Insert <base href="/DIVINENESTWEBSITE/">
         content = content.replace('<head>', '<head>\n  <base href="/DIVINENESTWEBSITE/">')

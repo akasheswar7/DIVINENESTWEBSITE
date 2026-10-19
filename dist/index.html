@@ -39,7 +39,7 @@
     "@type": "Organization",
     "name": "DivineNest",
     "url": "https://divinenest.com",
-    "logo": "http://127.0.0.1:5000/DIVINENESTWEBSITE/static/images/logo.png",
+    "logo": "http://localhost/DIVINENESTWEBSITE/static/images/logo.png",
     "sameAs": [
       "https://youtube.com/@DivineNest",
       "https://instagram.com/divinenest",
@@ -377,64 +377,109 @@
   </div>
 </section>
 
-<!-- 2. EXPLORE DIVINENEST (6 CATEGORIES) -->
-<section class="section">
+<!-- 2. EXPLORE DIVINENEST (CATEGORY DIRECTORY) -->
+<section class="section category-hub-section" id="exploreSection">
   <div class="container">
-    <div class="section-header">
-      <div class="section-header-left">
-        <span class="section-tag">All-In-One Creative Hub</span>
-        <h2 class="section-title">Explore DivineNest</h2>
-        <p class="section-desc">Experience diverse content categories curated with passion, spirituality, and artistic excellence.</p>
-      </div>
+    <div class="section-header text-center" style="text-align: center; max-width: 650px; margin: 0 auto 2.5rem auto;">
+      <span class="section-tag">All-In-One Creative Hub</span>
+      <h2 class="section-title">Explore DivineNest</h2>
+      <p class="section-desc">Experience diverse content categories curated with passion, spirituality, and artistic excellence.</p>
     </div>
 
-    <div class="explore-grid">
-      <!-- 1. Music -->
-      <div class="explore-card card-music">
-        <div class="explore-icon-bubble">🎵</div>
-        <h3 class="explore-card-title">Music</h3>
-        <p class="explore-card-text">Explore original songs, melodies, albums, covers and music videos crafted by heartfelt artists.</p>
-        <a href="/DIVINENESTWEBSITE/music.html" class="explore-btn-link">Explore Music →</a>
-      </div>
+    <div class="category-hub-wrap">
+      <div class="category-hub-card">
+        <!-- 1. Home -->
+        <a href="/DIVINENESTWEBSITE/" class="hub-item" title="Go to Home">
+          <div class="hub-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FDC33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 10.5 12 3l9 7.5V20a1.5 1.5 0 0 1-1.5 1.5h-4.5a1 1 0 0 1-1-1v-4a2 2 0 0 0-2-2h0a2 2 0 0 0-2 2v4a1 1 0 0 1-1 1H4.5A1.5 1.5 0 0 1 3 20Z"/>
+            </svg>
+          </div>
+          <div class="hub-item-content">
+            <h3 class="hub-item-title">Home</h3>
+            <p class="hub-item-desc">Featured content, trending songs, new releases and continue listening.</p>
+          </div>
+        </a>
 
-      <!-- 2. Devotional -->
-      <div class="explore-card card-devotional">
-        <div class="explore-icon-bubble">🙏</div>
-        <h3 class="explore-card-title">Devotional</h3>
-        <p class="explore-card-text">Experience soulful devotional songs, spiritual music, bhajans, stotrams and divine melodies for inner peace.</p>
-        <a href="/DIVINENESTWEBSITE/devotional.html" class="explore-btn-link">Explore Devotional →</a>
-      </div>
+        <!-- 2. Music -->
+        <a href="/DIVINENESTWEBSITE/music.html" class="hub-item" title="Explore Music">
+          <div class="hub-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FDC33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 18V5l12-2v13"/>
+              <circle cx="6" cy="18" r="3"/>
+              <circle cx="18" cy="16" r="3"/>
+            </svg>
+          </div>
+          <div class="hub-item-content">
+            <h3 class="hub-item-title">Music</h3>
+            <p class="hub-item-desc">Original songs, Telugu melodies, instrumental music and albums.</p>
+          </div>
+        </a>
 
-      <!-- 3. Kids -->
-      <div class="explore-card card-kids">
-        <div class="explore-icon-bubble">🧒</div>
-        <h3 class="explore-card-title">Kids</h3>
-        <p class="explore-card-text">Fun-filled songs, cartoons, stories, rhymes and educational entertainment for children and families.</p>
-        <a href="/DIVINENESTWEBSITE/kids.html" class="explore-btn-link">Explore Kids →</a>
-      </div>
+        <!-- 3. Devotional -->
+        <a href="/DIVINENESTWEBSITE/devotional.html" class="hub-item" title="Soulful Devotional">
+          <div class="hub-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FDC33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15.5 5.5a2.5 2.5 0 0 0-3.5 0l-.5.5-.5-.5a2.5 2.5 0 0 0-3.5 3.5l4 4 4-4a2.5 2.5 0 0 0 0-3.5z"/>
+              <path d="M2 15h4.5a2 2 0 0 1 1.6.8l1.4 1.9a2 2 0 0 0 1.6.8H17a3 3 0 0 0 3-3v0a2 2 0 0 0-2-2h-3"/>
+            </svg>
+          </div>
+          <div class="hub-item-content">
+            <h3 class="hub-item-title">Devotional</h3>
+            <p class="hub-item-desc">Venkateswara, Shiva, Krishna, Hanuman, bhajans and chants.</p>
+          </div>
+        </a>
 
-      <!-- 4. Videos -->
-      <div class="explore-card card-videos">
-        <div class="explore-icon-bubble">🎬</div>
-        <h3 class="explore-card-title">Videos</h3>
-        <p class="explore-card-text">Watch entertaining, inspirational, musical, and creative videos produced with high-definition cinematography.</p>
-        <a href="/DIVINENESTWEBSITE/videos.html" class="explore-btn-link">Watch Videos →</a>
-      </div>
+        <!-- 4. Kids -->
+        <a href="/DIVINENESTWEBSITE/kids.html" class="hub-item" title="Kids World">
+          <div class="hub-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FDC33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="13" r="8"/>
+              <path d="M12 5c-1-1.5-2.5-1.5-2.5 0 0 1.5 2.5 2 2.5 0"/>
+              <circle cx="9.5" cy="12" r="1" fill="#FDC33D"/>
+              <circle cx="14.5" cy="12" r="1" fill="#FDC33D"/>
+              <path d="M9.5 15.5a3 3 0 0 0 5 0"/>
+            </svg>
+          </div>
+          <div class="hub-item-content">
+            <h3 class="hub-item-title">Kids</h3>
+            <p class="hub-item-desc">Cartoons, rhymes, animated stories and educational content.</p>
+          </div>
+        </a>
 
-      <!-- 5. Shorts -->
-      <div class="explore-card card-shorts">
-        <div class="explore-icon-bubble">⚡</div>
-        <h3 class="explore-card-title">Shorts</h3>
-        <p class="explore-card-text">Enjoy quick, entertaining, and engaging short-form videos — devotion, melody snippets, and smiles in seconds.</p>
-        <a href="/DIVINENESTWEBSITE/shorts.html" class="explore-btn-link">Watch Shorts →</a>
-      </div>
+        <!-- 5. Videos & Shorts -->
+        <a href="/DIVINENESTWEBSITE/videos.html" class="hub-item" title="Videos & Shorts">
+          <div class="hub-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FDC33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+              <path d="M3 10h18"/>
+              <path d="m7 5 2.5 5"/>
+              <path d="m12 5 2.5 5"/>
+              <path d="m17 5 2.5 5"/>
+            </svg>
+          </div>
+          <div class="hub-item-content">
+            <h3 class="hub-item-title">Videos &amp; Shorts</h3>
+            <p class="hub-item-desc">Latest uploads, trending clips and entertainment videos.</p>
+          </div>
+        </a>
 
-      <!-- 6. Artists -->
-      <div class="explore-card card-artists">
-        <div class="explore-icon-bubble">🎤</div>
-        <h3 class="explore-card-title">Artists</h3>
-        <p class="explore-card-text">Discover singers, musicians, creators, voice artists and other talented performers bringing DivineNest to life.</p>
-        <a href="/DIVINENESTWEBSITE/artists.html" class="explore-btn-link">Meet Artists →</a>
+        <!-- 6. Playlists -->
+        <a href="/DIVINENESTWEBSITE/playlists.html" class="hub-item" title="Popular Playlists">
+          <div class="hub-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#FDC33D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M4 6h10"/>
+              <path d="M4 11h7"/>
+              <path d="M4 16h6"/>
+              <circle cx="17.5" cy="15.5" r="2.5"/>
+              <path d="M20 15.5V7l2 1"/>
+            </svg>
+          </div>
+          <div class="hub-item-content">
+            <h3 class="hub-item-title">Playlists</h3>
+            <p class="hub-item-desc">Morning music, bedtime melodies, kids' favourites and devotional collections.</p>
+          </div>
+        </a>
       </div>
     </div>
   </div>
@@ -765,7 +810,7 @@
           </a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Ananya Sharma</span>
-            <span>78903 views</span>
+            <span>78904 views</span>
           </div>
         </div>
       </div>
@@ -785,7 +830,7 @@
           </a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Karthik Varma</span>
-            <span>45603 views</span>
+            <span>45604 views</span>
           </div>
         </div>
       </div>
@@ -805,7 +850,7 @@
           </a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Karthik Varma</span>
-            <span>121003 views</span>
+            <span>121004 views</span>
           </div>
         </div>
       </div>
@@ -825,7 +870,7 @@
           </a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Ananya Sharma</span>
-            <span>98703 views</span>
+            <span>98704 views</span>
           </div>
         </div>
       </div>
@@ -845,7 +890,7 @@
           </a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Karthik Varma</span>
-            <span>154004 views</span>
+            <span>154005 views</span>
           </div>
         </div>
       </div>
@@ -981,7 +1026,7 @@
           <span class="short-category-tag">devotional shorts</span>
           <h4 class="short-title">Om Namah Shivaya 15-Second Bliss #Shorts</h4>
           <div class="short-stats">
-            <span>▶ 184003 views</span>
+            <span>▶ 184004 views</span>
             <span>❤️ 16500</span>
           </div>
         </div>
@@ -994,7 +1039,7 @@
           <span class="short-category-tag">music shorts</span>
           <h4 class="short-title">When the Flute Hits Your Heart #Shorts</h4>
           <div class="short-stats">
-            <span>▶ 142003 views</span>
+            <span>▶ 142004 views</span>
             <span>❤️ 12800</span>
           </div>
         </div>
@@ -1007,7 +1052,7 @@
           <span class="short-category-tag">kids shorts</span>
           <h4 class="short-title">Benny Rabbit Laughs So Hard! #KidsShorts</h4>
           <div class="short-stats">
-            <span>▶ 95003 views</span>
+            <span>▶ 95004 views</span>
             <span>❤️ 8100</span>
           </div>
         </div>
@@ -1020,7 +1065,7 @@
           <span class="short-category-tag">behind the scenes</span>
           <h4 class="short-title">Singer Warm Up Magic: Classical Notes to Pop #Shorts</h4>
           <div class="short-stats">
-            <span>▶ 67003 views</span>
+            <span>▶ 67004 views</span>
             <span>❤️ 5900</span>
           </div>
         </div>
