@@ -168,6 +168,13 @@
           <span class="search-text-hide">Search</span>
         </a>
 
+        <!-- Saved Favourites & History Quick Button -->
+        <button type="button" class="header-saved-btn" id="headerSavedBtn" title="Saved Favourites & History">
+          <span class="saved-icon">❤️</span>
+          <span class="saved-text-hide">Saved</span>
+          <span class="saved-badge" id="headerSavedBadge" style="display:none;">0</span>
+        </button>
+
         <!-- PROMINENT ADMIN PORTAL BUTTON -->
         <a href="/DIVINENESTWEBSITE/admin.html" class="admin-portal-btn" title="Open Admin Control Portal">
           <span class="admin-btn-icon">🔐</span>
@@ -422,7 +429,25 @@
           <a href="/DIVINENESTWEBSITE/video/funny-bunny-laugh-short.html" class="video-card-title">Benny Rabbit Laughs So Hard! #KidsShorts</a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Shorts</span>
-            <span>95007 views</span>
+            <span>95009 views</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="video-card">
+        <div class="video-thumb-wrap" data-youtube-id="C0DPdy98e4c" data-video-title="Benny the Rabbit &amp; The Forest Friends | Animated Moral Story">
+          <img src="https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=800&amp;auto=format&amp;fit=crop&amp;q=80" alt="Benny the Rabbit &amp; The Forest Friends | Animated Moral Story" class="video-thumb" loading="lazy">
+          <span class="video-category-badge">kids</span>
+          <span class="video-duration-badge">7:10</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="/DIVINENESTWEBSITE/video/benny-the-rabbit-kindness-quest.html" class="video-card-title">Benny the Rabbit &amp; The Forest Friends | Animated Moral Story</a>
+          <div class="video-card-meta">
+            <span class="video-artist-tag">Kids</span>
+            <span>84002 views</span>
           </div>
         </div>
       </div>
@@ -440,7 +465,7 @@
           <a href="/DIVINENESTWEBSITE/video/nursery-rhymes-abc-phonics.html" class="video-card-title">Fun ABC Phonics &amp; Numbers Song | Kids Learning Melodies</a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Kids</span>
-            <span>82107 views</span>
+            <span>82109 views</span>
           </div>
         </div>
       </div>
@@ -458,7 +483,25 @@
           <a href="/DIVINENESTWEBSITE/video/little-krishna-butter-thief.html" class="video-card-title">Little Krishna &amp; The Butter Pot | Kids Animated Story</a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Kids</span>
-            <span>74507 views</span>
+            <span>74509 views</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="video-card">
+        <div class="video-thumb-wrap" data-youtube-id="fJ9rUzIMcZQ" data-video-title="Colors, Numbers &amp; Jungle Animals | Fun Early Learning Song">
+          <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?w=800&amp;auto=format&amp;fit=crop&amp;q=80" alt="Colors, Numbers &amp; Jungle Animals | Fun Early Learning Song" class="video-thumb" loading="lazy">
+          <span class="video-category-badge">kids</span>
+          <span class="video-duration-badge">6:15</span>
+          <div class="play-hover-overlay">
+            <div class="play-hover-btn">▶</div>
+          </div>
+        </div>
+        <div class="video-card-body">
+          <a href="/DIVINENESTWEBSITE/video/early-learning-colors-animals.html" class="video-card-title">Colors, Numbers &amp; Jungle Animals | Fun Early Learning Song</a>
+          <div class="video-card-meta">
+            <span class="video-artist-tag">Kids</span>
+            <span>71002 views</span>
           </div>
         </div>
       </div>
@@ -476,7 +519,7 @@
           <a href="/DIVINENESTWEBSITE/video/the-little-rabbit-adventure.html" class="video-card-title">The Little Rabbit Adventure | Panchatantra Moral Story</a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Kids</span>
-            <span>67407 views</span>
+            <span>67409 views</span>
           </div>
         </div>
       </div>
@@ -494,7 +537,7 @@
           <a href="/DIVINENESTWEBSITE/video/chuchu-the-elephant-friend.html" class="video-card-title">Chuchu the Elephant &amp; The Magical River | Animated Tale</a>
           <div class="video-card-meta">
             <span class="video-artist-tag">Kids</span>
-            <span>53207 views</span>
+            <span>53209 views</span>
           </div>
         </div>
       </div>
@@ -526,28 +569,46 @@
   <!-- Audio Mini-Player Bar -->
   <div class="audio-player-bar" id="audioPlayerBar">
     <div class="audio-player-inner">
+      <!-- Left: Song Info & Quick Favorite -->
       <div class="player-song-info">
-        <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=100" alt="Song thumbnail" class="player-song-thumb" id="playerSongThumb">
-        <div>
+        <div class="player-thumb-wrap">
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=100" alt="Song thumbnail" class="player-song-thumb" id="playerSongThumb">
+          <button type="button" class="player-fav-btn" id="playerHeartBtn" title="Save to Favourites" aria-label="Save to Favourites">🤍</button>
+        </div>
+        <div class="player-text-wrap">
           <div class="player-song-title" id="playerSongTitle">Soulful Melody</div>
           <div class="player-song-artist" id="playerSongArtist">DivineNest Music</div>
         </div>
       </div>
 
+      <!-- Center: Full Playback Controls & Interactive Seekbar -->
       <div class="player-controls">
         <div class="player-buttons">
-          <button class="player-btn player-play-btn" id="playerPlayBtn" aria-label="Play or pause">⏸</button>
+          <button type="button" class="player-ctrl-btn" id="playerShuffleBtn" title="Shuffle (Off)" aria-label="Shuffle">🔀</button>
+          <button type="button" class="player-ctrl-btn" id="playerPrevBtn" title="Previous Track" aria-label="Previous Track">⏮</button>
+          <button type="button" class="player-btn player-play-btn" id="playerPlayBtn" aria-label="Play or pause">▶</button>
+          <button type="button" class="player-ctrl-btn" id="playerNextBtn" title="Next Track" aria-label="Next Track">⏭</button>
+          <button type="button" class="player-ctrl-btn" id="playerRepeatBtn" title="Repeat (Off)" aria-label="Repeat">🔁</button>
         </div>
         <div class="player-progress-area">
           <span class="player-time" id="playerCurrentTime">0:00</span>
-          <div class="player-progress-bar" id="playerProgressBar">
+          <div class="player-progress-bar" id="playerProgressBar" role="slider" aria-label="Seek progress" tabindex="0">
             <div class="player-progress-fill" id="playerProgressFill"></div>
+            <div class="player-seek-head" id="playerSeekHead"></div>
           </div>
           <span class="player-time" id="playerDuration">3:50</span>
         </div>
       </div>
 
-      <button class="player-close-btn" id="playerCloseBtn" title="Close player">✕</button>
+      <!-- Right: Volume, YouTube Sync & Close -->
+      <div class="player-right-actions">
+        <div class="player-volume-wrap">
+          <button type="button" class="player-vol-btn" id="playerMuteBtn" title="Mute/Unmute" aria-label="Mute">🔊</button>
+          <input type="range" class="player-volume-slider" id="playerVolumeSlider" min="0" max="1" step="0.02" value="1" title="Volume slider">
+        </div>
+        <button type="button" class="player-yt-sync-btn" id="playerYtSyncBtn" title="Watch in Video Mode" aria-label="Watch Video">▶ Video</button>
+        <button type="button" class="player-close-btn" id="playerCloseBtn" title="Minimize player" aria-label="Close Player">✕</button>
+      </div>
     </div>
   </div>
 
@@ -562,18 +623,18 @@
         <span class="mobile-icon">🎵</span>
         <span>Music</span>
       </a>
-      <a href="/DIVINENESTWEBSITE/videos.html" class="mobile-nav-item ">
-        <span class="mobile-icon">🎬</span>
-        <span>Videos</span>
+      <a href="/DIVINENESTWEBSITE/kids.html" class="mobile-nav-item ">
+        <span class="mobile-icon">🧒</span>
+        <span>Kids</span>
       </a>
       <a href="/DIVINENESTWEBSITE/shorts.html" class="mobile-nav-item ">
         <span class="mobile-icon">⚡</span>
         <span>Shorts</span>
       </a>
-      <a href="/DIVINENESTWEBSITE/admin.html" class="mobile-nav-item ">
-        <span class="mobile-icon">🔐</span>
-        <span>Admin</span>
-      </a>
+      <button type="button" class="mobile-nav-item" id="mobileSavedBtn" aria-label="Saved Favourites">
+        <span class="mobile-icon">❤️</span>
+        <span>Saved</span>
+      </button>
       <a href="https://youtube.com/@DivineNest" target="_blank" rel="noopener noreferrer" class="mobile-nav-item">
         <span class="mobile-icon" style="color: #FF0000;">▶️</span>
         <span>YouTube</span>
@@ -660,6 +721,83 @@
       </div>
     </div>
   </footer>
+
+  <!-- Saved Favourites & History Modal -->
+  <div class="saved-modal-backdrop" id="savedModal" role="dialog" aria-modal="true" aria-labelledby="savedModalTitle">
+    <div class="saved-modal-box">
+      <div class="saved-modal-header">
+        <div class="saved-modal-tabs">
+          <button type="button" class="saved-tab-btn active" id="tabFavoritesBtn" data-target="favoritesTab">
+            <span>❤️ My Favourites</span>
+            <span class="saved-count-pill" id="favCountPill">0</span>
+          </button>
+          <button type="button" class="saved-tab-btn" id="tabHistoryBtn" data-target="historyTab">
+            <span>🕒 Continue Listening</span>
+            <span class="saved-count-pill" id="historyCountPill">0</span>
+          </button>
+        </div>
+        <button type="button" class="modal-close-btn" id="savedModalCloseBtn" aria-label="Close saved modal">✕</button>
+      </div>
+
+      <div class="saved-modal-body">
+        <!-- Favorites Tab Content -->
+        <div class="saved-tab-pane active" id="favoritesTab">
+          <div class="saved-empty-state" id="favoritesEmptyState">
+            <div class="saved-empty-icon">🤍</div>
+            <h4>No favourites saved yet</h4>
+            <p>Tap the heart icon on any song, chant, or video to keep it here for instant listening.</p>
+            <a href="/DIVINENESTWEBSITE/music.html" class="btn btn-primary" style="margin-top:1rem; font-size:0.88rem;">Explore Music</a>
+          </div>
+          <div class="saved-items-list" id="favoritesList"></div>
+        </div>
+
+        <!-- History Tab Content -->
+        <div class="saved-tab-pane" id="historyTab">
+          <div class="history-actions-bar" id="historyActionsBar" style="display:none;">
+            <span style="font-size:0.85rem; color:var(--text-muted);">Recently played on this device</span>
+            <button type="button" class="btn-clear-history" id="clearHistoryBtn">Clear History</button>
+          </div>
+          <div class="saved-empty-state" id="historyEmptyState">
+            <div class="saved-empty-icon">🎧</div>
+            <h4>Your queue is empty</h4>
+            <p>As you play tracks and explore videos, your listening history will appear here.</p>
+          </div>
+          <div class="saved-items-list" id="historyList"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Social Share Modal -->
+  <div class="share-modal-backdrop" id="shareModal" role="dialog" aria-modal="true" aria-labelledby="shareModalTitle">
+    <div class="share-modal-box">
+      <div class="share-modal-header">
+        <h4 id="shareModalTitle">Share Melody & Joy ✨</h4>
+        <button type="button" class="modal-close-btn" id="shareModalCloseBtn" aria-label="Close share dialog">✕</button>
+      </div>
+      <div class="share-modal-body">
+        <p class="share-modal-desc" id="shareModalDesc">Share this soul-stirring track with your family and friends:</p>
+        <div class="share-modal-buttons">
+          <a href="#" class="share-btn share-whatsapp" id="shareWhatsAppBtn" target="_blank" rel="noopener noreferrer">
+            <span class="share-btn-icon">💬</span>
+            <span>WhatsApp</span>
+          </a>
+          <a href="#" class="share-btn share-twitter" id="shareTwitterBtn" target="_blank" rel="noopener noreferrer">
+            <span class="share-btn-icon">🐦</span>
+            <span>X / Twitter</span>
+          </a>
+          <a href="#" class="share-btn share-facebook" id="shareFacebookBtn" target="_blank" rel="noopener noreferrer">
+            <span class="share-btn-icon">👍</span>
+            <span>Facebook</span>
+          </a>
+        </div>
+        <div class="share-link-copy-box">
+          <input type="text" id="shareLinkInput" readonly value="">
+          <button type="button" id="copyShareLinkBtn" class="btn btn-gold">Copy Link</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- Scripts -->
   <script src="/DIVINENESTWEBSITE/static/js/main.js"></script>

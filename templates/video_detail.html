@@ -67,17 +67,45 @@
 
       <!-- Action Buttons -->
       <div style="display:flex; align-items:center; gap:0.75rem; flex-wrap:wrap;">
+        <!-- Favorite Heart Toggle -->
+        <button type="button" class="btn btn-outline btn-favorite-toggle" 
+                data-id="{{ video.id }}"
+                data-title="{{ video.title }}"
+                data-artist="{{ video.artist_name }}"
+                data-thumb="{{ video.thumbnail }}"
+                data-url="{{ url_for('video_detail', slug=video.slug) }}"
+                data-type="video"
+                title="Save to Favourites">
+          <span class="fav-icon">🤍</span>
+          <span class="fav-text">Favourite</span>
+        </button>
+
         <!-- Like Button -->
         <button class="btn btn-outline btn-like" data-video-id="{{ video.id }}" title="Like this video">
           <span>❤️</span>
           <span class="like-count">{{ video.likes | default(150) }}</span>
         </button>
 
-        <!-- Share Button -->
-        <button class="btn btn-outline btn-share" title="Share link">
+        <!-- Share Button (Opens Social Share Modal) -->
+        <button class="btn btn-outline btn-share" 
+                data-title="{{ video.title }}"
+                data-url="{{ request.url }}"
+                title="Share link">
           <span>🔗</span>
           <span>Share</span>
         </button>
+
+        <!-- Listen in Mini Player -->
+        {% if video.audio_url or video.youtube_id %}
+        <button class="btn btn-primary"
+                data-audio-url="{{ video.audio_url or 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' }}"
+                data-title="{{ video.title }}"
+                data-artist="{{ video.artist_name }}"
+                data-thumb="{{ video.thumbnail }}"
+                data-youtube-id="{{ video.youtube_id }}">
+          <span>🎵 Listen Audio</span>
+        </button>
+        {% endif %}
 
         <!-- Watch on YouTube -->
         <a href="https://www.youtube.com/watch?v={{ video.youtube_id }}" target="_blank" rel="noopener noreferrer" class="btn btn-youtube">
@@ -87,28 +115,92 @@
       </div>
     </div>
 
-    <!-- Description & Artist Details Layout -->
+    <!-- Description, Lyrics & Credits Layout -->
     <div style="display:grid; grid-template-columns: 2fr 1fr; gap:2.5rem; margin-bottom:4rem;">
-      <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-light);">
-        <h3 style="font-size:1.25rem; font-weight:800; margin-bottom:1rem;">About This Video</h3>
-        <p style="color:var(--text-muted); line-height:1.8; font-size:1rem; white-space:pre-line; margin-bottom:1.5rem;">
-          {{ video.description }}
-        </p>
+      <div style="display:flex; flex-direction:column; gap:2rem;">
+        <!-- About This Video -->
+        <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-light);">
+          <h3 style="font-size:1.25rem; font-weight:800; margin-bottom:1rem; display:flex; align-items:center; gap:0.5rem;">
+            <span>📖</span>
+            <span>About This Video</span>
+          </h3>
+          <p style="color:var(--text-muted); line-height:1.8; font-size:1rem; white-space:pre-line; margin-bottom:1.5rem;">
+            {{ video.description }}
+          </p>
 
-        {% if video.tags %}
-        <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--border-light);">
-          <span style="font-size:0.85rem; color:var(--text-dim); margin-right:0.5rem;">Tags:</span>
-          {% for tag in video.tags.split(',') %}
-          <span style="display:inline-block; font-size:0.78rem; background:rgba(255,255,255,0.06); padding:0.2rem 0.6rem; border-radius:var(--radius-sm); margin:0.2rem; color:var(--text-muted);">
-            #{{ tag.strip() }}
-          </span>
-          {% endfor %}
+          {% if video.tags %}
+          <div style="margin-top:1.5rem; padding-top:1rem; border-top:1px solid var(--border-light);">
+            <span style="font-size:0.85rem; color:var(--text-dim); margin-right:0.5rem;">Tags:</span>
+            {% for tag in video.tags.split(',') %}
+            <span style="display:inline-block; font-size:0.78rem; background:rgba(255,255,255,0.06); padding:0.2rem 0.6rem; border-radius:var(--radius-sm); margin:0.2rem; color:var(--text-muted);">
+              #{{ tag.strip() }}
+            </span>
+            {% endfor %}
+          </div>
+          {% endif %}
+        </div>
+
+        <!-- Lyrics & Sacred Verses Section -->
+        {% if video.lyrics %}
+        <div class="lyrics-card-wrapper" style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-light);">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:1.25rem; flex-wrap:wrap; gap:0.75rem;">
+            <h3 style="font-size:1.25rem; font-weight:800; display:flex; align-items:center; gap:0.5rem;">
+              <span>📜</span>
+              <span>Lyrics &amp; Sacred Verses</span>
+            </h3>
+            <span class="badge" style="background:rgba(245,158,11,0.15); color:var(--accent-gold); border:1px solid rgba(245,158,11,0.3); font-size:0.8rem;">
+              {{ video.language }} • Official Lyrics
+            </span>
+          </div>
+
+          <div class="lyrics-content-box" style="background:rgba(0,0,0,0.3); border-radius:var(--radius-md); padding:1.5rem; border:1px solid rgba(255,255,255,0.06); font-family:inherit; line-height:2; font-size:1.02rem; color:#E2E8F0; white-space:pre-line;">
+{{ video.lyrics }}
+          </div>
         </div>
         {% endif %}
+
+        <!-- Song / Video Information & Official Credits -->
+        <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-light);">
+          <h3 style="font-size:1.25rem; font-weight:800; margin-bottom:1.25rem; display:flex; align-items:center; gap:0.5rem;">
+            <span>🎼</span>
+            <span>Song Information &amp; Official Credits</span>
+          </h3>
+
+          <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:1.25rem; margin-bottom:1.5rem;">
+            <div class="credit-item">
+              <span style="font-size:0.8rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; display:block;">Singer / Artist</span>
+              <strong style="font-size:0.98rem; color:var(--accent-gold);">{{ video.artist_name }}</strong>
+            </div>
+            <div class="credit-item">
+              <span style="font-size:0.8rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; display:block;">Category &amp; Hub</span>
+              <strong style="font-size:0.98rem; color:#FFF;">{{ video.category | capitalize }} ({{ video.subcategory | capitalize }})</strong>
+            </div>
+            <div class="credit-item">
+              <span style="font-size:0.8rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; display:block;">Language</span>
+              <strong style="font-size:0.98rem; color:#FFF;">{{ video.language }}</strong>
+            </div>
+            <div class="credit-item">
+              <span style="font-size:0.8rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; display:block;">Release Date</span>
+              <strong style="font-size:0.98rem; color:#FFF;">{{ video.published_date }}</strong>
+            </div>
+            <div class="credit-item">
+              <span style="font-size:0.8rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; display:block;">Audio Quality</span>
+              <strong style="font-size:0.98rem; color:#10B981;">Lossless Master 320kbps</strong>
+            </div>
+            <div class="credit-item">
+              <span style="font-size:0.8rem; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; display:block;">Video Quality</span>
+              <strong style="font-size:0.98rem; color:#3B82F6;">Ultra HD 4K / 60fps</strong>
+            </div>
+          </div>
+
+          <div style="padding-top:1rem; border-top:1px solid var(--border-light); font-size:0.82rem; color:var(--text-dim); line-height:1.6;">
+            <strong>Copyright Notice:</strong> © 2026 Divine Nest Records. All rights reserved. Content on this platform is licensed for personal devotion and entertainment. Unauthorized commercial reproduction, broadcast or distribution is strictly prohibited.
+          </div>
+        </div>
       </div>
 
       <!-- Creator / Channel Info Card -->
-      <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-light); height:fit-content;">
+      <div style="background:var(--bg-card); padding:2rem; border-radius:var(--radius-lg); border:1px solid var(--border-light); height:fit-content; position:sticky; top:90px;">
         <div style="display:flex; align-items:center; gap:1rem; margin-bottom:1.25rem;">
           <img src="{{ url_for('static', filename='images/logo.png') }}" alt="DivineNest Official" style="width:54px; height:54px; border-radius:50%; object-fit:cover; border:2px solid var(--gold-400); box-shadow:0 4px 15px var(--primary-glow);">
           <div>
@@ -119,8 +211,11 @@
         <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-bottom:1.25rem;">
           Official platform bringing together music, devotional experiences, kids cartoons, and creative storytelling.
         </p>
-        <a href="{{ youtube_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-youtube" style="width:100%; justify-content:center;">
+        <a href="{{ youtube_url }}" target="_blank" rel="noopener noreferrer" class="btn btn-youtube" style="width:100%; justify-content:center; margin-bottom:0.75rem;">
           <span>▶ Subscribe Channel</span>
+        </a>
+        <a href="{{ url_for('submit_music') }}" class="btn btn-outline" style="width:100%; justify-content:center; font-size:0.85rem;">
+          <span>🤝 Submit Your Creation</span>
         </a>
       </div>
     </div>

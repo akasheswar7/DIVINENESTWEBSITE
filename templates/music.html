@@ -44,18 +44,30 @@
           <div>Language: <strong style="color:#FFF;">{{ item.language }}</strong> • Released: {{ item.release_date }}</div>
         </div>
 
-        <div style="display:flex; gap:0.6rem; margin-top:auto;">
-          <button class="btn btn-primary" style="flex:1; padding:0.65rem 1rem; font-size:0.9rem;"
+        <div style="display:flex; gap:0.5rem; margin-top:auto;">
+          <button class="btn btn-primary" style="flex:1; padding:0.65rem 0.9rem; font-size:0.9rem;"
                   data-audio-url="{{ item.audio_url }}"
                   data-title="{{ item.title }}"
                   data-artist="{{ item.artist_name }}"
-                  data-thumb="{{ item.thumbnail }}">
-            <span>▶ Play Song</span>
+                  data-thumb="{{ item.thumbnail }}"
+                  data-youtube-id="{{ item.youtube_id }}">
+            <span>▶ Play</span>
           </button>
-          <button class="btn btn-outline" style="padding:0.65rem 0.9rem; font-size:0.9rem;"
+          <button type="button" class="btn btn-outline btn-favorite-toggle" 
+                  data-id="music_{{ item.id }}"
+                  data-title="{{ item.title }}"
+                  data-artist="{{ item.artist_name }}"
+                  data-thumb="{{ item.thumbnail }}"
+                  data-url="{{ item.audio_url }}"
+                  data-type="music"
+                  title="Save to Favourites"
+                  style="padding:0.65rem 0.85rem; font-size:0.95rem;">
+            <span class="fav-icon">🤍</span>
+          </button>
+          <button class="btn btn-outline" style="padding:0.65rem 0.85rem; font-size:0.9rem;"
                   data-youtube-id="{{ item.youtube_id }}"
                   data-video-title="{{ item.title }}">
-            <span>🎬 Video</span>
+            <span>🎬</span>
           </button>
         </div>
       </div>

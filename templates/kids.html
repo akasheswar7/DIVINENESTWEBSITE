@@ -70,11 +70,24 @@
           </p>
           <div class="video-card-meta">
             <span style="color:#06D6A0; font-weight:700;">{{ vid.subcategory | capitalize }}</span>
-            <button class="btn btn-primary" style="padding:0.35rem 0.85rem; font-size:0.8rem; background:#06D6A0; color:#000; font-weight:800;"
-                    data-youtube-id="{{ vid.youtube_id }}"
-                    data-video-title="{{ vid.title }}">
-              Watch Story ▶
-            </button>
+            <div style="display:flex; gap:0.4rem; align-items:center;">
+              <button type="button" class="btn btn-outline btn-favorite-toggle" 
+                      data-id="{{ vid.id }}"
+                      data-title="{{ vid.title }}"
+                      data-artist="{{ vid.artist_name }}"
+                      data-thumb="{{ vid.thumbnail }}"
+                      data-url="{{ url_for('video_detail', slug=vid.slug) }}"
+                      data-type="kids"
+                      title="Save to Favourites"
+                      style="padding:0.35rem 0.6rem; font-size:0.85rem;">
+                <span class="fav-icon">🤍</span>
+              </button>
+              <button class="btn btn-primary" style="padding:0.35rem 0.85rem; font-size:0.8rem; background:#06D6A0; color:#000; font-weight:800;"
+                      data-youtube-id="{{ vid.youtube_id }}"
+                      data-video-title="{{ vid.title }}">
+                Watch Story ▶
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -82,7 +95,7 @@
     </div>
 
     <!-- Kids Pillars / Educational Value -->
-    <div class="explore-grid">
+    <div class="explore-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
       <div class="explore-card card-kids">
         <div class="explore-icon-bubble">📖</div>
         <h3 class="explore-card-title">Moral Stories</h3>
@@ -95,7 +108,15 @@
         <div class="explore-icon-bubble">🎵</div>
         <h3 class="explore-card-title">Musical Rhymes</h3>
         <p class="explore-card-text">
-          Catchy sing-along songs in Telugu, Hindi, and English that build linguistic memory, vocabulary, and cheerful family rhythm.
+          Catchy sing-along songs in Telugu, Hindi, and English like Chandamama Raave that build linguistic memory and family joy.
+        </p>
+      </div>
+
+      <div class="explore-card card-kids">
+        <div class="explore-icon-bubble">🐰</div>
+        <h3 class="explore-card-title">Benny &amp; Chuchu Learning</h3>
+        <p class="explore-card-text">
+          Beloved animated characters guiding children through ABC phonics, 123 numbers, colors, jungle animals, and calming bedtime lullabies.
         </p>
       </div>
 

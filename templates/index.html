@@ -79,22 +79,23 @@
     </div>
 
     <!-- Live Platform Statistics -->
+    <!-- Live Platform Highlights (Substantiated & Truthful) -->
     <div class="hero-stats-bar">
       <div class="stat-item">
-        <div class="stat-number">500K+</div>
-        <div class="stat-label">Happy Listeners</div>
-      </div>
-      <div class="stat-item">
         <div class="stat-number">{{ total_videos }}+</div>
-        <div class="stat-label">Videos & Chants</div>
+        <div class="stat-label">Curated Songs &amp; Chants</div>
       </div>
       <div class="stat-item">
-        <div class="stat-number">6+</div>
-        <div class="stat-label">Genres & Categories</div>
+        <div class="stat-number">3</div>
+        <div class="stat-label">Languages (Telugu, Hindi, EN)</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">6</div>
+        <div class="stat-label">Official Hubs</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">100%</div>
-        <div class="stat-label">Family Friendly</div>
+        <div class="stat-label">Family Safe &amp; Free</div>
       </div>
     </div>
   </div>
@@ -234,6 +235,25 @@
           <span class="hub-arrow">→</span>
         </a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- DYNAMIC CONTINUE LISTENING SHELF -->
+<section class="section continue-listening-section" id="continueListeningSection" style="display: none; padding-top: 1rem; padding-bottom: 2.5rem;">
+  <div class="container">
+    <div class="section-header" style="margin-bottom: 1.5rem;">
+      <div class="section-header-left">
+        <span class="section-tag">🕒 Resume Playback</span>
+        <h2 class="section-title">Continue Listening</h2>
+        <p class="section-desc">Quickly resume your recently enjoyed songs, sacred chants, and animated stories.</p>
+      </div>
+      <button type="button" class="btn btn-outline" id="clearHomeHistoryBtn" style="font-size:0.82rem; padding:0.4rem 1rem;">
+        Clear History
+      </button>
+    </div>
+    <div class="continue-listening-grid" id="continueListeningGrid">
+      <!-- Injected dynamically from localStorage by main.js -->
     </div>
   </div>
 </section>

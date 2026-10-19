@@ -235,12 +235,12 @@ def kids():
     conn.close()
 
     categories = [
-        ('all', '🌟 All Kids Content'),
-        ('cartoons', '🐻 Cartoons'),
-        ('rhymes', '🎵 Nursery Rhymes'),
-        ('kids songs', '🎶 Kids Songs'),
-        ('moral stories', '📖 Moral Stories'),
-        ('learning', '🌈 Learning & ABC')
+        ('all', '🌟 All Kids'),
+        ('rhymes', '🎵 Nursery & Telugu Rhymes'),
+        ('bedtime songs', '🌙 Bedtime Songs'),
+        ('moral stories', '📖 Animated Stories (Benny & Chuchu)'),
+        ('cartoons', '🐻 Fun Cartoons'),
+        ('learning', '🌈 Early Learning (ABC & Numbers)')
     ]
 
     return render_template(
@@ -545,43 +545,55 @@ def search():
     conn = get_db()
     cursor = conn.cursor()
 
-    wildcard = f'%{query}%'
+    if query:
+        wildcard = f'%{query}%'
 
-    # Search in videos
-    cursor.execute('''
-        SELECT * FROM videos 
-        WHERE title LIKE ? OR description LIKE ? OR tags LIKE ? OR artist_name LIKE ?
-        ORDER BY views DESC LIMIT 12
-    ''', (wildcard, wildcard, wildcard, wildcard))
-    videos_found = cursor.fetchall()
+        # Search in videos (titles, descriptions, tags, singers, deities/subcategories, languages, lyrics)
+        cursor.execute('''
+            SELECT * FROM videos 
+            WHERE title LIKE ? OR description LIKE ? OR tags LIKE ? OR artist_name LIKE ? 
+               OR subcategory LIKE ? OR category LIKE ? OR language LIKE ? OR lyrics LIKE ?
+            ORDER BY views DESC LIMIT 20
+        ''', (wildcard, wildcard, wildcard, wildcard, wildcard, wildcard, wildcard, wildcard))
+        videos_found = cursor.fetchall()
 
-    # Search in music
-    cursor.execute('''
-        SELECT * FROM music 
-        WHERE title LIKE ? OR artist_name LIKE ? OR singer LIKE ? OR composer LIKE ?
-        ORDER BY id DESC LIMIT 6
-    ''', (wildcard, wildcard, wildcard, wildcard))
-    music_found = cursor.fetchall()
+        # Search in music
+        cursor.execute('''
+            SELECT * FROM music 
+            WHERE title LIKE ? OR artist_name LIKE ? OR singer LIKE ? OR composer LIKE ? 
+               OR genre LIKE ? OR language LIKE ? OR lyrics LIKE ?
+            ORDER BY id DESC LIMIT 12
+        ''', (wildcard, wildcard, wildcard, wildcard, wildcard, wildcard, wildcard))
+        music_found = cursor.fetchall()
 
-    # Search in artists
-    cursor.execute('''
-        SELECT * FROM artists 
-        WHERE name LIKE ? OR bio LIKE ? OR role LIKE ?
-        LIMIT 4
-    ''', (wildcard, wildcard, wildcard))
-    artists_found = cursor.fetchall()
+        # Search in artists
+        cursor.execute('''
+            SELECT * FROM artists 
+            WHERE name LIKE ? OR bio LIKE ? OR role LIKE ?
+            LIMIT 6
+        ''', (wildcard, wildcard, wildcard))
+        artists_found = cursor.fetchall()
 
-    # Search in blogs
-    cursor.execute('''
-        SELECT * FROM blogs 
-        WHERE title LIKE ? OR summary LIKE ? OR content LIKE ?
-        LIMIT 4
-    ''', (wildcard, wildcard, wildcard))
-    blogs_found = cursor.fetchall()
+        # Search in blogs
+        cursor.execute('''
+            SELECT * FROM blogs 
+            WHERE title LIKE ? OR summary LIKE ? OR content LIKE ? OR tags LIKE ?
+            LIMIT 4
+        ''', (wildcard, wildcard, wildcard, wildcard))
+        blogs_found = cursor.fetchall()
 
-    conn.close()
-
-    total_results = len(videos_found) + len(music_found) + len(artists_found) + len(blogs_found)
+        total_results = len(videos_found) + len(music_found) + len(artists_found) + len(blogs_found)
+    else:
+        # Default top discovery content when visiting search without a query
+        cursor.execute('SELECT * FROM videos ORDER BY views DESC LIMIT 12')
+        videos_found = cursor.fetchall()
+        cursor.execute('SELECT * FROM music ORDER BY id DESC LIMIT 6')
+        music_found = cursor.fetchall()
+        cursor.execute('SELECT * FROM artists LIMIT 4')
+        artists_found = cursor.fetchall()
+        cursor.execute('SELECT * FROM blogs LIMIT 4')
+        blogs_found = cursor.fetchall()
+        total_results = len(videos_found) + len(music_found)
 
     return render_template(
         'search.html',
